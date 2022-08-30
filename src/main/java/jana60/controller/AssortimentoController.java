@@ -27,7 +27,7 @@ public class AssortimentoController {
 	// ASSORTIMENTO
 	@GetMapping
 	public String assList(Model model) {
-		model.addAttribute("assortimento", repoAss.findAll());
+		model.addAttribute("assortimentoList", repoAss.findAll());
 		return "/assortimento/assortimento"; // -> il nome o path di un template che si trova in /resources/templates
 	}
 
@@ -35,20 +35,37 @@ public class AssortimentoController {
 	public String assForm(Model model) {
 		model.addAttribute("assortimento", new Assortimento());
 		model.addAttribute("prodottiList", repo.findAll());
-		return "/assortimento/add";
+		return "/assortimento/addA";
 	}
 
-	@PostMapping("/add")
-	public String save(@Valid @ModelAttribute Assortimento formAss, BindingResult br, Model model) {
-		// se ho errori torno alla form
-		if (br.hasErrors()) {
-			// passo al model la lista degli utenti
-			model.addAttribute("prodottiList", repo.findAll());
-			return "/assortimento/add";
-		} else { // se non ho errori salvo il borrowing
-			repoAss.save(formAss);
-			return "redirect:/assortimento/assortimento";
+	@PostMapping("/save")
+	public String save(@Valid @ModelAttribute("assortimento") Assortimento formAssortimento, BindingResult br,
+			Model model) {
+		// testo se ci sono errori di validazione
+		boolean hasErrors = br.hasErrors();
+		boolean validateNome = true;
+		if (formAssortimento.getId() != null) { // sono in edit non in create
+			Assortimento assBeforeUpdate = repoAss.findById(formAssortimento.getId()).get();
+			if (assBeforeUpdate.getNomeFornitore().equals(formAssortimento.getNomeFornitore())) {
+				validateNome = false;
+			}
 		}
 
+		if (hasErrors) {
+			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
+			// precaricata
+			model.addAttribute("prodottiList", repo.findAll());
+			return "/assortimento/addA";
+		} else {
+			// se non ci sono errori salvo il book che arriva dalla form
+			try {
+				repoAss.save(formAssortimento);
+			} catch (Exception e) { // gestisco eventuali eccezioni sql
+				model.addAttribute("errorMessage", "Unable to save");
+				model.addAttribute("categoryList", repo.findAll());
+				return "/assortimento/addA";
+			}
+			return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP redirect a quel path
+		}
 	}
 }

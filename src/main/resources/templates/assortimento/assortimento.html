@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+  <link rel="stylesheet" th:href="@{/home/home.css}"> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Global Museum</title>
+  </head>
+  <body>
+  <nav th:replace="fragments/navbar :: navbar('assortimento')"></nav>
+  <th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	  	</th:block>
+    <h1>Gli Assortimenti</h1>
+    <div> 
+    <a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Assortimento</a>
+    </div>
+    
+    <div class="container text-center w-75 mt-3">
+      <div>
+        <table class="table mb-5">
+          <thead>
+            <tr>
+              <th>Nome Fornitore</th>
+              <th>Data</th>
+              <th>Prezzo Totale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="a : ${assortimentoList}">
+              <td th:text="${a.nomeFornitore}"></td>
+              <td th:text="${a.data}"></td>
+              <td th:text="${a.costo}"></td>
+              <td>
+	  				<a class="btn btn-primary" th:href="@{|/edit/${assortimento.Id}|}" title="Edit">
+	  					<i class="fa-solid fa-pen-to-square"></i>
+	  				</a>
+	  				
+	  			</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </body>
+</html>

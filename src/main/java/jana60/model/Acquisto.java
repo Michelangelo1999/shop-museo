@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -15,20 +14,20 @@ public class Acquisto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private LocalDate data;
-	
+
 	private int quantita;
-	
+
 	private double prezzoTotale;
-	
-	@OneToOne(mappedBy = "acquisto")
+
+	@ManyToOne
 	private Prodotto prodotto;
-	
+
 	@ManyToOne
 	private Carrello carrello;
-	
-	//getters and setters
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -77,6 +76,5 @@ public class Acquisto {
 	public void setCarrello(Carrello carrello) {
 		this.carrello = carrello;
 	}
-	
-	
+
 }

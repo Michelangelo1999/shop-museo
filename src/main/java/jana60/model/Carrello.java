@@ -12,21 +12,21 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Carrello {
-
+// carrello
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotNull
 	private double prezzoTotale;
-	
+
 	@OneToMany(mappedBy = "carrello")
 	private List<Acquisto> acquisti;
-	
+
 	@OneToOne
 	private Fattura fattura;
-	
-	//getters and setters
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -59,6 +59,5 @@ public class Carrello {
 	public void setFattura(Fattura fattura) {
 		this.fattura = fattura;
 	}
-	
-	
+
 }

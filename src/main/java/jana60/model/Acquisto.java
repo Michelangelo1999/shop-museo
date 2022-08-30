@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -21,7 +22,7 @@ public class Acquisto {
 
 	private double prezzoTotale;
 
-	@ManyToOne
+	@OneToOne(mappedBy = "acquisto")
 	private Prodotto prodotto;
 
 	@ManyToOne

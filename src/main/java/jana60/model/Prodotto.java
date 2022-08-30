@@ -1,13 +1,11 @@
 package jana60.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,13 +24,11 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 
-	private int quantita;
+	@OneToOne
+	private Assortimento assortimento;
 
-	@OneToMany(mappedBy = "prodotto")
-	private java.util.List<Assortimento> assortimento;
-
-	@OneToMany(mappedBy = "prodotto")
-	private List<Acquisto> acquito;
+	@OneToOne
+	private Acquisto acquisto;
 
 	// getters and setters
 	public Integer getId() {
@@ -67,55 +63,28 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
-	public java.util.List<Assortimento> getAssortimento() {
+	public Assortimento getAssortimento() {
 		return assortimento;
 	}
 
-	public void setAssortimento(java.util.List<Assortimento> assortimento) {
+	public void setAssortimento(Assortimento assortimento) {
 		this.assortimento = assortimento;
 	}
 
-	public List<Acquisto> getAcquito() {
-		return acquito;
+	public Acquisto getAcquisto() {
+		return acquisto;
 	}
 
-	public void setAcquito(List<Acquisto> acquito) {
-		this.acquito = acquito;
+	public void setAcquisto(Acquisto acquisto) {
+		this.acquisto = acquisto;
 	}
 
 	// metodi custom
-	/*
-	 * ritorna il numero di prodotti disponibili, calcolato come:
-	 * 
-	 * numero di prodotti in magazzino - numero di prodotti venduti
-	 */
-	public int getProdottiAssortimento() {
-		int prodDisponibiliAs = 0;
-		for (Assortimento as : this.assortimento) {
-			if (as.getQuantita() != 0) {
-				prodDisponibiliAs += 1;
-			}
-		}
-		return prodDisponibiliAs;
-
-	}
-
-	public int getProdottiAcquisto() {
-		int prodDisponibiliAc = 0;
-		for (Acquisto as : this.acquito) {
-			if (as.getQuantita() != 0) {
-				prodDisponibiliAc -= 1;
-			}
-		}
-		return prodDisponibiliAc;
-
+	public int getQuantitaMagazzino() {
+		int quantitaDisp = 0;
+		int assortiti = this.assortimento.getQuantita();
+		int acquistati = this.acquisto.getQuantita();
+		quantitaDisp = assortiti - acquistati;
+		return quantitaDisp;
 	}
 }

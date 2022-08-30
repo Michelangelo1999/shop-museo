@@ -1,6 +1,6 @@
 package jana60.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
@@ -27,11 +25,9 @@ public class Visita {
 	@Lob
 	private String descrizione;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDate dataInizio;
+	private LocalDateTime dataInizio;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDate dataFine;
+	private LocalDateTime dataFine;
 	
 	@NotNull
 	private double prezzo;
@@ -71,19 +67,19 @@ public class Visita {
 		this.descrizione = descrizione;
 	}
 
-	public LocalDate getDataInizio() {
+	public LocalDateTime getDataInizio() {
 		return dataInizio;
 	}
 
-	public void setDataInizio(LocalDate dataInizio) {
+	public void setDataInizio(LocalDateTime dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 
-	public LocalDate getDataFine() {
+	public LocalDateTime getDataFine() {
 		return dataFine;
 	}
 
-	public void setDataFine(LocalDate dataFine) {
+	public void setDataFine(LocalDateTime dataFine) {
 		this.dataFine = dataFine;
 	}
 

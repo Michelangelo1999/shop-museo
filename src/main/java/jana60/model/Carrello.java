@@ -20,7 +20,7 @@ public class Carrello {
 	@NotNull
 	private double prezzoTotale;
 	
-	@OneToMany(mappedBy = "acquisto")
+	@OneToMany(mappedBy = "carrello")
 	private List<Acquisto> acquisti;
 	
 	@OneToOne

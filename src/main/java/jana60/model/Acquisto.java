@@ -15,20 +15,20 @@ public class Acquisto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private LocalDate data;
-	
+
 	private int quantita;
-	
+
 	private double prezzoTotale;
-	
+
 	@OneToOne(mappedBy = "acquisto")
 	private Prodotto prodotto;
-	
+
 	@ManyToOne
 	private Carrello carrello;
-	
-	//getters and setters
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -77,6 +77,5 @@ public class Acquisto {
 	public void setCarrello(Carrello carrello) {
 		this.carrello = carrello;
 	}
-	
-	
+
 }

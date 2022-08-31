@@ -2,6 +2,7 @@ package jana60.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Acquisto {
 	
 	private int quantita;
 	
+	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 	
 	@OneToOne(mappedBy = "acquisto")

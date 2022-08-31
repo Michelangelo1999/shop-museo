@@ -24,8 +24,6 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 	
-	private int quantita;
-	
 	@OneToOne
 	private Assortimento assortimento;
 	
@@ -65,14 +63,6 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
 	public Assortimento getAssortimento() {
 		return assortimento;
 	}
@@ -89,7 +79,16 @@ public class Prodotto {
 		this.acquisto = acquisto;
 	}
 	
-	
+	public int getQuantitaMagazzino() {
+		int quantitaDisp = 0;
+		
+		int assortiti = this.assortimento.getQuantita();
+		int acquistati = this.acquisto.getQuantita();
+		
+		quantitaDisp = assortiti - acquistati;
+		
+		return quantitaDisp;
+	}
 	
 	
 }

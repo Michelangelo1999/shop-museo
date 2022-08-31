@@ -30,12 +30,14 @@
               <td th:text="${a.nomeFornitore}"></td>
               <td th:text="${a.data}"></td>
               <td th:text="${a.costo}"></td>
-              <!--<td>
-	  				<a class="btn btn-primary" th:href="@{|/edit/${assortimento.Id}|}" title="Edit">
+              <td>
+	  				<a class="btn btn-primary" th:href="@{|/assortimento/edit/${a.id}|}" title="Edit">
 	  					<i class="fa-solid fa-pen-to-square"></i>
 	  				</a>
-	  				
-	  			</td> -->
+	  				<a class="btn btn-primary" th:href="@{|/assortimento/detail/${a.id}|}" title="Detail">
+	  					<i class="fa-solid fa-file-invoice"></i>
+	  				</a>
+	  			</td> 
             </tr>
           </tbody>
         </table>

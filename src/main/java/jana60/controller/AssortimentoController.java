@@ -1,15 +1,20 @@
 package jana60.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import jana60.model.Assortimento;
 import jana60.repository.AssortimentoRepo;
@@ -61,10 +66,44 @@ public class AssortimentoController {
 
 			repoAss.save(formAssortimento);
 
-			return "/assortimento/assortimento";
+			return "redirect:/assortimento";
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path
 		}
+	}
+
+	// EDIT ASSORTIMENTO
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Integer assortimentoId, Model model) {
+		Optional<Assortimento> result = repoAss.findById(assortimentoId);
+		// controllo se l'assortimento con quell'id è presente
+		if (result.isPresent()) {
+			// preparo il template con al form passandogli l'assortimento trovato sul
+			// database
+
+			model.addAttribute("assortimento", result.get());
+			model.addAttribute("prodottiList", repo.findAll());
+			return "/assortimento/addA";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"L'assortimento con id " + assortimentoId + " non è presente");
+		}
+
+	}
+
+	// DETTAGLI ACQUISTO
+	@GetMapping("/detail/{id}")
+	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
+
+		Optional<Assortimento> assortimento = repoAss.findById(assortimentoId);
+		if (assortimento.isPresent()) {
+			model.addAttribute("assortimento", assortimento.get());
+			return "/assortimento/detail";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"L'assortimento con id " + assortimentoId + " non è presente");
+		}
+
 	}
 }

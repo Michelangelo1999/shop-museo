@@ -6,18 +6,17 @@
     <title>Global Museum</title> 
   </head>
   <body>
-  	<nav th:replace="fragments/navbar :: navbar('assortimento')"></nav>
-  	<h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
+  	<nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
   	<div class="container">
-  		
+  		<h1>Nuovo Acquisto</h1>
   		
   		<hr/>
   		<!-- form che gestisce l'attributo book -->
   		
   		<form
-  			id="form-assortimento"
-  			th:object="${assortimento}"
-  			th:action="@{/assortimento/add}"
+  			id="form-acquisto"
+  			th:object="${acquisto}"
+  			th:action="@{/acquisto/save}"
   			method="POST"
   			class="row"
   		>
@@ -31,15 +30,6 @@
 				<!--  campo nascosto per l'id -->
 				<input type="hidden" th:field="*{id}">
 	  			<div class="mb-3">
-	  				<label class="form-label" for="nomeFornitore">Nome fornitore</label>
-	  				<input type="text" id="nomeFornitore" class="form-control" th:field="*{nomeFornitore}" th:errorClass="is-invalid">
-	  				<div th:if="${#fields.hasErrors('nomeFornitore')}" class="invalid-feedback">
-	  					<ul>
-	  						<li th:each="err : ${#fields.errors('nomeFornitore')}" th:text="${err}">
-	  					</ul>
-	  				</div>
-	  			</div>
-	  			<div class="mb-3">
 	  				<label class="form-label" for="data">Data</label>
 	  				<input type="text" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
 	  				<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
@@ -48,11 +38,9 @@
 	  					</ul>
 	  				</div>
 	  			</div>
-	  			
-	  			<div class="row mb-3">
-	  			<div class="col-4">
+	  			<div class="mb-3">
 	  				<label class="form-label" for="quantita">Quantità</label>
-	  				<input type="number" id="quantita" class="form-control" th:field="*{quantita}">
+	  				<input type="number" id="quantita" class="form-control" th:field="*{quantita}" th:errorClass="is-invalid">
 	  				<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 	  					<ul>
 	  						<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}">
@@ -60,13 +48,13 @@
 	  				</div>
 	  			</div>
 		  			
-		  			<div class="col-4">
-		  				<label class="form-label" for="costo">Prezzo</label>
-		  				<input type="number" id="costo" class="form-control" th:field="*{costo}" th:errorClass="is-invalid">
+		  			<div class="mb-3">
+		  				<label class="form-label" for="prezzoTotale">Prezzo</label>
+		  				<input type="number" id="prezzoTotale" class="form-control" th:field="*{prezzoTotale}" th:errorClass="is-invalid">
 		  			</div>
 	  			</div>
 	  			
-	  			
+	  			<div class="bottoni">
 	  				<button type="submit" class="btn btn-primary">Save</button>
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
@@ -75,7 +63,7 @@
 			<div class="col-4 listaProdotti">
 				<h4>Prodotti</h4>
 				<div class="form-check" th:each="prodotto : ${prodottiList}">
-				  <input class="form-check-input" th:field="*{prodottiList}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
+				  <input class="form-check-input" th:field="*{prodotto}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
 				  <label class="form-check-label" th:for="|prodotto_${prodotto.id}|" th:text="${prodotto.nome}"></label>
 				</div>
 			</div>  

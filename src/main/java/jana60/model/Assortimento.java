@@ -1,13 +1,13 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,9 +28,8 @@ public class Assortimento {
 	@NotNull
 	private double costo;
 
-	@ManyToOne
-	@JoinColumn(name = "prodotto_id")
-	private Prodotto prodotto;
+	@ManyToMany
+	private List<Prodotto> prodotto;
 
 	public Integer getId() {
 		return id;
@@ -72,11 +71,11 @@ public class Assortimento {
 		this.costo = costo;
 	}
 
-	public Prodotto getProdotto() {
+	public List<Prodotto> getProdotto() {
 		return prodotto;
 	}
 
-	public void setProdotto(Prodotto prodotto) {
+	public void setProdotto(List<Prodotto> prodotto) {
 		this.prodotto = prodotto;
 	}
 

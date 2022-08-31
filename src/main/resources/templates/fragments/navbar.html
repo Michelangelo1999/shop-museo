@@ -1,5 +1,5 @@
 <body>
-    <!-- NAVBAR -->
+    <!-- NAVBAR HOME -->
     <nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
         <div class="container-fluid">
         
@@ -13,16 +13,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'prodotto'} ? active : not-active" href="/prodotto">Prodotti</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'assortimento'} ? active : not-active" href="/assortimento">Assortimento</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'acquisto'} ? active : not-active" href="/acquisto">Acquisto</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'visiteTuristiche'} ? active : not-active" href="/visite">Visite Guidate</a>
+                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" href="/gestionale">Gestionale</a>
               </li>
               
             </ul>

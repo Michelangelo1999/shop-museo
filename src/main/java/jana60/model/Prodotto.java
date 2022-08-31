@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +27,7 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 
-	@OneToMany(mappedBy = "prodotto")
+	@ManyToMany(mappedBy = "prodotto")
 	private List<Assortimento> assortimento;
 
 	@OneToMany(mappedBy = "prodotto")

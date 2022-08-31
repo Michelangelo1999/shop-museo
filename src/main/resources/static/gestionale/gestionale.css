@@ -1,0 +1,22 @@
+/* link per il font del nome centro pagina */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+/* BODY */
+/* body {
+	background-color: rgb(0, 0, 0);
+}*/
+
+/* testo IL GESTIONALE */
+h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 80px;
+	color: black;
+	
+	margin-top: 10px;
+	margin-left:50px;
+}
+
+/*CARD*/
+div.row {
+	margin-top: 30px;
+}

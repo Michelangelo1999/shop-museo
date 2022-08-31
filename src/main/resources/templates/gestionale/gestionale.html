@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+  <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Global Museum</title>
+  </head>
+  <body>
+  <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+  <th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	  	</th:block>
+	  	
+    <h1>Il Gestionale</h1>
+    
+    <!-- INIZIO CARD COLLEGATE ALLE PAGINE -->
+    <div class="container">
+  <div class="row">
+    <div class="col">
+      <a href="/assortimento">
+    <div class="card" style="width: 18rem;">
+  <img src="/img/icon-assortimento.png" class="card-img-top" alt="icona assortimento">
+  </a>
+  <div class="card-body">
+    <p class="card-text">Qui puoi registrare gli assortimenti dei prodotti del magazzino</p>
+  </div>
+</div>
+    </div>
+    <div class="col">
+      <a href="/acquisto">
+    <div class="card" style="width: 18rem;">
+  <img src="/img/icon-acquisto.jpg" class="card-img-top" alt="icona acquisto">
+  </a>
+  <div class="card-body">
+    <p class="card-text">Qui puoi registrare gli acquisti dei prodotti del cliente</p>
+  </div></div>
+    </div>
+    <div class="col">
+      <a href="/prodotti">
+    <div class="card" style="width: 18rem;">
+  <img src="/img/icon-prodotti.jpg" class="card-img-top" alt="icona prodotti">
+  </a>
+  <div class="card-body">
+    <p class="card-text">Qui puoi vedere, modificare, aggiungere ed eliminare i prodotti</p>
+  </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

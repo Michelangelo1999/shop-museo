@@ -69,3 +69,8 @@ div.contatti{
 	text-align: center;
     margin-top: 40px;
 }
+
+div.listaProdotti {
+	margin-left: 120px;
+	margin-top: 50px;
+}

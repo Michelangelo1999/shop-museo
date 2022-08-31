@@ -38,7 +38,7 @@ public class AssortimentoController {
 		return "/assortimento/addA";
 	}
 
-	@PostMapping("/save")
+	@PostMapping("/add")
 	public String save(@Valid @ModelAttribute("assortimento") Assortimento formAssortimento, BindingResult br,
 			Model model) {
 		// testo se ci sono errori di validazione
@@ -58,14 +58,13 @@ public class AssortimentoController {
 			return "/assortimento/addA";
 		} else {
 			// se non ci sono errori salvo il book che arriva dalla form
-			try {
-				repoAss.save(formAssortimento);
-			} catch (Exception e) { // gestisco eventuali eccezioni sql
-				model.addAttribute("errorMessage", "Unable to save");
-				model.addAttribute("categoryList", repo.findAll());
-				return "/assortimento/addA";
-			}
-			return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP redirect a quel path
+
+			repoAss.save(formAssortimento);
+
+			return "/assortimento/assortimento";
+
+			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
+			// redirect a quel path
 		}
 	}
 }

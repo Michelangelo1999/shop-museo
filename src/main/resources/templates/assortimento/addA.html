@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-    <title>Book edit</title> 
+    <link rel="stylesheet" th:href="@{/home/home.css}"> 
+    <title>Global Museum</title> 
   </head>
   <body>
-  	<nav th:replace="fragments/navbar :: navbar('book')"></nav>
+  	<nav th:replace="fragments/navbar :: navbar('assortimento')"></nav>
   	<div class="container">
-  		
+  		<h1>Nuovo Assortimento</h1>
   		
   		<hr/>
   		<!-- form che gestisce l'attributo book -->
@@ -15,7 +16,7 @@
   		<form
   			id="form-assortimento"
   			th:object="${assortimento}"
-  			th:action="@{/save}"
+  			th:action="@{/assortimento/add}"
   			method="POST"
   			class="row"
   		>
@@ -70,11 +71,11 @@
 	  			</div>
 			</div>
 			
-			<div class="col-4">
+			<div class="col-4 listaProdotti">
 				<h4>Prodotti</h4>
-				<div class="form-check" th:each="prodotto : ${prodotto}">
-				  <input class="form-check-input" th:field="*{prodotto}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
-				  <label class="form-check-label" th:for="|prodotto_${prodotto.id}|" th:text="${prodotto.name}"></label>
+				<div class="form-check" th:each="prodotto : ${prodottiList}">
+				  <input class="form-check-input" th:field="*{prodottiList}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
+				  <label class="form-check-label" th:for="|prodotto_${prodotto.id}|" th:text="${prodotto.nome}"></label>
 				</div>
 			</div>  
   		</form>

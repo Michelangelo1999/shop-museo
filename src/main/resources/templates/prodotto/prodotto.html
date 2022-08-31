@@ -12,7 +12,7 @@
 	  	</th:block>
     <h1>Gli Assortimenti</h1>
     <div> 
-    <a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Assortimento</a>
+    <!--<a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Prodotto</a>-->
     </div>
     
     <div class="container text-center w-75 mt-3">
@@ -20,16 +20,16 @@
         <table class="table mb-5">
           <thead>
             <tr>
-              <th>Nome Fornitore</th>
-              <th>Data</th>
-              <th>Prezzo Totale</th>
+              <th>Nome </th>
+              <th>Descrizione</th>
+              <th>Prezzo</th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="a : ${assortimentoList}">
-              <td th:text="${a.nomeFornitore}"></td>
-              <td th:text="${a.data}"></td>
-              <td th:text="${a.costo}"></td>
+            <tr th:each="p : ${prodottoList}">
+              <td th:text="${p.nome}"></td>
+              <td th:text="${p.descrizione}"></td>
+              <td th:text="${p.prezzo}"></td>
               <!--<td>
 	  				<a class="btn btn-primary" th:href="@{|/edit/${assortimento.Id}|}" title="Edit">
 	  					<i class="fa-solid fa-pen-to-square"></i>

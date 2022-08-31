@@ -75,7 +75,7 @@
 			<div class="col-4 listaProdotti">
 				<h4>Prodotti</h4>
 				<div class="form-check" th:each="prodotto : ${prodottiList}">
-				  <input class="form-check-input" th:field="*{prodottiList}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
+				  <input class="form-check-input" th:field="${assortimento.prodotto}" type="radio" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
 				  <label class="form-check-label" th:for="|prodotto_${prodotto.id}|" th:text="${prodotto.nome}"></label>
 				</div>
 			</div>  

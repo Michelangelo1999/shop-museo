@@ -1,11 +1,13 @@
 package jana60.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -24,11 +26,11 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 
-	@OneToOne
-	private Assortimento assortimento;
+	@OneToMany(mappedBy = "prodotto")
+	private List<Assortimento> assortimento;
 
-	@OneToOne
-	private Acquisto acquisto;
+	@OneToMany(mappedBy = "prodotto")
+	private List<Acquisto> acquisto;
 
 	// getters and setters
 	public Integer getId() {
@@ -63,28 +65,28 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public Assortimento getAssortimento() {
+	public List<Assortimento> getAssortimento() {
 		return assortimento;
 	}
 
-	public void setAssortimento(Assortimento assortimento) {
+	public void setAssortimento(List<Assortimento> assortimento) {
 		this.assortimento = assortimento;
 	}
 
-	public Acquisto getAcquisto() {
+	public List<Acquisto> getAcquisto() {
 		return acquisto;
 	}
 
-	public void setAcquisto(Acquisto acquisto) {
+	public void setAcquisto(List<Acquisto> acquisto) {
 		this.acquisto = acquisto;
 	}
 
 	// metodi custom
-	public int getQuantitaMagazzino() {
-		int quantitaDisp = 0;
-		int assortiti = this.assortimento.getQuantita();
-		int acquistati = this.acquisto.getQuantita();
-		quantitaDisp = assortiti - acquistati;
-		return quantitaDisp;
-	}
+	// public int getQuantitaMagazzino() {
+	// int quantitaDisp = 0;
+	// int assortiti = this.assortimento.getQuantita();
+	// int acquistati = this.acquisto.getQuantita();
+	// quantitaDisp = assortiti - acquistati;
+	// return quantitaDisp;
+	// }
 }

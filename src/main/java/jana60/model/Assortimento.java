@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,7 +28,8 @@ public class Assortimento {
 	@NotNull
 	private double costo;
 
-	@OneToOne(mappedBy = "assortimento")
+	@ManyToOne
+	@JoinColumn(name = "prodotto_id")
 	private Prodotto prodotto;
 
 	public Integer getId() {

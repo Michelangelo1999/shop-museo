@@ -62,7 +62,7 @@ public class AssortimentoController {
 			model.addAttribute("prodottiList", repo.findAll());
 			return "/assortimento/addA";
 		} else {
-			// se non ci sono errori salvo il book che arriva dalla form
+			// se non ci sono errori salvo l'assortimento che arriva dalla form
 
 			repoAss.save(formAssortimento);
 

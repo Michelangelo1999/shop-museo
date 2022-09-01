@@ -30,15 +30,16 @@
 			 
 		</tr> 
 		<tr> 
-		
-			<td id="col0"><input type="number" name="quantita[]" value="" /></td> 
-			<td id="col1"><input type="number" name="prezzo[]" value="" /></td> 
-			 <td id="col2"> 
-              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
+		<td id="col2"> 
+			<label for="c1">Prodotto</label>
+              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="c1">
               <option selected> Apri il menù</option>
                <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
                </select>
 		        </td> 
+			<td id="col0"><input type="number" name="quantita[]" value="" /></td> 
+			<td id="col1"><input type="number" name="prezzo[]" value="" /></td> 
+			 
 		</tr>  
 	</table> 
 	<table> 

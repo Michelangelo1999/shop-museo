@@ -9,9 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import jana60.repository.GuidaRepository;
+
 @Entity
 public class Guida {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -58,6 +62,5 @@ public class Guida {
 	public void setVisite(List<Visita> visite) {
 		this.visite = visite;
 	}
-	
 	
 }

@@ -2,6 +2,7 @@ package jana60.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,17 +30,18 @@ public class Visita {
 	
 	private LocalDateTime dataFine;
 	
-	@NotNull
+	 //notnull
+	@Column(columnDefinition = "double default 0.00")
 	private double prezzo;
 	
 	@Max(100)
+	@Column(columnDefinition = "int default 0")
 	private int capienza;
 	
 	@Column(columnDefinition = "int default 0")
 	private int numeroPrenotati;
 	
-	@ManyToOne
-	@NotNull
+	@ManyToOne //notnull
 	private Guida guida;
 
 	//getters and setters

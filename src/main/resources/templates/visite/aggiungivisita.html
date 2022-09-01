@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Form Visite</title>
+</head>
+<body>
+	<!-- navbar-->
+	<nav class="navbar bg-light">
+        <form class="container-fluid justify-content-start">
+            <a class="navbar-brand" href="#">Museo</a>
+            <a class="btn btn-outline-success" th:href="@{/visite}">Lista delle Visite Guidate</a>
+        </form>
+    </nav>
+    <!-- navbar-->
+    <div class="container">
+    	<form
+    			id="visita-form"
+    			th:object="${aggiungiVisita}"
+    			th:action="@{/visite/salva}"
+    			method="post">
+    		
+    		<!-- id field-->
+				<input type="hidden" th:field="*{id}">
+			<!-- id field-->
+    		
+	        <div class="row justify-content-center">
+				<!---->
+				<!--titolo-->	        
+	            <div class="col-4">
+	                <label for="titolovisita" class="form-label">Titolo</label>
+	                <input type="text" class="form-control" id="titolovisita" placeholder="Dai un titolo alla visita guidata" th:field="*{titolo}" th:errorClass="is-invalid">
+	                <div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+		  					</ul>
+	  				</div>
+	            </div>
+	            <!--titolo-->
+	            <!--capienza-->
+	            <div class="col-2">
+	                <label class="form-label" for="capienza">Capienza</label>
+	                <input type="number" id="capienza" class="form-control" th:field="*{capienza}" th:errorClass="is-invalid">
+	                <div th:if="${#fields.hasErrors('capienza')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('capienza')}" th:text="${err}"></li>
+		  					</ul>
+	  				</div>
+	            </div>
+	            <!--capienza-->
+	            <!--prezzo-->
+	            <div class="col-2">
+	                <label class="form-label" for="costo">Prezzo &euro; </label>
+	                <input type="number" step="0.50" id="costo" class="form-control" th:field="*{prezzo}" th:errorClass="is-invalid">
+	                <div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+		  					</ul>
+	  				</div>
+	            </div>
+				<!--prezzo-->
+	        </div>
+	        <div class="row justify-content-center">
+	            <div class="col-8">
+	                <label for="descrizionevisita" class="form-label">Descrizione Visita Guidata</label>
+	                <input type="text" class="form-control" id="descrizionevisita" th:field="*{descrizione}" th:errorClass="is-invalid"></input>
+	            </div>
+	            <div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+		  					</ul>
+  				</div>
+	        </div>
+	        <div class="row justify-content-center">
+	        	<!--orario di inizio-->
+	            <div class="col-4">
+	                <label for="orarioinizio">Giorno e orario inizio:</label>
+	                <input type="datetime-local" id="orarioinizio" th:field="*{dataInizio}" th:errorClass="is-invalid">
+	                <div th:if="${#fields.hasErrors('dataInizio')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('dataInizio')}" th:text="${err}"></li>
+		  					</ul>
+  					</div>
+	            </div>
+	            <!--orario di inizio-->
+	            <!--orario di fine-->
+	            <div class="col-4">
+	                <label for="orariofine">Giorno e orario fine:</label>
+	                <input type="datetime-local" id="orariofine" th:field="*{dataFine}" th:errorClass="is-invalid">
+	                <div th:if="${#fields.hasErrors('dataFine')}" class="invalid-feedback">
+		  					<ul>
+		  						<li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
+		  					</ul>
+					</div>
+	            </div>
+	            <!--orario di fine-->
+	        </div>
+	        <!--seleziona guida-->
+            <select class="form-select-label" aria-label="Default select example" type="select">
+		        <option selected> Scelgi una Guida</option>
+		        <option th:each="ldg : ${listaGuide}" th:text="${ldg.nome}"><input th:field="*{id}" th:value="${ldg.id}"></option>
+   			 </select>
+	        <!--seleziona guida-->
+	        <div class="row justify-content-center">
+	        	<div class="col-2">
+	        		<button type="submit" class="btn btn-success">Save</button>
+  					<a class="btn btn-danger" th:href="@{/visite}">Cancel</a>
+	        	</div>
+	        </div>
+        </form>
+    </div>
+    
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+      <script src="users.js"></script>
+  </body>

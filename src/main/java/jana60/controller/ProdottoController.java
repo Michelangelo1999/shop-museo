@@ -27,8 +27,8 @@ public class ProdottoController {
 	@Autowired
 	private ProdottoRepo repo;
 
-	@GetMapping("/")
-	public String prodottoList(Model m) {
+	@GetMapping("/amministratore")
+	public String prodottoLista(Model m) {
 		m.addAttribute("prodotto", repo.findAll());
 		return "/prodotto/lista";
 	}
@@ -71,4 +71,11 @@ public class ProdottoController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il prodotto " + prodottoId + " non è presente");
 		}
 	}
+
+	@GetMapping("/vetrina")
+	public String vetrinaProdotto(Model m) {
+		m.addAttribute("prodotto", repo.findAll());
+		return "/prodotto/vetrina";
+	}
+
 }

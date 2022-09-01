@@ -22,6 +22,25 @@
   			class="row"
   			
   		>
+  		<input type="hidden" th:field="*{id}">
+  		<div class="mb-3">
+	  				<label class="form-label" for="nomeFornitore">Nome fornitore</label>
+	  				<input type="text" id="nomeFornitore" class="form-control" th:field="*{nomeFornitore}" th:errorClass="is-invalid">
+	  				<div th:if="${#fields.hasErrors('nomeFornitore')}" class="invalid-feedback">
+	  					<ul>
+	  						<li th:each="err : ${#fields.errors('nomeFornitore')}" th:text="${err}">
+	  					</ul>
+	  				</div>
+	  			</div>
+	  			<div class="mb-3">
+	  				<label class="form-label" for="data">Data</label>
+	  				<input type="text" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
+	  				<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
+	  					<ul>
+	  						<li th:each="err : ${#fields.errors('data')}" th:text="${err}">
+	  					</ul>
+	  				</div>
+	  			</div>
 	  		<table id="emptbl">
 		<tr>
 			<th>Prodotto</th>
@@ -31,8 +50,9 @@
 		</tr> 
 		<tr> 
 		
-			<td id="col0"><input type="number" name="quantita[]" value="" /></td> 
-			<td id="col1"><input type="number" name="prezzo[]" value="" /></td> 
+			<td id="col0"><input type="number" name="quantita[]" th:field="*{quantita}" value="" />
+			</td> 
+			<td id="col1"><input type="number" name="prezzo[]" th:field="*{costo}" value="" /></td> 
 			 <td id="col2"> 
               <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
               <option selected> Apri il menù</option>
@@ -43,11 +63,17 @@
 	</table> 
 	<table> 
 		<tr> 
-			<td><input type="button" value="Add Row" onclick="addRows()" /></td> 
+			<td><input type="button" value="Add Row" onclick="addRows()" />
+			
+			</td> 
 			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
-			<td><input type="submit" value="Submit" /></td> 
+			 
 		</tr>  
 	</table> 
+	<div class="bottoni">
+	  				<button type="submit" class="btn btn-primary">Save</button>
+	  				<a class="btn btn-primary" href="/">Cancel</a>
+	  			</div>
   		</form>
   	 <script src="/assortimento.js"></script> 
  

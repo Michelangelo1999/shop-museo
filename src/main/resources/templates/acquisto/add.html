@@ -20,56 +20,48 @@
   			method="POST"
   			class="row"
   		>
-	  		<ul class="col-12">
-		      <li 
-		         th:each="err : ${#fields.allErrors()}" 
-		         th:text="${err}">
-		      </li>
-			</ul>
+	  		
 			<div class="col-8">
 				<!--  campo nascosto per l'id -->
 				<input type="hidden" th:field="*{id}">
-	  			<div class="mb-3">
-	  				<label class="form-label" for="data">Data</label>
-	  				<input type="text" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
-	  				<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
-	  					<ul>
-	  						<li th:each="err : ${#fields.errors('data')}" th:text="${err}">
-	  					</ul>
-	  				</div>
-	  			</div>
-	  			<div class="mb-3">
-	  				<label class="form-label" for="quantita">Quantità</label>
-	  				<input type="number" id="quantita" class="form-control" th:field="*{quantita}" th:errorClass="is-invalid">
-	  				<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
-	  					<ul>
-	  						<li th:each="err : ${#fields.errors('quantita')}" th:text="${err}">
-	  					</ul>
-	  				</div>
-	  			</div>
-		  			
-		  			<div class="mb-3">
-		  				<label class="form-label" for="prezzoTotale">Prezzo</label>
-		  				<input type="number" id="prezzoTotale" class="form-control" th:field="*{prezzoTotale}" th:errorClass="is-invalid">
-		  			</div>
-	  			</div>
-	  			
-	  			<div class="bottoni">
+	  			<table id="emptbl">
+		<tr>
+		<th>Data</th>
+			<th>Prodotto</th>
+			<th>Quantità</th>
+			<th>Prezzo</th> 
+			 
+		</tr> 
+		<tr> 
+		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
+			</td>
+			<td id="col1"><input type="number" name="quantita[]" th:field="*{quantita}" value="" />
+			</td> 
+			<td id="col2"><input type="number" name="prezzo[]" th:field="*{prezzoTotale}" value="" /></td> 
+			 <td id="col3"> 
+              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
+              <option selected> Apri il menù</option>
+               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
+               </select>
+		        </td> 
+		</tr>  
+	</table> 
+	<table> 
+		<tr> 
+			<td><input type="button" value="Add Row" onclick="addRows()" />
+			
+			</td> 
+			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
+			 
+		</tr>  
+	</table> 
+	<div class="bottoni">
 	  				<button type="submit" class="btn btn-primary">Save</button>
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
-			</div>
-			
-			<div class="col-4 listaProdotti">
-				<h4>Prodotti</h4>
-				<div class="form-check" th:each="prodotto : ${prodottiList}">
-				  <input class="form-check-input" th:field="*{prodotto}" type="checkbox" th:id="|prodotto_${prodotto.id}|" th:value="${prodotto.id}">
-				  <label class="form-check-label" th:for="|prodotto_${prodotto.id}|" th:text="${prodotto.nome}"></label>
-				</div>
-			</div>  
   		</form>
   	</div>
-  	
+  	<script src="/acquisto.js"></script>
 
   </body>
 </html>

@@ -92,7 +92,7 @@ public class AssortimentoController {
 
 	}
 
-	// DETTAGLI ACQUISTO
+	// DETTAGLI assortimento
 	@GetMapping("/detail/{id}")
 	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
 

@@ -22,9 +22,9 @@
   				<dt>Data</dt>
   				<dd th:text="*{data}"></dd>
   				<dt>Quantità</dt>
-  				<dd th:text="*{quantita}"></dd>
+  				<dd th:each="prodotto : ${assortimento.prodotto}"  th:text="${assortimento.quantita}"></dd>
   				<dt>Prezzo</dt>
-  				<dd th:text="*{costo}"></dd>
+  				<dd th:each="prodotto : ${assortimento.prodotto}" th:text="${assortimento.costo}">></dd>
   			</dl>
   		</div>
   		

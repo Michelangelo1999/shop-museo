@@ -85,9 +85,20 @@ public class Prodotto {
 	// metodi custom
 	// public int getQuantitaMagazzino() {
 	// int quantitaDisp = 0;
-	// int assortiti = this.assortimento.getQuantita();
-	// int acquistati = this.acquisto.getQuantita();
+	// int assortiti = ((Assortimento) this.assortimento).getQuantita();
+	/// int acquistati = ((Acquisto) this.acquisto).getQuantita();
 	// quantitaDisp = assortiti - acquistati;
 	// return quantitaDisp;
+	// }
+
+	// public int getQuantitaAssortimento() {
+	// int quantita = 0;
+	// List<Assortimento> ass = this.assortimento;
+	// Iterator<Assortimento> assIter = ass.iterator();
+	// while (assIter.hasNext()) {
+	// Assortimento current = assIter.next();
+	// quantita += current.getQuantita();
+	// }
+	// return quantita;
 	// }
 }

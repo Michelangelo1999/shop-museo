@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
 <!--    <div class="carousel-item active">-->
 <!--      <img class="d-block w-100" th:src="@{|/image/${imageList[0].id}/content|}" alt="">-->
 <!--    </div>-->
-    <div class="carousel-item" th:each="img : ${imageList}">
+    <div class="carousel-item" th:each="img : ${imageList}"  th:classAppend="${img.id == 1} ? active ">
       <img class="d-block w-100" th:src="@{|/image/${img.id}/content|}" alt="">
     </div>
   </div>

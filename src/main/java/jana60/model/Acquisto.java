@@ -1,12 +1,15 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -19,16 +22,17 @@ public class Acquisto {
 	
 	private LocalDate data;
 	
-	private int quantita;
-	
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 	
-	@OneToOne(mappedBy = "acquisto")
-	private Prodotto prodotto;
+	@ManyToMany(mappedBy = "acquisti")
+	private List<Prodotto> prodotti;
 	
-	@ManyToOne
-	private Carrello carrello;
+	@ManyToMany
+	private List<Quantita> quantitaAcq;
+	
+//	@ManyToMany(mappedBy = "acquisto")
+//	private Carrello carrello;
 	
 	//getters and setters
 
@@ -48,14 +52,6 @@ public class Acquisto {
 		this.data = data;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
 	public double getPrezzoTotale() {
 		return prezzoTotale;
 	}
@@ -64,21 +60,34 @@ public class Acquisto {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	public Prodotto getProdotto() {
-		return prodotto;
+	public List<Prodotto> getProdotti() {
+		return prodotti;
 	}
 
-	public void setProdotto(Prodotto prodotto) {
-		this.prodotto = prodotto;
+	public void setProdotti(List<Prodotto> prodotti) {
+		this.prodotti = prodotti;
 	}
 
-	public Carrello getCarrello() {
-		return carrello;
+	public List<Quantita> getQuantitaAcq() {
+		return quantitaAcq;
 	}
 
-	public void setCarrello(Carrello carrello) {
-		this.carrello = carrello;
+	public void setQuantitaAcq(List<Quantita> quantitaAcq) {
+		this.quantitaAcq = quantitaAcq;
 	}
+
+	//custom
+	public int getQuantInt() {
+    	int quantitaInt = 0;
+    	Iterator<Quantita> quantIterator = this.quantitaAcq.iterator();
+    	
+    	while(quantIterator.hasNext()) {
+    		Quantita current = quantIterator.next();
+    		quantitaInt += current.getQuantita();
+    	}
+    	
+    	return quantitaInt;
+    }
 	
 	
 }

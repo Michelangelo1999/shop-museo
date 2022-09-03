@@ -8,8 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import jana60.model.Prodotto;
 
 public interface ProdottoRepository extends CrudRepository<Prodotto, Integer> {
+
+	List<Prodotto> findAllByOrderByNome();
 	
-	//List<Prodotto>  findByGetQuantitaMagazzinoGreaterThan(int zero); //OrderByQuantitaAsc();
+	//List<Prodotto>  findByQuantitaDisponibileGreaterThan(int zero); //OrderByQuantitaAsc();
 	//List<Prodotto> findAllOrderByQuantitaDesc();
 
 }

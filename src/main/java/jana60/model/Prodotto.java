@@ -10,29 +10,27 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Prodotto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@NotNull
 	private String nome;
-	
+
 	@Lob
 	private String descrizione;
-	
+
 	@NotNull
 	private double prezzo;
-	
-	private int quantita;
-	
+
 	@OneToOne
 	private Assortimento assortimento;
-	
+
 	@OneToOne
 	private Acquisto acquisto;
 
-	//getters and setters
+	// getters and setters
 	public Integer getId() {
 		return id;
 	}
@@ -65,14 +63,6 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
 	public Assortimento getAssortimento() {
 		return assortimento;
 	}
@@ -88,8 +78,5 @@ public class Prodotto {
 	public void setAcquisto(Acquisto acquisto) {
 		this.acquisto = acquisto;
 	}
-	
-	
-	
-	
+
 }

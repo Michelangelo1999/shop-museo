@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Visita {
 	
+	//attributi classe
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

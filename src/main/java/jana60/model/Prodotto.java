@@ -1,10 +1,14 @@
 package jana60.model;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -23,12 +27,16 @@ public class Prodotto {
 
 	@NotNull
 	private double prezzo;
+	
+	@ManyToMany
+	private List<Assortimento> assortimenti;
+	
+	@ManyToMany
+	private List<Acquisto> acquisti;
+	
+//	@ManyToMany
+//	private List<Quantita> quantitaProd;
 
-	@OneToOne
-	private Assortimento assortimento;
-
-	@OneToOne
-	private Acquisto acquisto;
 
 	// getters and setters
 	public Integer getId() {
@@ -63,20 +71,52 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public Assortimento getAssortimento() {
-		return assortimento;
+	public List<Assortimento> getAssortimenti() {
+		return assortimenti;
 	}
 
-	public void setAssortimento(Assortimento assortimento) {
-		this.assortimento = assortimento;
+	public void setAssortimenti(List<Assortimento> assortimenti) {
+		this.assortimenti = assortimenti;
 	}
 
-	public Acquisto getAcquisto() {
-		return acquisto;
+	public List<Acquisto> getAcquisti() {
+		return acquisti;
 	}
 
-	public void setAcquisto(Acquisto acquisto) {
-		this.acquisto = acquisto;
+	public void setAcquisti(List<Acquisto> acquisti) {
+		this.acquisti = acquisti;
 	}
 
+//	public List<Quantita> getQuantitaProd() {
+//		return quantitaProd;
+//	}
+//
+//	public void setQuantitaProd(List<Quantita> quantitaProd) {
+//		this.quantitaProd = quantitaProd;
+//	}
+
+	
+	public int quantitaDisponibile() {
+		int quantitaDisponibile = 0;
+		
+		int assortiti = 0;
+		int acquistati = 0;
+		
+		Iterator<Assortimento> assIter = this.assortimenti.iterator();
+		Iterator<Acquisto> acqIter = this.acquisti.iterator();
+		
+		while(assIter.hasNext()) {
+			Assortimento current = assIter.next();
+			assortiti += current.getQuantInt();
+		}
+		
+		while(acqIter.hasNext()) {
+			Acquisto current = acqIter.next();
+			acquistati += current.getQuantInt();
+		}
+		
+		quantitaDisponibile = assortiti-acquistati;
+		
+		return quantitaDisponibile;
+	}
 }

@@ -20,8 +20,8 @@ public class Carrello {
 	@NotNull
 	private double prezzoTotale;
 	
-	@OneToMany(mappedBy = "carrello")
-	private List<Acquisto> acquisti;
+//	@OneToMany(mappedBy = "carrello")
+//	private List<Acquisto> acquisti;
 	
 	@OneToOne
 	private Fattura fattura;
@@ -44,13 +44,13 @@ public class Carrello {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	public List<Acquisto> getAcquisti() {
-		return acquisti;
-	}
-
-	public void setAcquisti(List<Acquisto> acquisti) {
-		this.acquisti = acquisti;
-	}
+//	public List<Acquisto> getAcquisti() {
+//		return acquisti;
+//	}
+//
+//	public void setAcquisti(List<Acquisto> acquisti) {
+//		this.acquisti = acquisti;
+//	}
 
 	public Fattura getFattura() {
 		return fattura;

@@ -1,11 +1,15 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -21,14 +25,16 @@ public class Assortimento {
 	
 	private LocalDate data;
 	
-	@NotNull
-	private int quantita;
 	
 	@NotNull
+	@Column(columnDefinition = "double default 0.00")
 	private double costo;
 	
-	@OneToOne(mappedBy = "assortimento")
-	private Prodotto prodotto;
+	@ManyToMany(mappedBy = "assortimenti")
+	private List<Prodotto> prodotti;
+	
+	@ManyToMany
+	private List<Quantita> quantitaAss;
 
 	public Integer getId() {
 		return id;
@@ -54,13 +60,6 @@ public class Assortimento {
 		this.data = data;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
 
 	public double getCosto() {
 		return costo;
@@ -70,15 +69,33 @@ public class Assortimento {
 		this.costo = costo;
 	}
 
-	public Prodotto getProdotto() {
-		return prodotto;
+	public List<Prodotto> getProdotti() {
+		return prodotti;
 	}
 
-	public void setProdotto(Prodotto prodotto) {
-		this.prodotto = prodotto;
+	public void setProdotti(List<Prodotto> prodotti) {
+		this.prodotti = prodotti;
+	}
+
+	public List<Quantita> getQuantitaAss() {
+		return quantitaAss;
+	}
+
+	public void setQuantitaAss(List<Quantita> quantitaAss) {
+		this.quantitaAss = quantitaAss;
 	}
 	
-	
-	
+	//custom
+    public int getQuantInt() {
+    	int quantitaInt = 0;
+    	Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
+    	
+    	while(quantIterator.hasNext()) {
+    		Quantita current = quantIterator.next();
+    		quantitaInt += current.getQuantita();
+    	}
+    	
+    	return quantitaInt;
+    }
 	
 }

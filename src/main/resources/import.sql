@@ -1,0 +1,1 @@
+insert into guida (nome,cognome)values('Khvicha','Kvaratskhelia');

@@ -1,6 +1,7 @@
 package jana60.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -117,5 +118,17 @@ public class Visita {
 		this.guida = guida;
 	}
 	
+	// metodi custum
+	// formatter 
+	public String orarioInizio () {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String formatDateTime = dataInizio.format(formatter);
+		return formatDateTime;
+	}
+	public String orarioFine () {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String formatDateTime = dataFine.format(formatter);
+		return formatDateTime;
+	}
 	
 }

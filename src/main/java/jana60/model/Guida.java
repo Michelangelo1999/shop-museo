@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,10 +20,10 @@ public class Guida {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
+	@NotEmpty(message = "Campo Obbligatiorio")
 	private String nome;
 	
-	@NotNull
+	@NotEmpty(message = "Campo Obbligatiorio")
 	private String cognome;
 	
 	@OneToMany(mappedBy = "guida")

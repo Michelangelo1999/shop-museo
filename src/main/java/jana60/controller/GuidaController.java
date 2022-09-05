@@ -54,7 +54,7 @@ public class GuidaController {
 		}
 	}
 	
-	@GetMapping ("elimina/{id}")
+	@GetMapping ("/elimina/{id}")
 	public String eliminaGuida (@PathVariable ("id") Integer idGuida, RedirectAttributes reAt) {
 		Optional<Guida> guidaEliminata = repo.findById(idGuida);
 		if (guidaEliminata.isPresent()) {
@@ -66,7 +66,7 @@ public class GuidaController {
 		}
 	}
 	
-	@GetMapping ("modifica/{id}")
+	@GetMapping ("/modifica/{id}")
 	public String modificaGuida (@PathVariable ("id") Integer idGuida,Model model) {
 		Optional <Guida> guidaModificata = repo.findById(idGuida);
 		if (guidaModificata.isPresent()) {

@@ -9,31 +9,27 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 				integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 				crossorigin="anonymous" referrerpolicy="no-referrer">
+				<title>Nuova Guida</title>
 	</head>
 	<body>
 	<!-- navbar-->
 	<nav class="navbar bg-light">
         <form class="container-fluid justify-content-start">
             <a class="navbar-brand" href="#">Museo</a>
-            <a class="btn btn-outline-success" th:href="@{guide/aggiungiguida}">Aggiungi una Guida</a>
         </form>
     </nav>
 	<!-- navbar-->
-	<div class="container">
         <form 
 			    	id="guida-form"
 			    	th:object="${aggiungiGuida}"
 			    	th:action="@{/guide/salva}"
 			    	method ="POST">
-				
+			    	
+		<div class="container">		
+		
     	<div class="row">
-	    	<div class="col-8">
-				<ul>
-				      <li 
-				         th:each="err : ${#fields.allErrors()}" 
-				         th:text="${err}">
-				      </li>
-				</ul>
+	    	<div class="col-6">
+				
 				
 				<!-- id field-->
 				<input type="hidden" th:field="*{id}">
@@ -49,6 +45,8 @@
 		  				</div>
 		  			</div>
 		  			<!-- name field-->
+		  			</div>
+		  			<div class="col-6">
 		  			<!-- cognome field-->
 					<div class="mb-3">
 		  				<label class="form-label" for="surname">Cognome</label>
@@ -60,22 +58,21 @@
 		  				</div>
 		  			</div>
 		  			<!-- cognome field-->
-	</div>
-		<div class="col-4 p-3">
-			<h4>Visite Guidate</h4>
-				<div class="form-check" th:each="lvg : ${listaVisite}">
-				  <input class="form-check-input" th:field="*{visite}" type="checkbox" th:id="|category_${lvg.id}|" th:value="${lvg.id}">
-				  <label class="form-check-label" th:for="|category_${lvg.id}|" th:text="${lvg.titolo}"></label>
-				</div>
+			</div>
+			<!--div class="col-4 p-3">
+				<h4>Visite Guidate</h4>
+					<div class="form-check" th:each="lvg : ${listaVisite}">
+					  <input class="form-check-input" th:field="*{visite}" type="checkbox" th:id="|category_${lvg.id}|" th:value="${lvg.id}">
+					  <label class="form-check-label" th:for="|category_${lvg.id}|" th:text="${lvg.titolo}"></label>
+					</div>
+			</div-->
 		</div>
-	</div>
 		<div>
 			    <button type="submit" class="btn btn-info">Salva</button>
   				<a class="btn btn-danger" th:href="@{/guide}">Cancella</a>
 		</div>
-	</form>
 	</div>
-	
+	</form>
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
 				integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
 				crossorigin="anonymous"></script>

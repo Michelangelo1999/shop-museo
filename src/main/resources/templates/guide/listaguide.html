@@ -9,6 +9,7 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 				integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 				crossorigin="anonymous" referrerpolicy="no-referrer">
+				<title>Elenco Guide</title>
 	</head>
 	
 	<body>
@@ -16,18 +17,18 @@
 	<nav class="navbar bg-light">
         <form class="container-fluid justify-content-start">
             <a class="navbar-brand" href="#">Museo</a>
-            <a class="btn btn-outline-success" th:href="@{guide/aggiungiguida}">Aggiungi una Guida</a>
+            <a class="btn btn-outline-success" th:href="@{/guide/aggiungiguida}">Aggiungi una Guida</a>
+            <a class="btn btn-outline-success" th:href="@{visite}">Elenco visite guidate</a>
         </form>
     </nav>
 	<!-- navbar-->
 	<!-- Insieme delle guide turistiche-->
 		 <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" th:each ="sg : ${schedaGuida}">
+        <div class="col px-4" th:each ="sg : ${schedaGuida}">
           <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${sg.nome}"></h5>
-              <h4 class="card-title" th:text="${sg.cognome}"></h4>
+            <img src="/img/kvaradona.jpg" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h4 class="card-title" th:text="${sg.nome}+' '+${sg.cognome}"></h4>
               <!--ul class="list-group" th:each="lvg : ${listaVisite}">
               	<li class="list-group-item" th:text="${lvg.titolo}"></li>
               </ul-->

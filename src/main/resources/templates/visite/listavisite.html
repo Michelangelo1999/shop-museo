@@ -9,6 +9,7 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 				integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 				crossorigin="anonymous" referrerpolicy="no-referrer">
+				<title>Elenco Visite</title>
 	</head>
 	
 	<body>
@@ -17,6 +18,7 @@
         <form class="container-fluid justify-content-start">
             <a class="navbar-brand" href="#">Museo</a>
             <a class="btn btn-outline-success" th:href="@{visite/aggiungivisita}">Aggiungi una Visita</a>
+            <a class="btn btn-outline-success" th:href="@{guide}">Elenco guide</a>
         </form>
     </nav>
     <!-- navbar-->
@@ -37,14 +39,14 @@
         </thead>
         <tbody>
           <tr th:each ="sv : ${schedaVisita}">
-            <td th:text="${sv.titolo}">Mark</td>
-            <td th:text="${sv.descrizione}">Mark</td>
-            <td th:text="${sv.dataInizio}">Mark</td>
-            <td th:text="${sv.dataFine}">Mark</td>
-            <td th:text="${sv.prezzo}">Mark</td>
-            <td th:text="${sv.capienza}">Mark</td>
-            <td th:text="${sv.numeroPrenotati}">Mark</td>
-            <td th:text="${sv.guida}">Mark</td>
+            <td th:text="${sv.titolo}"></td>
+            <td th:text="${sv.descrizione}"></td>
+            <td th:text="${sv.orarioInizio}"></td>
+            <td th:text="${sv.orarioInizio}"></td>
+            <td th:text="${sv.prezzo}"></td>
+            <td th:text="${sv.capienza}"></td>
+            <td th:text="${sv.numeroPrenotati}"></td>
+            <td> <span th:each="g : ${sv.guida}" th:text="${g.cognome}"></span> </td>
           </tr>
         </tbody>
       </table>

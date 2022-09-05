@@ -31,6 +31,9 @@ public class Assortimento {
 	@ManyToMany
 	private List<Prodotto> prodotto;
 
+	@ManyToMany
+	private List<Quantita> quantitaAss;
+
 	public Integer getId() {
 		return id;
 	}
@@ -77,6 +80,14 @@ public class Assortimento {
 
 	public void setProdotto(List<Prodotto> prodotto) {
 		this.prodotto = prodotto;
+	}
+
+	public List<Quantita> getQuantitaAss() {
+		return quantitaAss;
+	}
+
+	public void setQuantitaAss(List<Quantita> quantitaAss) {
+		this.quantitaAss = quantitaAss;
 	}
 
 }

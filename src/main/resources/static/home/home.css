@@ -1,12 +1,9 @@
 /* link per il font del nome centro pagina */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-/* BODY */
-/* body {
-	background-color: rgb(0, 0, 0);
-}*/
 
-/* paragrafo testo FEDERICA DESIGN */
+
+/* paragrafo testo GLOBAL MUSEUM */
 p.auto {
 	font-family: 'Dancing Script', cursive;
 	font-size: 100px;

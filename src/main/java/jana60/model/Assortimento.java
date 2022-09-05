@@ -23,10 +23,10 @@ public class Assortimento {
 	private LocalDate data;
 
 	@NotNull
-	private int quantita;
+	private Integer[] quantita;
 
 	@NotNull
-	private double costo;
+	private double[] costo;
 
 	@ManyToMany
 	private List<Prodotto> prodotto;
@@ -55,19 +55,19 @@ public class Assortimento {
 		this.data = data;
 	}
 
-	public int getQuantita() {
+	public Integer[] getQuantita() {
 		return quantita;
 	}
 
-	public void setQuantita(int quantita) {
+	public void setQuantita(Integer[] quantita) {
 		this.quantita = quantita;
 	}
 
-	public double getCosto() {
+	public double[] getCosto() {
 		return costo;
 	}
 
-	public void setCosto(double costo) {
+	public void setCosto(double[] costo) {
 		this.costo = costo;
 	}
 

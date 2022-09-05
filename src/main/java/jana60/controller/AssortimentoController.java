@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import jana60.model.Assortimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
+import jana60.repository.QuantitaRepo;
 
 @Controller
 @RequestMapping("/assortimento")
@@ -28,6 +29,9 @@ public class AssortimentoController {
 
 	@Autowired
 	private ProdottoRepo repo;
+
+	@Autowired
+	private QuantitaRepo repoQ;
 
 	// ASSORTIMENTO
 	@GetMapping
@@ -40,6 +44,7 @@ public class AssortimentoController {
 	public String assForm(Model model) {
 		model.addAttribute("assortimento", new Assortimento());
 		model.addAttribute("prodottiList", repo.findAll());
+		model.addAttribute("quantitaList", repoQ.findAll());
 		return "/assortimento/addA";
 	}
 
@@ -60,6 +65,7 @@ public class AssortimentoController {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
 			model.addAttribute("prodottiList", repo.findAll());
+			model.addAttribute("quantitaList", repoQ.findAll());
 			return "/assortimento/addA";
 		} else {
 			// se non ci sono errori salvo l'assortimento che arriva dalla form

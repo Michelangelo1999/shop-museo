@@ -1,5 +1,6 @@
 package jana60.model;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -101,4 +102,28 @@ public class Prodotto {
 	// }
 	// return quantita;
 	// }
+
+	public int quantitaDisponibile() {
+		int quantitaDisponibile = 0;
+
+		int assortiti = 0;
+		int acquistati = 0;
+
+		Iterator<Assortimento> assIter = this.assortimento.iterator();
+		Iterator<Acquisto> acqIter = this.acquisto.iterator();
+
+		while (assIter.hasNext()) {
+			Assortimento current = assIter.next();
+			assortiti += current.getQuantInt();
+		}
+
+		while (acqIter.hasNext()) {
+			Acquisto current = acqIter.next();
+			acquistati += current.getQuantInt();
+		}
+
+		quantitaDisponibile = assortiti - acquistati;
+
+		return quantitaDisponibile;
+	}
 }

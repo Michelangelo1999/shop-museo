@@ -1,6 +1,7 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,13 +24,13 @@ public class Assortimento {
 	private LocalDate data;
 
 	@NotNull
-	private Integer[] quantita;
-
-	@NotNull
 	private double[] costo;
 
 	@ManyToMany
 	private List<Prodotto> prodotto;
+
+	@ManyToMany
+	private List<Quantita> quantitaAss;
 
 	public Integer getId() {
 		return id;
@@ -55,14 +56,6 @@ public class Assortimento {
 		this.data = data;
 	}
 
-	public Integer[] getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(Integer[] quantita) {
-		this.quantita = quantita;
-	}
-
 	public double[] getCosto() {
 		return costo;
 	}
@@ -79,4 +72,35 @@ public class Assortimento {
 		this.prodotto = prodotto;
 	}
 
+	public List<Quantita> getQuantitaAss() {
+		return quantitaAss;
+	}
+
+	public void setQuantitaAss(List<Quantita> quantitaAss) {
+		this.quantitaAss = quantitaAss;
+	}
+
+	// custom
+	public int getQuantInt() {
+		int quantitaInt = 0;
+		Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
+
+		while (quantIterator.hasNext()) {
+			Quantita current = quantIterator.next();
+			quantitaInt += current.getQuantita();
+		}
+
+		return quantitaInt;
+	}
+
+	public double getCostoAs() {
+		double costo = 0;
+		Iterator<Prodotto> prodIterator = this.prodotto.iterator();
+
+		while (prodIterator.hasNext()) {
+			Prodotto current = prodIterator.next();
+			costo += current.getPrezzo() * current.quantitaDisponibile();
+		}
+		return costo;
+	}
 }

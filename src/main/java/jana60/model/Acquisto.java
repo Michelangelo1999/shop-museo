@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -25,9 +24,8 @@ public class Acquisto {
 
 	private double prezzoTotale;
 
-	@ManyToOne
-	@JoinColumn(name = "prodotto_id")
-	private Prodotto prodotto;
+	@ManyToMany
+	private List<Prodotto> prodotto;
 
 	@ManyToOne
 	private Carrello carrello;
@@ -69,11 +67,11 @@ public class Acquisto {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	public Prodotto getProdotto() {
+	public List<Prodotto> getProdotto() {
 		return prodotto;
 	}
 
-	public void setProdotto(Prodotto prodotto) {
+	public void setProdotto(List<Prodotto> prodotto) {
 		this.prodotto = prodotto;
 	}
 
@@ -100,9 +98,22 @@ public class Acquisto {
 
 		while (quantIterator.hasNext()) {
 			Quantita current = quantIterator.next();
+			quantitaInt = 0;
 			quantitaInt += current.getQuantita();
 		}
 
 		return quantitaInt;
+	}
+
+	public double getPrezzoAc() {
+		double costo = 0;
+		Iterator<Prodotto> prodIterator = this.prodotto.iterator();
+
+		while (prodIterator.hasNext()) {
+			Prodotto current = prodIterator.next();
+			int quantita = this.getQuantInt();
+			costo += quantita * this.getPrezzoTotale();
+		}
+		return costo + 1;
 	}
 }

@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -31,7 +30,7 @@ public class Prodotto {
 	@ManyToMany(mappedBy = "prodotto")
 	private List<Assortimento> assortimento;
 
-	@OneToMany(mappedBy = "prodotto")
+	@ManyToMany(mappedBy = "prodotto")
 	private List<Acquisto> acquisto;
 
 	// getters and setters

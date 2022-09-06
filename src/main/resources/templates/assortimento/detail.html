@@ -22,16 +22,16 @@
   				<dt>Data</dt>
   				<dd th:text="*{data}"></dd>
   				<dt>Quantità</dt>
-  				<dd th:each="prodotto : ${assortimento.prodotto}"  th:text="${assortimento.quantita}"></dd>
+  				<dd th:each="quantita : ${assortimento.quantitaAss}"  th:text="${quantita.quantita}"></dd>
   				<dt>Prezzo</dt>
-  				<dd th:each="prodotto : ${assortimento.prodotto}" th:text="${assortimento.costo}">></dd>
+  				<dd th:text="${assortimento.getCostoAs}"></dd>
   			</dl>
   		</div>
   		
   		<div class="col-4">
   			<h4>Prodotto</h4>
   			<ul>
-  				<li th:each="prodotto : ${assortimento.prodotto}" th:text="${prodotto.nome}"></li>
+  				<li th:each="prodotto : ${assortimento.prodotti}" th:text="${prodotto.nome}"></li>
   			</ul>
   		</div>
   	</div>

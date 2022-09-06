@@ -20,7 +20,8 @@
 		</th:block>
 		<h1>Lista prodotti</h1>
 		<hr>
-		<a class="btn btn-primary" th:href="@{/crea}">Aggiungi un prodotto</a>
+		<a class="btn btn-primary" th:href="@{/prodotto/crea}">Aggiungi un prodotto</a>
+		<a class="btn btn-success" th:href="@{/gestionale}"><i class="fa-solid fa-house-user"></i></a>
 		<table class="table" th:if="${prodotto.size()>0}">
 			<thead>
 				<tr>
@@ -35,9 +36,9 @@
 					<td th:text="${pr.descrizione}"></td>
 					<td th:text="${pr.prezzo}"></td>
 					<td>
-						<a class="btn btn-primary" th:href="@{|/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
+						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
 						<a class="btn btn-primary" th:href="@{|/image/${pr.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
-						<a class="btn btn-primary" th:href="@{|/elimina/${pr.id}|}" title="Elimina"
+						<a class="btn btn-primary" th:href="@{|prodotto/elimina/${pr.id}|}" title="Elimina"
 							onclick="return confirm('Sei sicuro?')"><i class="fa-solid fa-trash"></i></a>
 							
 					</td>

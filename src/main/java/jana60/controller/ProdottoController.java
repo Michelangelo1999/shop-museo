@@ -29,11 +29,11 @@ public class ProdottoController {
 	@Autowired
 	private ProdottoRepo repo;
 
-@GetMapping("/amministratore")
+@GetMapping
 public String prodottoLista(Model m) {
 	m.addAttribute("prodotto", repo.findAll());
 	m.addAttribute("newProdotto", new Prodotto());
-	return "/prodotto/lista";
+	return "/prodotto/listaprodotti";
 	}
 
 	@GetMapping("/crea")
@@ -48,7 +48,7 @@ public String prodottoLista(Model m) {
 			return "/prodotto/crea";
 		} else {
 			repo.save(creaProdotto);
-			return "redirect:/";
+			return "redirect:/prodotto";
 		}
 	}
 
@@ -69,7 +69,7 @@ public String prodottoLista(Model m) {
 		if (result.isPresent()) {
 			repo.delete(result.get());
 			ra.addFlashAttribute("successMessage", "Il prodotto " + result.get().getNome() + " è stato eliminato!");
-			return "redirect:/";
+			return "redirect:/prodotto";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Il prodotto " + prodottoId + " non è presente");
 		}

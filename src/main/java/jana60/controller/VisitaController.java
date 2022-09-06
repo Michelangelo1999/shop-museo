@@ -75,8 +75,9 @@ public class VisitaController {
 	public String modificaVisita (@PathVariable("id") Integer idVisita, Model model) {
 		Optional<Visita> visitaModificata = repo.findById(idVisita);
 		if (visitaModificata.isPresent()) {
-			model.addAttribute("modificaVisita",visitaModificata.get());
-			return "visite/aggiungivisite";	
+			model.addAttribute("aggiungiVisita",visitaModificata.get());
+			model.addAttribute("listaGuide", repoGuide.findAll());
+			return "visite/aggiungivisita";	
 		}else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					"Visita selezionata inesistente");

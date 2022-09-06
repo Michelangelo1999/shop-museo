@@ -20,8 +20,8 @@ public class Image {
 	@ManyToOne
 	private Prodotto prodotto;
 	
-//	@ManyToOne
-//	private Guida guida;
+	@ManyToOne
+	private Guida guida;
 
 	public Integer getId() {
 		return id;
@@ -47,13 +47,13 @@ public class Image {
 		this.prodotto = prodotto;
 	}
 
-//	public Guida getGuida() {
-//		return guida;
-//	}
-//
-//	public void setGuida(Guida guida) {
-//		this.guida = guida;
-//	}
+	public Guida getGuida() {
+		return guida;
+	}
+
+	public void setGuida(Guida guida) {
+		this.guida = guida;
+	}
 	
 	
 

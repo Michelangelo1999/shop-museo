@@ -82,3 +82,8 @@ insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(2,5);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(3,6);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(4,5);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(5,4);
+
+insert into guida(nome, cognome) values("Michelangelo", "De Nicola");
+insert into guida(nome, cognome) values("Davide", "Catalano");
+insert into guida(nome, cognome) values("Federica", "Cetroni");
+insert into guida(nome, cognome) values("Mattia", "Verardi");

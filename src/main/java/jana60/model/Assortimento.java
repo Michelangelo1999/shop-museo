@@ -94,7 +94,6 @@ public class Assortimento {
     		Quantita current = quantIterator.next();
     		quantitaInt += current.getQuantita();
     	}
-    	
     	return quantitaInt;
     }
 	

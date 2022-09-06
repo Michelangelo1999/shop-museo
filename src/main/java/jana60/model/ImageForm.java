@@ -8,8 +8,8 @@ public class ImageForm {
 	
 	private Integer id;
 	
-//	@Basic(optional = true)
-//	private Guida guida;
+	@Basic(optional = true)
+	private Guida guida;
 	
 	@Basic(optional = true)
 	private Prodotto prodotto;
@@ -24,13 +24,13 @@ public class ImageForm {
 		this.id = id;
 	}
 
-//	public Guida getGuida() {
-//		return guida;
-//	}
-//
-//	public void setGuida(Guida guida) {
-//		this.guida = guida;
-//	}
+	public Guida getGuida() {
+		return guida;
+	}
+
+	public void setGuida(Guida guida) {
+		this.guida = guida;
+	}
 
 	public Prodotto getProdotto() {
 		return prodotto;

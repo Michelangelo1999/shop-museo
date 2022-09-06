@@ -11,6 +11,6 @@ import jana60.model.Prodotto;
 public interface ImageRepository extends CrudRepository<Image, Integer> {
 	
 	public List<Image> findByProdotto(Prodotto prodotto);
-//	public List<Image> findByGuida(Guida guida);
+	public List<Image> findByGuida(Guida guida);
 
 }

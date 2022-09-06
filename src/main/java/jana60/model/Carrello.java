@@ -25,8 +25,8 @@ public class Carrello {
 //	private List<Acquisto> acquisti;
 	
 
-	@OneToMany(mappedBy = "carrello")
-	private List<Acquisto> acquisti;
+	// @OneToMany(mappedBy = "carrello")
+	// private List<Acquisto> acquisti;
 
 	@OneToOne
 	private Fattura fattura;

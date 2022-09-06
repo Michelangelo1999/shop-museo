@@ -24,7 +24,7 @@ public class Assortimento {
 	private LocalDate data;
 
 	@NotNull
-	private double[] costo;
+	private double costo;
 
 	@ManyToMany
 	private List<Prodotto> prodotto;
@@ -56,11 +56,11 @@ public class Assortimento {
 		this.data = data;
 	}
 
-	public double[] getCosto() {
+	public double getCosto() {
 		return costo;
 	}
 
-	public void setCosto(double[] costo) {
+	public void setCosto(double costo) {
 		this.costo = costo;
 	}
 
@@ -81,15 +81,35 @@ public class Assortimento {
 	}
 
 	// custom
+	// public int getQuantInt() {
+	// int quantitaInt = 0;
+	// Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
+
+	// while (quantIterator.hasNext()) {
+	// Quantita current = quantIterator.next();
+	// quantitaInt += current.getQuantita();
+	// }
+
+	// return quantitaInt;
+	// }
+
+	/*
+	 * public double getCostoAs() { double costo = 0; Iterator<Prodotto>
+	 * prodIterator = this.prodotto.iterator();
+	 * 
+	 * while (prodIterator.hasNext()) { Prodotto current = prodIterator.next();
+	 * costo += this.getQuantInt() * this.getCosto(); } return costo; }
+	 */
+
 	public int getQuantInt() {
 		int quantitaInt = 0;
 		Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
 
 		while (quantIterator.hasNext()) {
 			Quantita current = quantIterator.next();
+			quantitaInt = 0;
 			quantitaInt += current.getQuantita();
 		}
-
 		return quantitaInt;
 	}
 
@@ -99,8 +119,9 @@ public class Assortimento {
 
 		while (prodIterator.hasNext()) {
 			Prodotto current = prodIterator.next();
-			costo += current.getPrezzo() * current.quantitaDisponibile();
+			int quantita = this.getQuantInt();
+			costo += quantita * this.getCosto();
 		}
-		return costo;
+		return costo + 1;
 	}
 }

@@ -126,4 +126,16 @@ public class Prodotto {
 
 		return quantitaDisponibile;
 	}
+
+	public int getQuantitaAss() {
+		int quantita = 0;
+		Iterator<Assortimento> assIter = this.assortimento.iterator();
+
+		while (assIter.hasNext()) {
+			Assortimento current = assIter.next();
+			quantita += current.getQuantInt();
+
+		}
+		return quantita;
+	}
 }

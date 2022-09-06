@@ -9,7 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Acquisto {
@@ -31,8 +36,9 @@ public class Acquisto {
 	
 //	@ManyToMany(mappedBy = "acquisto")
 //	private Carrello carrello;
-	
-	//getters and setters
+
+
+	// getters and setters
 
 
 	public Integer getId() {
@@ -75,17 +81,29 @@ public class Acquisto {
 		this.quantitaAcq = quantitaAcq;
 	}
 
+	// custom
+		public int getQuantInt() {
+			int quantitaInt = 0;
+			Iterator<Quantita> quantIterator = this.quantitaAcq.iterator();
 
-	//custom
-	public int getQuantInt() {
-    	int quantitaInt = 0;
-    	Iterator<Quantita> quantIterator = this.quantitaAcq.iterator();
-    	
-    	while(quantIterator.hasNext()) {
-    		Quantita current = quantIterator.next();
-    		quantitaInt += current.getQuantita();
-    	}
-    	
-    	return quantitaInt;
-    }
+			while (quantIterator.hasNext()) {
+				Quantita current = quantIterator.next();
+				quantitaInt = 0;
+				quantitaInt += current.getQuantita();
+			}
+
+			return quantitaInt;
+		}
+
+		public double getPrezzoAc() {
+			double costo = 0;
+			Iterator<Prodotto> prodIterator = this.prodotti.iterator();
+
+			while (prodIterator.hasNext()) {
+				Prodotto current = prodIterator.next();
+				int quantita = this.getQuantInt();
+				costo += quantita * this.getPrezzoTotale();
+			}
+			return costo + 1;
+		}
 }

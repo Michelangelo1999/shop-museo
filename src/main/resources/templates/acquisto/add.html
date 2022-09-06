@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+    <link rel="stylesheet" th:href="@{/home/home.css}"> 
+    <title>Global Museum</title> 
+  </head>
+  <body>
+  	<nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
+  	<div class="container">
+  		<h1>Nuovo Acquisto</h1>
+  		
+  		<hr/>
+  		<!-- form che gestisce l'attributo book -->
+  		
+  		<form
+  			id="form-acquisto"
+  			th:object="${acquisto}"
+  			th:action="@{/acquisto/save}"
+  			method="POST"
+  			class="row"
+  		>
+	  		
+			<div class="col-8">
+				<!--  campo nascosto per l'id -->
+				<input type="hidden" th:field="*{id}">
+	  			<table id="emptbl">
+		<tr>
+		<th>Data</th>
+			<th>Prodotto</th>
+			<th>Quantità</th>
+			<th>Prezzo</th> 
+			 
+		</tr> 
+		<tr> 
+		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
+			</td>
+			<td id="col1"><input type="number" name="quantita[]" th:field="*{quantita}" value="" />
+			</td> 
+			<td id="col2"><input type="number" name="prezzo[]" th:field="*{prezzoTotale}" value="" /></td> 
+			 <td id="col3"> 
+              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
+              <option selected> Apri il menù</option>
+               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
+               </select>
+		        </td> 
+		</tr>  
+	</table> 
+	<table> 
+		<tr> 
+			<td><input type="button" value="Add Row" onclick="addRows()" />
+			
+			</td> 
+			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
+			 
+		</tr>  
+	</table> 
+	<div class="bottoni">
+	  				<button type="submit" class="btn btn-primary">Save</button>
+	  				<a class="btn btn-primary" href="/">Cancel</a>
+	  			</div>
+  		</form>
+  	</div>
+  	<script src="/acquisto.js"></script>
+
+  </body>
+</html>

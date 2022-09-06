@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+    <link rel="stylesheet" th:href="@{/home/home.css}"> 
+    <title>Global Museum</title> 
+  </head>
+  <body>
+  <nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
+  <div class="container">
+  	<!--  messaggi alert  -->
+  	<th:block th:if="${successMessage != null && successMessage != ''}">
+  		<div  class="alert alert-success" th:text="${successMessage}"></div>
+  	</th:block>
+  	<h1>Dettagli acquisto</h1>
+  	<h2 th:text="${acquisto.data}"></h2>
+  	
+  	<hr/>
+  	<div class="row">
+  		<div class="col-8">
+  			<dl th:object="${acquisto}">
+  				
+  				<dt>Quantità</dt>
+  				<dd th:text="*{quantita}"></dd>
+  				<dt>Prezzo</dt>
+  				<dd th:text="*{prezzoTotale}"></dd>
+  			</dl>
+  		</div>
+  		
+  		<div class="col-4">
+  			<h4>Prodotto</h4>
+  			<ul>
+  				<li th:each="prodotto : ${acquisto.prodotto}" th:text="${prodotto.nome}"></li>
+  			</ul>
+  		</div>
+  	</div>
+  </div>
+  
+
+  </body>
+</html>

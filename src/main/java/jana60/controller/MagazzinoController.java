@@ -1,5 +1,6 @@
 package jana60.controller;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -45,4 +46,5 @@ public class MagazzinoController {
 		
 		return "/magazzino";
 	}
+
 }

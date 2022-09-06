@@ -1,5 +1,6 @@
 package jana60.controller;
 
+
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -21,16 +22,18 @@ import jana60.model.Prodotto;
 import jana60.repository.ProdottoRepo;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/prodotto")
+
 public class ProdottoController {
 
 	@Autowired
 	private ProdottoRepo repo;
 
-	@GetMapping("/amministratore")
-	public String prodottoLista(Model m) {
-		m.addAttribute("prodotto", repo.findAll());
-		return "/prodotto/lista";
+@GetMapping("/amministratore")
+public String prodottoLista(Model m) {
+	m.addAttribute("prodotto", repo.findAll());
+	m.addAttribute("newProdotto", new Prodotto());
+	return "/prodotto/lista";
 	}
 
 	@GetMapping("/crea")
@@ -79,4 +82,7 @@ public class ProdottoController {
 	}
 
 }
+
+
+
 

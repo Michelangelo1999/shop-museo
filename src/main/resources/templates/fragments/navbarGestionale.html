@@ -1,0 +1,35 @@
+<body>
+    <!-- NAVBAR -->
+    <nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
+        <div class="container-fluid">
+        
+          <a class="navbar-brand" href="/">
+          <img src="/img/logo-museo.png" alt="logo museo" width="100" height="100" class="ml-2">
+         Global Museum
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${current == 'prodotto'} ? active : not-active" href="/prodotto">Prodotti</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${current == 'assortimento'} ? active : not-active" href="/assortimento">Assortimento</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${current == 'acquisto'} ? active : not-active" href="/acquisto">Acquisto</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" th:classappend="${current == 'visiteTuristiche'} ? active : not-active" href="/visite">Visite Guidate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${current == 'guide'} ? active : not-active" href="/guide">Guide</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- fine navbar -->
+</body>

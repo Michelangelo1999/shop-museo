@@ -1,3 +1,4 @@
+
 insert into guida (nome,cognome)values('Khvicha','Kvaratskhelia');
 insert into guida (nome,cognome)values('Giovanni','Di Lorenzo');
 insert into guida (nome,cognome)values('Mario','Rui');
@@ -94,3 +95,9 @@ insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(2,5);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(3,6);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(4,5);
 insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(5,4);
+
+insert into prodotto (descrizione, nome, prezzo) values ('maglietta maniche corte', 'maglietta', 15);
+insert into prodotto (descrizione, nome, prezzo) values ('calamita del museo', 'calamita', 3);
+insert into prodotto (descrizione, nome, prezzo) values ('penna a scatto', 'penna', 3);
+insert into prodotto (descrizione, nome, prezzo) values ('cartolina della basilica', 'cartolina', 1);
+

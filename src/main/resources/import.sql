@@ -1,6 +1,7 @@
-
- 
 insert into guida (nome,cognome)values('Khvicha','Kvaratskhelia');
+insert into guida (nome,cognome)values('Giovanni','Di Lorenzo');
+insert into guida (nome,cognome)values('Mario','Rui');
+insert into guida (nome,cognome)values('Frank','Anguissa');
 
 
 insert into prodotto (nome, prezzo, descrizione) VALUES ('Cartolina', '2.5','Cartoncino rettangolare per inviare brevi notizie o saluti o comunicazioni');

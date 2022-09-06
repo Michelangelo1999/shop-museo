@@ -24,7 +24,7 @@ public class Visita {
 	@NotNull
 	private String titolo;
 	
-	@Lob
+	
 	private String descrizione;
 	
 	private LocalDateTime dataInizio;

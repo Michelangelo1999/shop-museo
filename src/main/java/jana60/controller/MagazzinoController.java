@@ -45,4 +45,5 @@ public class MagazzinoController {
 		
 		return "/magazzino";
 	}
+
 }

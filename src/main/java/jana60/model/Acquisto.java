@@ -9,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
+
+import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -19,14 +22,11 @@ public class Acquisto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private LocalDate data;
 	
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
-	
-	@ManyToMany(mappedBy = "acquisti")
-	private List<Prodotto> prodotti;
 	
 	@ManyToMany
 	private List<Quantita> quantitaAcq;
@@ -35,6 +35,15 @@ public class Acquisto {
 //	private Carrello carrello;
 	
 	//getters and setters
+
+
+	@ManyToMany
+	private List<Prodotto> prodotto;
+
+	@ManyToOne
+	private Carrello carrello;
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -61,11 +70,11 @@ public class Acquisto {
 	}
 
 	public List<Prodotto> getProdotti() {
-		return prodotti;
+		return prodotto;
 	}
 
 	public void setProdotti(List<Prodotto> prodotti) {
-		this.prodotti = prodotti;
+		this.prodotto = prodotti;
 	}
 
 	public List<Quantita> getQuantitaAcq() {
@@ -75,6 +84,7 @@ public class Acquisto {
 	public void setQuantitaAcq(List<Quantita> quantitaAcq) {
 		this.quantitaAcq = quantitaAcq;
 	}
+
 
 	//custom
 	public int getQuantInt() {
@@ -88,6 +98,5 @@ public class Acquisto {
     	
     	return quantitaInt;
     }
-	
 	
 }

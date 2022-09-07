@@ -1,7 +1,9 @@
 package jana60.model;
 
 import java.time.LocalDate;
+
 import java.util.Iterator;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToOne;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,22 +23,21 @@ public class Assortimento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotNull
 	private String nomeFornitore;
-	
+
 	private LocalDate data;
-	
-	
-	@NotNull
+
 	@Column(columnDefinition = "double default 0.00")
 	private double costo;
 	
-	@ManyToMany(mappedBy = "assortimenti")
-	private List<Prodotto> prodotti;
-	
 	@ManyToMany
 	private List<Quantita> quantitaAss;
+
+	@ManyToMany
+	private List<Prodotto> prodotto;
+
 
 	public Integer getId() {
 		return id;
@@ -70,11 +73,11 @@ public class Assortimento {
 	}
 
 	public List<Prodotto> getProdotti() {
-		return prodotti;
+		return prodotto;
 	}
 
 	public void setProdotti(List<Prodotto> prodotti) {
-		this.prodotti = prodotti;
+		this.prodotto = prodotti;
 	}
 
 	public List<Quantita> getQuantitaAss() {
@@ -97,4 +100,12 @@ public class Assortimento {
     	return quantitaInt;
     }
 	
+	public List<Prodotto> getProdotto() {
+		return prodotto;
+	}
+
+	public void setProdotto(List<Prodotto> prodotto) {
+		this.prodotto = prodotto;
+	}
+
 }

@@ -1,3 +1,4 @@
+
 insert into assortimento(nome_fornitore, data) values("McDonalds", "2022-08-29 12:35");
 insert into assortimento(nome_fornitore, data) values("KFC", "2022-08-29 12:35");
 insert into assortimento(nome_fornitore, data) values("Starbucks", "2022-08-29 12:35");
@@ -87,3 +88,4 @@ insert into guida(nome, cognome) values("Michelangelo", "De Nicola");
 insert into guida(nome, cognome) values("Davide", "Catalano");
 insert into guida(nome, cognome) values("Federica", "Cetroni");
 insert into guida(nome, cognome) values("Mattia", "Verardi");
+

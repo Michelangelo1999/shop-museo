@@ -1,6 +1,5 @@
 package jana60.model;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,10 +28,10 @@ public class Prodotto {
 	private double prezzo;
 
 	@ManyToMany(mappedBy = "prodotto")
-	private List<Assortimento> assortimento;
-
-	@ManyToMany(mappedBy = "prodotto")
 	private List<Acquisto> acquisto;
+
+	@OneToMany(mappedBy = "prodotto")
+	private List<Rifornimento> rifornimenti;
 
 	// getters and setters
 	public Integer getId() {
@@ -66,20 +66,20 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public List<Assortimento> getAssortimento() {
-		return assortimento;
-	}
-
-	public void setAssortimento(List<Assortimento> assortimento) {
-		this.assortimento = assortimento;
-	}
-
 	public List<Acquisto> getAcquisto() {
 		return acquisto;
 	}
 
 	public void setAcquisto(List<Acquisto> acquisto) {
 		this.acquisto = acquisto;
+	}
+
+	public List<Rifornimento> getRifornimenti() {
+		return rifornimenti;
+	}
+
+	public void setRifornimenti(List<Rifornimento> rifornimenti) {
+		this.rifornimenti = rifornimenti;
 	}
 
 	// metodi custom
@@ -102,39 +102,30 @@ public class Prodotto {
 	// return quantita;
 	// }
 
-	public int quantitaDisponibile() {
-		int quantitaDisponibile = 0;
-
-		int assortiti = 0;
-		int acquistati = 0;
-
-		Iterator<Assortimento> assIter = this.assortimento.iterator();
-		Iterator<Acquisto> acqIter = this.acquisto.iterator();
-
-		while (assIter.hasNext()) {
-			Assortimento current = assIter.next();
-			assortiti += current.getQuantInt();
-		}
-
-		while (acqIter.hasNext()) {
-			Acquisto current = acqIter.next();
-			acquistati += current.getQuantInt();
-		}
-
-		quantitaDisponibile = assortiti - acquistati;
-
-		return quantitaDisponibile;
-	}
-
-	public int getQuantitaAss() {
-		int quantita = 0;
-		Iterator<Assortimento> assIter = this.assortimento.iterator();
-
-		while (assIter.hasNext()) {
-			Assortimento current = assIter.next();
-			quantita += current.getQuantInt();
-
-		}
-		return quantita;
-	}
+	/*
+	 * public int quantitaDisponibile() { int quantitaDisponibile = 0;
+	 * 
+	 * int assortiti = 0; int acquistati = 0;
+	 * 
+	 * Iterator<Assortimento> assIter = this.assortimento.iterator();
+	 * Iterator<Acquisto> acqIter = this.acquisto.iterator();
+	 * 
+	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); assortiti
+	 * += current.getQuantInt(); }
+	 * 
+	 * while (acqIter.hasNext()) { Acquisto current = acqIter.next(); acquistati +=
+	 * current.getQuantInt(); }
+	 * 
+	 * quantitaDisponibile = assortiti - acquistati;
+	 * 
+	 * return quantitaDisponibile; }
+	 * 
+	 * public int getQuantitaAss() { int quantita = 0; Iterator<Assortimento>
+	 * assIter = this.assortimento.iterator();
+	 * 
+	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); quantita
+	 * += current.getQuantInt();
+	 * 
+	 * } return quantita; }
+	 */
 }

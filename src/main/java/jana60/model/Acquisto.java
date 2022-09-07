@@ -1,7 +1,6 @@
 package jana60.model;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -29,9 +28,6 @@ public class Acquisto {
 
 	@ManyToOne
 	private Carrello carrello;
-
-	@ManyToMany
-	private List<Quantita> quantitaAcq;
 
 	// getters and setters
 
@@ -83,37 +79,20 @@ public class Acquisto {
 		this.carrello = carrello;
 	}
 
-	public List<Quantita> getQuantitaAcq() {
-		return quantitaAcq;
-	}
-
-	public void setQuantitaAcq(List<Quantita> quantitaAcq) {
-		this.quantitaAcq = quantitaAcq;
-	}
-
-	// custom
-	public int getQuantInt() {
-		int quantitaInt = 0;
-		Iterator<Quantita> quantIterator = this.quantitaAcq.iterator();
-
-		while (quantIterator.hasNext()) {
-			Quantita current = quantIterator.next();
-			quantitaInt = 0;
-			quantitaInt += current.getQuantita();
-		}
-
-		return quantitaInt;
-	}
-
-	public double getPrezzoAc() {
-		double costo = 0;
-		Iterator<Prodotto> prodIterator = this.prodotto.iterator();
-
-		while (prodIterator.hasNext()) {
-			Prodotto current = prodIterator.next();
-			int quantita = this.getQuantInt();
-			costo += quantita * this.getPrezzoTotale();
-		}
-		return costo + 1;
-	}
+	/*
+	 * // custom public int getQuantInt() { int quantitaInt = 0; Iterator<Quantita>
+	 * quantIterator = this.quantitaAcq.iterator();
+	 * 
+	 * while (quantIterator.hasNext()) { Quantita current = quantIterator.next();
+	 * quantitaInt = 0; quantitaInt += current.getQuantita(); }
+	 * 
+	 * return quantitaInt; }
+	 * 
+	 * public double getPrezzoAc() { double costo = 0; Iterator<Prodotto>
+	 * prodIterator = this.prodotto.iterator();
+	 * 
+	 * while (prodIterator.hasNext()) { Prodotto current = prodIterator.next(); int
+	 * quantita = this.getQuantInt(); costo += quantita * this.getPrezzoTotale(); }
+	 * return costo + 1; }
+	 */
 }

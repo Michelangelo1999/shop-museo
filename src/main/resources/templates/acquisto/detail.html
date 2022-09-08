@@ -21,9 +21,9 @@
   			<dl th:object="${acquisto}">
   				
   				<dt>Quantità</dt>
-  				<dd th:text="*{quantita}"></dd>
+  				<dd th:each="quantita : ${acquisto.quantitaAcq}"  th:text="${quantita.quantita}"></dd>
   				<dt>Prezzo</dt>
-  				<dd th:text="*{prezzoTotale}"></dd>
+  				<dd th:text="${acquisto.getPrezzoAc}"></dd>
   			</dl>
   		</div>
   		

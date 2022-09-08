@@ -11,6 +11,10 @@ function addRows(){
 		cell.innerHTML=copycel;
 	}
 }
+
+
+
+
 function deleteRows(){
 	var table = document.getElementById('emptbl');
 	var rowCount = table.rows.length;

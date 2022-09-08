@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -17,9 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import jana60.model.Assortimento;
+import jana60.model.Rifornimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
+
 import jana60.repository.QuantitaRepo;
+
+import jana60.repository.RifornimentoRepo;
+
 
 @Controller
 @RequestMapping("/assortimento")
@@ -33,10 +39,14 @@ public class AssortimentoController {
 	@Autowired
 	private QuantitaRepo repoQuant;
 
+	@Autowired
+	private RifornimentoRepo repoRif;
+
 	// ASSORTIMENTO
 	@GetMapping
 	public String assList(Model model) {
 		model.addAttribute("assortimentoList", repoAss.findAll());
+		model.addAttribute("rifList", repoRif.findAll());
 		return "/assortimento/assortimento"; // -> il nome o path di un template che si trova in /resources/templates
 	}
 
@@ -44,7 +54,6 @@ public class AssortimentoController {
 	public String assForm(Model model) {
 		model.addAttribute("assortimento", new Assortimento());
 		model.addAttribute("prodottiList", repo.findAll());
-		model.addAttribute("quantitaList", repoQuant.findAll());
 		return "/assortimento/addA";
 	}
 
@@ -65,14 +74,13 @@ public class AssortimentoController {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
 			model.addAttribute("prodottiList", repo.findAll());
-			model.addAttribute("quantitaList", repoQuant.findAll());
 			return "/assortimento/addA";
 		} else {
 			// se non ci sono errori salvo l'assortimento che arriva dalla form
 
 			repoAss.save(formAssortimento);
 
-			return "redirect:/assortimento";
+			return "redirect:/rifornimento/add";
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path
@@ -81,8 +89,9 @@ public class AssortimentoController {
 
 	// EDIT ASSORTIMENTO
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Integer assortimentoId, Model model) {
+	public String edit(@PathVariable("id") Integer assortimentoId, Integer rifornimentoId, Model model) {
 		Optional<Assortimento> result = repoAss.findById(assortimentoId);
+		Optional<Rifornimento> result1 = repoRif.findById(rifornimentoId);
 		// controllo se l'assortimento con quell'id è presente
 		if (result.isPresent()) {
 			// preparo il template con al form passandogli l'assortimento trovato sul
@@ -90,7 +99,7 @@ public class AssortimentoController {
 
 			model.addAttribute("assortimento", result.get());
 			model.addAttribute("prodottiList", repo.findAll());
-			model.addAttribute("quantitaList", repoQuant.findAll());
+			model.addAttribute("rifList", result1.get());
 			return "/assortimento/addA";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -102,10 +111,12 @@ public class AssortimentoController {
 	// DETTAGLI assortimento
 	@GetMapping("/detail/{id}")
 	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
-
+		
 		Optional<Assortimento> assortimento = repoAss.findById(assortimentoId);
+		List<Rifornimento> rifornimento = repoRif.findByAssortimentoId(assortimentoId);
 		if (assortimento.isPresent()) {
 			model.addAttribute("assortimento", assortimento.get());
+			model.addAttribute("rifList", rifornimento);
 			return "/assortimento/detail";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

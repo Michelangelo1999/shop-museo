@@ -12,6 +12,7 @@
   		
   		
   		<hr/>
+  		
   		<!-- form  -->
   		
   		<form
@@ -22,6 +23,13 @@
   			class="row"
   			
   		>
+  		<ul class="col-12">
+		      <li 
+		         th:each="err : ${#fields.allErrors()}" 
+		         th:text="${err}">
+		      </li>
+			</ul>
+  		<div class="container">
   		<input type="hidden" th:field="*{id}">
   		<div class="mb-3">
 	  				<label class="form-label" for="nomeFornitore">Nome fornitore</label>
@@ -41,46 +49,15 @@
 	  					</ul>
 	  				</div>
 	  			</div>
-	  		<table id="emptbl">
-		<tr>
-			<th>Quantità</th>
-			<th>Prezzo</th>
-			<th>Prodotto</th> 
-			 
-		</tr> 
-		<tr> 
-		
-			<td id="col0">
-			<select class="form-select" aria-label="Default select example" type="select" name="quantita[]" id="dept" th:field="*{quantitaAss}" >
-           <!-- <option selected>Open this select menu</option>-->
-            
-            <option th:each="quantita : ${quantitaList}" th:value="${quantita.id}"  th:text="${quantita.quantita}"></option>
-            
-             </select>
-			</td> 
-			<td id="col1"><input type="number" name="prezzo" th:field="*{costo}" value=""></td> 
-			 <td id="col2"> 
-              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
-              <option selected> Apri il menù</option>
-               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
-               </select>
-		        </td> 
-		</tr>   
-	</table> 
-	<table> 
-		<tr> 
-			<td><input type="button" value="Add Row" onclick="addRows()" />
-			
-			</td> 
-			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
-			 
-		</tr>  
-	</table> 
+
 	<div class="bottoni">
 	  				<button type="submit" class="btn btn-primary">Save</button>
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
+  		</div>
+  		
   		</form>
+  		
   	 <script src="/assortimento.js"></script> 
  
   </body>

@@ -11,9 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
 
 import javax.persistence.OneToOne;
+
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,6 +32,7 @@ public class Assortimento {
 
 	private LocalDate data;
 
+
 	@NotNull
 	@Column(columnDefinition = "double default 0.00")
 	private double costo;
@@ -36,8 +41,11 @@ public class Assortimento {
 	@ManyToMany
 	private List<Prodotto> prodotto;
 	
-	@ManyToMany
-	private List<Quantita> quantitaAss;
+	
+
+	@OneToMany(mappedBy = "assortimento")
+
+	private List<Rifornimento> rifornimento;
 
 
 	public Integer getId() {
@@ -65,6 +73,7 @@ public class Assortimento {
 	}
 
 
+
 	public double getCosto() {
 		return costo;
 	}
@@ -78,41 +87,51 @@ public class Assortimento {
 		return prodotto;
 	}
 
-	public void setProdotto(List<Prodotto> prodotto) {
-		this.prodotto = prodotto;
+	public List<Rifornimento> getRifornimento() {
+		return rifornimento;
+
 	}
 
-	public List<Quantita> getQuantitaAss() {
-		return quantitaAss;
+	public void setRifornimento(List<Rifornimento> rifornimento) {
+		this.rifornimento = rifornimento;
 	}
 
-	public void setQuantitaAss(List<Quantita> quantitaAss) {
-		this.quantitaAss = quantitaAss;
-	}
-	
-	
-	//custom
-	public int getQuantInt() {
-		int quantitaInt = 0;
-		Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
+	// custom
+	// public int getQuantInt() {
+	// int quantitaInt = 0;
+	// Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
 
-		while (quantIterator.hasNext()) {
-			Quantita current = quantIterator.next();
-			quantitaInt = 0;
-			quantitaInt += current.getQuantita();
-		}
-		return quantitaInt;
-	}
+	// while (quantIterator.hasNext()) {
+	// Quantita current = quantIterator.next();
+	// quantitaInt += current.getQuantita();
+	// }
 
-	public double getCostoAs() {
-		double costo = 0;
-		Iterator<Prodotto> prodIterator = this.prodotto.iterator();
+	// return quantitaInt;
+	// }
 
-		while (prodIterator.hasNext()) {
-			Prodotto current = prodIterator.next();
-			int quantita = this.getQuantInt();
-			costo += quantita * this.getCosto();
-		}
-		return costo;
-	}
+	/*
+	 * public double getCostoAs() { double costo = 0; Iterator<Prodotto>
+	 * prodIterator = this.prodotto.iterator();
+	 * 
+	 * while (prodIterator.hasNext()) { Prodotto current = prodIterator.next();
+	 * costo += this.getQuantInt() * this.getCosto(); } return costo; }
+	 */
+
+	/*
+	 * public int getQuantInt() { int quantitaInt = 0; Iterator<Quantita>
+	 * quantIterator = this.quantitaAss.iterator();
+	 * 
+	 * while (quantIterator.hasNext()) { Quantita current = quantIterator.next();
+	 * quantitaInt = 0; quantitaInt = current.getQuantita(); } return quantitaInt; }
+	 * 
+	 * public double getCostoAs() { int i = 0; double costo = 0; Iterator<Prodotto>
+	 * prodIterator = this.prodotto.iterator();
+	 * 
+	 * while (prodIterator.hasNext()) {
+	 * 
+	 * Prodotto current = prodIterator.next(); int quantita = this.getQuantInt();
+	 * 
+	 * costo += this.getCosto()[i] * quantita; i++; } return costo; }
+	 */
+
 }

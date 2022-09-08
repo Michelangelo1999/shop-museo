@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import jana60.model.Acquisto;
 import jana60.repository.AcquistoRepo;
 import jana60.repository.ProdottoRepo;
+import jana60.repository.RifornimentoRepo;
 
 @Controller
 @RequestMapping("/acquisto")
@@ -30,6 +31,9 @@ public class AcquistoController {
 	@Autowired
 	private ProdottoRepo repo;
 
+	@Autowired
+	private RifornimentoRepo repoRif;
+
 	@GetMapping
 	public String assList(Model model) {
 		model.addAttribute("acquistoList", repoAc.findAll());
@@ -40,6 +44,7 @@ public class AcquistoController {
 	public String acForm(Model model) {
 		model.addAttribute("acquisto", new Acquisto());
 		model.addAttribute("prodottiList", repo.findAll());
+
 		return "/acquisto/add";
 	}
 
@@ -58,6 +63,7 @@ public class AcquistoController {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
 			model.addAttribute("prodottiList", repo.findAll());
+
 			return "/acquisto/add";
 		} else {
 			// se non ci sono errori salvo il book che arriva dalla form
@@ -79,6 +85,7 @@ public class AcquistoController {
 
 			model.addAttribute("acquisto", result.get());
 			model.addAttribute("prodottiList", repo.findAll());
+
 			return "/acquisto/add";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

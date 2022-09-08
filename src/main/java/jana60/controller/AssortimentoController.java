@@ -21,11 +21,7 @@ import jana60.model.Assortimento;
 import jana60.model.Rifornimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
-
-import jana60.repository.QuantitaRepo;
-
 import jana60.repository.RifornimentoRepo;
-
 
 @Controller
 @RequestMapping("/assortimento")
@@ -35,9 +31,6 @@ public class AssortimentoController {
 
 	@Autowired
 	private ProdottoRepo repo;
-	
-	@Autowired
-	private QuantitaRepo repoQuant;
 
 	@Autowired
 	private RifornimentoRepo repoRif;
@@ -111,7 +104,7 @@ public class AssortimentoController {
 	// DETTAGLI assortimento
 	@GetMapping("/detail/{id}")
 	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
-		
+
 		Optional<Assortimento> assortimento = repoAss.findById(assortimentoId);
 		List<Rifornimento> rifornimento = repoRif.findByAssortimentoId(assortimentoId);
 		if (assortimento.isPresent()) {

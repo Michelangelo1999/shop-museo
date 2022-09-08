@@ -30,6 +30,10 @@
 			
   		<div class="container">
   		<input type="hidden"  th:field="*{id}"> 
+<<<<<<< HEAD
+=======
+  		<!--<input type="hidden" th:field="*{assortimento}">-->
+>>>>>>> 8e6d2092631ede30bb450521cbd0064f27e87fc6
   		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
               <option selected> Seleziona l'assortimento</option>
 			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:field="*{assortimento}" th:text="${assortimento.id}"></option>

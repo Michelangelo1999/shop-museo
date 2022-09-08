@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -104,12 +105,13 @@ public class AssortimentoController {
 
 	// DETTAGLI assortimento
 	@GetMapping("/detail/{id}")
-	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Integer rifornimentoId, Model model) {
-		Optional<Rifornimento> rifornimento = repoRif.findById(rifornimentoId);
+	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
+		
 		Optional<Assortimento> assortimento = repoAss.findById(assortimentoId);
+		List<Rifornimento> rifornimento = repoRif.findByAssortimentoId(assortimentoId);
 		if (assortimento.isPresent()) {
 			model.addAttribute("assortimento", assortimento.get());
-			model.addAttribute("rifList", rifornimento.get());
+			model.addAttribute("rifList", rifornimento);
 			return "/assortimento/detail";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

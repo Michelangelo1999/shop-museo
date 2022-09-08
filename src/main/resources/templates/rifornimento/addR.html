@@ -12,7 +12,7 @@
 
   		<hr/>
 <!-- FORM RIFORNIMENTO-->
-<form
+    <form
   			id="form-rifornimento"
   			
   			th:object="${rifornimento}"
@@ -27,9 +27,17 @@
 		         th:text="${err}">
 		      </li>
 			</ul> 
-			<input type="hidden" th:field="*{assortimento}">
+			
   		<div class="container">
   		<input type="hidden"  th:field="*{id}"> 
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
+              <option selected> Seleziona l'assortimento</option>
+			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:field="*{assortimento}" th:text="${assortimento.id}"></option>
+			</select>
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
+              <option selected> Seleziona la data</option>
+			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:text="${assortimento.data}"></option>
+			</select>
   		 
   		<div>
 	  		<table id="emptbl">
@@ -37,7 +45,7 @@
 			<th>Quantità</th>
 			<th>Prezzo</th>
 			<th>Prodotto</th> 
-			 
+			<th>Save</th> 
 		</tr> 
 		<tr> 
 		
@@ -51,6 +59,12 @@
                <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
                </select>
 		        </td> 
+		        <td>
+		        <div class="bottoni">
+	  				<button type="submit" class="btn btn-primary">Save</button>
+<!-- 	  				<a class="btn btn-primary" href="/">Cancel</a> -->
+	  			</div>
+		        </td>
 		</tr>  
 	</table> 
 	<table> 
@@ -71,6 +85,7 @@
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
   		</div>
+  		
   		</form>
   		 <script src="/assortimento.js"></script> 
   </body>

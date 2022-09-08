@@ -43,7 +43,7 @@
   				<dt>Data</dt>
   				<dd th:text="${data}"></dd>
   				<dt> Prodotti Assortiti </dt>
-  				<dd th:each="rifornimento : ${rifList}" th:text="${rifornimento.prodotto}+' ' + ${rifornimento.quantita}+' '+ ${rifornimento.prezzo}" ></dd>
+  				<dd th:each="rifornimento : ${rifList}" th:text="${rifornimento.prodotto.nome}+' ' + ${rifornimento.quantita}+' '+ ${rifornimento.prezzo}" ></dd>
   			</dl>
   		</div>
   		</div>

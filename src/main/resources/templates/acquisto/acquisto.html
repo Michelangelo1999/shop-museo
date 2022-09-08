@@ -29,7 +29,6 @@
           <tbody>
             <tr th:each="acquisto : ${acquistoList}">
               <td th:text="${acquisto.data}"></td>
-              <td th:text="${acquisto.quantita}"></td>
               <td th:text="${acquisto.prezzoTotale}"></td>
               <td>
 	  				<a class="btn btn-primary" th:href="@{|/acquisto/edit/${acquisto.id}|}" title="Edit">

@@ -27,41 +27,15 @@
 	  			<table id="emptbl">
 		<tr>
 		<th>Data</th>
-			<th>Quantità</th>
-			<th>Prezzo</th>
-			<th>Prodotto</th> 
-			 
 		</tr> 
 		<tr> 
 		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
 			</td>
-			<td id="col1"><select class="form-select" aria-label="Default select example" type="select" name="quantita[]" id="dept" th:field="*{quantitaAcq}" >
-           <!-- <option selected>Open this select menu</option>-->
-            
-            <option th:each="quantita : ${quantitaList}" th:value="${quantita.id}"  th:text="${quantita.quantita}"></option>
-            
-             </select>
-			</td> 
-			<td id="col2"><input type="number" name="prezzo" th:field="*{prezzoTotale}" value="" /></td> 
-			 <td id="col3"> 
-              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
-              <option selected> Apri il menù</option>
-               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
-               </select>
-		        </td> 
 		</tr>  
 	</table> 
-	<table> 
-		<tr> 
-			<td><input type="button" value="Add Row" onclick="addRows()" />
-			
-			</td> 
-			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
-			 
-		</tr>  
-	</table> 
+	
 	<div class="bottoni">
-	  				<button type="submit" class="btn btn-primary">Save</button>
+	  				<button type="submit" class="btn btn-primary">Avanti</button>
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
   		</form>

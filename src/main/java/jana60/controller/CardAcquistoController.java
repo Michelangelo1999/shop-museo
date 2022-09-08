@@ -13,48 +13,46 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jana60.model.Assortimento;
-import jana60.model.Rifornimento;
-import jana60.repository.AssortimentoRepo;
+import jana60.model.Acquisto;
+import jana60.model.CardAcquisto;
+import jana60.repository.AcquistoRepo;
+import jana60.repository.CardRepo;
 import jana60.repository.ProdottoRepo;
-import jana60.repository.RifornimentoRepo;
 
 @Controller
-@RequestMapping("/rifornimento")
-public class RifornimentoController {
+@RequestMapping("/card")
+public class CardAcquistoController {
 
-	// REPOSITORY
 	@Autowired
-	private RifornimentoRepo repoRif;
+	private CardRepo repoCard;
+
+	@Autowired
+	private AcquistoRepo repoAc;
 
 	@Autowired
 	private ProdottoRepo repo;
 
-	@Autowired
-	private AssortimentoRepo repoAss;
-
 	@GetMapping
-	public String assList(Model model) {
-		model.addAttribute("rifList", repoRif.findAll());
-		return "redirect:/assortimento/detail/{id}";
+	public String card(Model model) {
+		model.addAttribute("cardAcList", repoCard.findAll());
+		return "redirect:/acquisto/detail/{id}";
 	}
 
-	// RIFORNIMENTO - ASSORTIMENTO
 	@GetMapping("/add")
-	public String rifForm(Model model) {
-		Rifornimento rifornimento = new Rifornimento();
+	public String rifornimetoForm(Model model) {
+		CardAcquisto card = new CardAcquisto();
 		Integer id = 1;
-		Optional<Assortimento> assortimento = repoAss.findById(id);
-		rifornimento.setAssortimento(assortimento);
-		model.addAttribute("rifornimento", rifornimento);
+		Optional<Acquisto> acquisto = repoAc.findById(id);
+		card.setAcquisto(acquisto);
+		model.addAttribute("cardAcquisto", card);
 		model.addAttribute("prodottiList", repo.findAll());
-		model.addAttribute("assList", repoAss.findAll());
+		model.addAttribute("acList", repoAc.findAll());
 
-		return "/rifornimento/addR";
+		return "/cardAcquisto/addC";
 	}
 
 	@PostMapping("/add")
-	public String save(@Valid @ModelAttribute("rifornimento") Rifornimento formRifornimento, BindingResult br,
+	public String save(@Valid @ModelAttribute("cardAcquisto") CardAcquisto formCardAcquisto, BindingResult br,
 			Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
@@ -64,17 +62,16 @@ public class RifornimentoController {
 			// precaricata
 			model.addAttribute("prodottiList", repo.findAll());
 
-			return "/rifornimento/addR";
+			return "/cardAcquisto/addC";
 		} else {
 			// se non ci sono errori salvo l'assortimento che arriva dalla form
 
-			repoRif.save(formRifornimento);
+			repoCard.save(formCardAcquisto);
 
-			return "redirect:/rifornimento/add";
+			return "redirect:/card/add";
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path
 		}
 	}
-
 }

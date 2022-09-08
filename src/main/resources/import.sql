@@ -63,51 +63,8 @@ insert into prodotto_assortimenti(prodotti_id, assortimenti_id) values(5,1);
 insert into prodotto_assortimenti(prodotti_id, assortimenti_id) values(6,2);
 insert into prodotto_assortimenti(prodotti_id, assortimenti_id) values(6,1);
 
-insert into quantita(quantita) values(100);
-insert into quantita(quantita) values(90);
-insert into quantita(quantita) values(80);
-insert into quantita(quantita) values(50);
-insert into quantita(quantita) values(30);
-insert into quantita(quantita) values(10);
-
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(1,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(2,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(3,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(4,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(5,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(6,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(5,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(4,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(3,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(2,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(1,1);
-insert into assortimento_quantita_ass(assortimenti_id, quantita_ass_id) values(2,1);
-
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(6,6);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(5,5);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(4,4);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(3,3);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(5,2);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(4,1);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(3,2);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(2,3);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(6,4);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(2,5);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(3,6);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(4,5);
-insert into acquisto_quantita_acq(acquisti_id, quantita_acq_id) values(5,4);
 
 insert into prodotto (descrizione, nome, prezzo) values ('maglietta maniche corte', 'maglietta', 15);
 insert into prodotto (descrizione, nome, prezzo) values ('calamita del museo', 'calamita', 3);
 insert into prodotto (descrizione, nome, prezzo) values ('penna a scatto', 'penna', 3);
 insert into prodotto (descrizione, nome, prezzo) values ('cartolina della basilica', 'cartolina', 1);
-
-<<<<<<< HEAD
-=======
-inset into quantita (quantita) values (1);
-insert into quantita (quantita) values (2);
-insert into quantita (quantita) values (3);
-insert into quantita (quantita) values (4);
-insert into quantita (quantita) values (5);
-insert into quantita (quantita) values (6);
->>>>>>> michelangelo2

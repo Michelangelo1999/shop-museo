@@ -24,7 +24,6 @@ public class Rifornimento {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ManyToOne
-
 	private Assortimento assortimento;
 
 	public Integer getId() {

@@ -69,7 +69,7 @@ public class RifornimentoController {
 
 			repoRif.save(formRifornimento);
 
-			return "redirect:/assortimento";
+			return "redirect:/rifornimento/add";
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path

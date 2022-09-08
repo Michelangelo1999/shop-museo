@@ -17,8 +17,26 @@ public class Carrello {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	private int quantita;
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+	public double getPrezzoCarrello() {
+		return prezzoCarrello;
+	}
+
+	public void setPrezzoCarrello(double prezzoCarrello) {
+		this.prezzoCarrello = prezzoCarrello;
+	}
+
 	@NotNull
-	private double prezzoTotale;
+	private double prezzoCarrello;
 
 	@OneToMany(mappedBy = "carrello")
 	private List<Acquisto> acquisti;
@@ -34,14 +52,6 @@ public class Carrello {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public double getPrezzoTotale() {
-		return prezzoTotale;
-	}
-
-	public void setPrezzoTotale(double prezzoTotale) {
-		this.prezzoTotale = prezzoTotale;
 	}
 
 	public List<Acquisto> getAcquisti() {

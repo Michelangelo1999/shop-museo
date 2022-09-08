@@ -35,12 +35,8 @@
 		<tr> 
 		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
 			</td>
-			<td id="col1"><select class="form-select" aria-label="Default select example" type="select" name="quantita[]" id="dept" th:field="*{quantitaAcq}" >
-           <!-- <option selected>Open this select menu</option>-->
-            
-            <option th:each="quantita : ${quantitaList}" th:value="${quantita.id}"  th:text="${quantita.quantita}"></option>
-            
-             </select>
+			<td id="col1">
+			<input type="number" name="quantita"  th:field="*{quantita}" value=""  />
 			</td> 
 			<td id="col2"><input type="number" name="prezzo" th:field="*{prezzoTotale}" value="" /></td> 
 			 <td id="col3"> 

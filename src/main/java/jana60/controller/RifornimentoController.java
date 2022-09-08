@@ -42,9 +42,6 @@ public class RifornimentoController {
 	@GetMapping("/add")
 	public String rifForm(Model model) {
 		Rifornimento rifornimento = new Rifornimento();
-		Integer id = 1;
-		Optional<Assortimento> assortimento = repoAss.findById(id);
-		rifornimento.setAssortimento(assortimento);
 		model.addAttribute("rifornimento", rifornimento);
 		model.addAttribute("prodottiList", repo.findAll());
 		model.addAttribute("assList", repoAss.findAll());
@@ -53,26 +50,30 @@ public class RifornimentoController {
 	}
 
 	@PostMapping("/add")
-	public String save(@Valid @ModelAttribute("rifornimento") Rifornimento formRifornimento, BindingResult br,
-			Model model) {
+	public String save(Integer assortimentoId, @Valid @ModelAttribute("rifornimento") Rifornimento formRifornimento,
+			BindingResult br, Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
+		Optional<Assortimento> result = repoAss.findById(assortimentoId);
 
-		if (hasErrors) {
+		// controllo se l'assortimento con quell'id è presente
+		if (result.isPresent()) {
+			// preparo il template con al form passandogli l'assortimento trovato sul
+			// database
+
+			model.addAttribute("assortimento", result.get());
+			model.addAttribute("prodottiList", repo.findAll());
+
+			repoRif.save(formRifornimento);
+
+			return "redirect:/assortimento";
+		} else if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
 			model.addAttribute("prodottiList", repo.findAll());
 
 			return "/rifornimento/addR";
-		} else {
-			// se non ci sono errori salvo l'assortimento che arriva dalla form
-
-			repoRif.save(formRifornimento);
-
-			return "redirect:/assortimento";
-
-			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
-			// redirect a quel path
 		}
+		return "/assortimento/assortimento";
 	}
 }

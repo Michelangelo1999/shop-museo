@@ -22,9 +22,7 @@ public class Rifornimento {
 	@ManyToOne
 	private Prodotto prodotto;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ManyToOne
-
 	private Assortimento assortimento;
 
 	public Integer getId() {

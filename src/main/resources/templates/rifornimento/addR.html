@@ -16,7 +16,7 @@
   			id="form-rifornimento"
   			
   			th:object="${rifornimento}"
-  			th:action="@{/rifornimento/add}"
+  			th:action="@{/rifornimento/add/{id}}"
   			method="POST"
   			class="row"
   			
@@ -27,10 +27,23 @@
 		         th:text="${err}">
 		      </li>
 			</ul> 
-			<input type="hidden" th:field="*{assortimento}">
+			
+			
+			
+			<!--<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
+              <option selected> Seleziona id</option>
+			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:text="${assortimento.id}"></option>
+			</select> -->
   		<div class="container">
-  		<input type="hidden"  th:field="*{id}"> 
-  		 
+  		<input type="hidden" th:field="*{id}">
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
+              <option selected> Seleziona l'assortimento</option>
+			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:field="*{assortimento}" th:text="${assortimento.id}"></option>
+			</select>
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="assortimento[]" id="dept">
+              <option selected> Seleziona la data</option>
+			<option th:each="assortimento : ${assList}"  th:value="${assortimento.id}" th:text="${assortimento.data}"></option>
+			</select>
   		<div>
 	  		<table id="emptbl">
 		<tr>

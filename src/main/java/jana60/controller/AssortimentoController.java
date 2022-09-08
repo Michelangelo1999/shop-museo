@@ -55,13 +55,6 @@ public class AssortimentoController {
 			Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
-		boolean validateNome = true;
-		if (formAssortimento.getId() != null) { // sono in edit non in create
-			Assortimento assBeforeUpdate = repoAss.findById(formAssortimento.getId()).get();
-			if (assBeforeUpdate.getNomeFornitore().equals(formAssortimento.getNomeFornitore())) {
-				validateNome = false;
-			}
-		}
 
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
@@ -74,7 +67,7 @@ public class AssortimentoController {
 
 			repoAss.save(formAssortimento);
 
-			return "redirect:/rifornimento/add";
+			return "redirect:/rifornimento/add/{id}";
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path

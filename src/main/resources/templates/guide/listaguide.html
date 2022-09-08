@@ -18,7 +18,7 @@
         <form class="container-fluid justify-content-start">
             <a class="navbar-brand" href="#">Museo</a>
             <a class="btn btn-outline-success" th:href="@{/guide/aggiungiguida}">Aggiungi una Guida</a>
-            <a class="btn btn-outline-success" th:href="@{visite}">Elenco visite guidate</a>
+            <a class="btn btn-outline-success" th:href="@{/visite}">Elenco visite guidate</a>
         </form>
     </nav>
 	<!-- navbar-->
@@ -32,6 +32,14 @@
               <!--ul class="list-group" th:each="lvg : ${listaVisite}">
               	<li class="list-group-item" th:text="${lvg.titolo}"></li>
               </ul-->
+              <div>
+              	<a class="btn btn-primary" th:href="@{|guide/elimina/${sg.id}|}">
+              		<i class="fa-solid fa-trash-can"></i>
+              	</a>
+              	<a class="btn btn-primary" th:href="@{|guide/modifica/${sg.id}|}">
+              		<i class="fa-solid fa-file-pen"></i>
+              	</a>
+              </div>
             </div>
           </div>
         </div>

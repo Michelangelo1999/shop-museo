@@ -28,9 +28,6 @@ public class GuidaController {
 	@Autowired
 	private GuidaRepository repo;
 	
-	@Autowired
-	private VisitaRepository repoVisite;
-	
 	@GetMapping
 	public String schedeGuide(Model model) {
 		model.addAttribute("schedaGuida", repo.findAll());
@@ -40,7 +37,6 @@ public class GuidaController {
 	@GetMapping("/aggiungiguida")
 	public String aggiungiGuida(Model model) {
 		model.addAttribute("aggiungiGuida", new Guida());
-		model.addAttribute("listaVisite", repoVisite.findAll());
 		return "guide/aggiungiguida";
 	}
 	
@@ -59,7 +55,7 @@ public class GuidaController {
 		Optional<Guida> guidaEliminata = repo.findById(idGuida);
 		if (guidaEliminata.isPresent()) {
 			repo.delete(guidaEliminata.get());
-			return "redirect:/";
+			return "redirect:/guide";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 			  "Guida selezionata inesistente");
@@ -67,10 +63,10 @@ public class GuidaController {
 	}
 	
 	@GetMapping ("/modifica/{id}")
-	public String modificaGuida (@PathVariable ("id") Integer idGuida,Model model) {
+	public String modificaGuida (@PathVariable("id") Integer idGuida,Model model) {
 		Optional <Guida> guidaModificata = repo.findById(idGuida);
 		if (guidaModificata.isPresent()) {
-			model.addAttribute("modificaGuida",guidaModificata.get());
+			model.addAttribute("aggiungiGuida",guidaModificata.get()); // aggiungiGuida deve coincidere con quello dell aggiungo guida
 			return "guide/aggiungiguida";
 		}else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

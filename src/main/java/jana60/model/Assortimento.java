@@ -33,8 +33,8 @@ public class Assortimento {
 	private double costo;
 
 	
-	@ManyToMany(mappedBy = "assortimenti")
-	private List<Prodotto> prodotti;
+	@ManyToMany
+	private List<Prodotto> prodotto;
 	
 	@ManyToMany
 	private List<Quantita> quantitaAss;
@@ -74,12 +74,12 @@ public class Assortimento {
 	}
 
 
-	public List<Prodotto> getProdotti() {
-		return prodotti;
+	public List<Prodotto> getProdotto() {
+		return prodotto;
 	}
 
-	public void setProdotti(List<Prodotto> prodotti) {
-		this.prodotti = prodotti;
+	public void setProdotto(List<Prodotto> prodotto) {
+		this.prodotto = prodotto;
 	}
 
 	public List<Quantita> getQuantitaAss() {
@@ -90,14 +90,6 @@ public class Assortimento {
 		this.quantitaAss = quantitaAss;
 	}
 	
-
-	public List<Prodotto> getProdotto() {
-		return prodotti;
-	}
-
-	public void setProdotto(List<Prodotto> prodotto) {
-		this.prodotti= prodotto;
-	}
 	
 	//custom
 	public int getQuantInt() {
@@ -114,13 +106,13 @@ public class Assortimento {
 
 	public double getCostoAs() {
 		double costo = 0;
-		Iterator<Prodotto> prodIterator = this.prodotti.iterator();
+		Iterator<Prodotto> prodIterator = this.prodotto.iterator();
 
 		while (prodIterator.hasNext()) {
 			Prodotto current = prodIterator.next();
 			int quantita = this.getQuantInt();
 			costo += quantita * this.getCosto();
 		}
-		return costo + 1;
+		return costo;
 	}
 }

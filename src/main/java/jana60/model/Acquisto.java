@@ -28,8 +28,8 @@ public class Acquisto {
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;	
 	
-	@ManyToMany(mappedBy = "acquisti")
-	private List<Prodotto> prodotti;
+	@ManyToMany
+	private List<Prodotto> prodotto;
 	
 	@ManyToMany
 	private List<Quantita> quantitaAcq;
@@ -65,12 +65,12 @@ public class Acquisto {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	public List<Prodotto> getProdotti() {
-		return prodotti;
+	public List<Prodotto> getProdotto() {
+		return prodotto;
 	}
 
-	public void setProdotti(List<Prodotto> prodotti) {
-		this.prodotti = prodotti;
+	public void setProdotto(List<Prodotto> prodotto) {
+		this.prodotto = prodotto;
 	}
 
 	public List<Quantita> getQuantitaAcq() {
@@ -97,7 +97,7 @@ public class Acquisto {
 
 		public double getPrezzoAc() {
 			double costo = 0;
-			Iterator<Prodotto> prodIterator = this.prodotti.iterator();
+			Iterator<Prodotto> prodIterator = this.prodotto.iterator();
 
 			while (prodIterator.hasNext()) {
 				Prodotto current = prodIterator.next();

@@ -34,11 +34,11 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 	
-	@ManyToMany
+	@ManyToMany (mappedBy = "prodotto")
 	private List<Assortimento> assortimenti;
 	
-	@ManyToMany
-	private List<Acquisto> acquisti;
+	@ManyToMany (mappedBy = "prodotto")
+	private List<Acquisto> acquisto;
 	
 //	@ManyToMany
 //	private List<Quantita> quantitaProd;
@@ -85,11 +85,11 @@ public class Prodotto {
 		}
 
 		public List<Acquisto> getAcquisto() {
-			return acquisti;
+			return acquisto;
 		}
 
 		public void setAcquisto(List<Acquisto> acquisto) {
-			this.acquisti = acquisto;
+			this.acquisto = acquisto;
 		}
 
 		// metodi custom
@@ -119,7 +119,7 @@ public class Prodotto {
 			int acquistati = 0;
 
 			Iterator<Assortimento> assIter = this.assortimenti.iterator();
-			Iterator<Acquisto> acqIter = this.acquisti.iterator();
+			Iterator<Acquisto> acqIter = this.acquisto.iterator();
 
 			while (assIter.hasNext()) {
 				Assortimento current = assIter.next();

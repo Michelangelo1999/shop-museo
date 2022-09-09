@@ -20,14 +20,17 @@
   		>
 	  		<div class="container">
 	  		<input type="hidden"  th:field="*{id}"> 
-  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept">
-              <option selected> Seleziona l'acquisto</option>
-			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:field="*{acquisto}" th:text="${acquisto.id}"></option>
-			</select>
-  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept">
-              <option selected> Seleziona la data</option>
-			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:text="${acquisto.data}"></option>
-			</select>
+	  		<input type="hidden" th:value="*{acquisto}" th:field="*{acquisto}">
+<!-- 	  		<option th:each="acquisto : ${acquistoSettato}"  th:value="${acquisto.id}" th:text="${acquisto.id}" th:field="*{acquisto}"></option> -->
+	  		
+<!--   		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept"> -->
+<!--               <option selected> Seleziona l'acquisto</option> -->
+<!-- 			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:text="${acquisto.id}"></option> -->
+<!-- 			</select> -->
+<!--   		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept"> -->
+<!--               <option selected> Seleziona la data</option> -->
+<!-- 			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:text="${acquisto.data}"></option> -->
+<!-- 			</select> -->
 			<div class="col-8">
 			
 				

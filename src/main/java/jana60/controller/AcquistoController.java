@@ -72,7 +72,7 @@ public class AcquistoController {
 
 			repoAc.save(formAc);
 
-			return "redirect:/card/add";
+			return "redirect:/card/add/"+formAc.getId();
 		}
 	}
 
@@ -102,10 +102,11 @@ public class AcquistoController {
 	public String assortimentoDetail(@PathVariable("id") Integer acquistoId, Model model) {
 
 		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);
-		List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);
+		//List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);
 		if (acquisto.isPresent()) {
 			model.addAttribute("acquisto", acquisto.get());
-			model.addAttribute("acList", cardAc);
+		//	model.addAttribute("acqList", repoAc.findAll());   //di prova
+		//	model.addAttribute("acList", cardAc);
 			return "/acquisto/detail";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

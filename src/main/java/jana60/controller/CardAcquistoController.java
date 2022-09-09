@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,17 +40,17 @@ public class CardAcquistoController {
 		return "redirect:/acquisto/detail/{id}";
 	}
 
-	@GetMapping("/add")
-	public String rifornimetoForm(Model model) {
+	@GetMapping("/add/{id}")
+	public String rifornimetoForm(Model model, @PathVariable("id") Integer acquistoId) {
 		CardAcquisto card = new CardAcquisto();
-		Integer id = 1;
-		Optional<Acquisto> acquisto = repoAc.findById(id);
+		Acquisto acquisto = repoAc.findById(acquistoId).get();
 		card.setAcquisto(acquisto);
 		model.addAttribute("cardAcquisto", card);
 		model.addAttribute("prodottiList", repo.findAll());
 		model.addAttribute("acList", repoAc.findAll());
 
 		return "/cardAcquisto/addC";
+
 	}
 
 	@PostMapping("/add")
@@ -68,7 +70,7 @@ public class CardAcquistoController {
 
 			repoCard.save(formCardAcquisto);
 
-			return "redirect:/card/add";
+			return "redirect:/card/add/" + formCardAcquisto.getAcquisto().getId();
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path

@@ -25,9 +25,6 @@ public class Rifornimento {
 	@ManyToOne
 	private Assortimento assortimento;
 
-	@ManyToOne
-	private Acquisto acquisto;
-
 	public Integer getId() {
 		return id;
 	}
@@ -73,13 +70,6 @@ public class Rifornimento {
 
 	}
 
-	public Acquisto getAcquisto() {
-		return acquisto;
-	}
-
-	public void setAcquisto(Acquisto acquisto) {
-		this.acquisto = acquisto;
-	}
 
 	public void setAcquisto(Optional<Acquisto> acquisto2) {
 		// TODO Auto-generated method stub

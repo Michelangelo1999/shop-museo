@@ -16,7 +16,10 @@ public class CardAcquisto {
 	private Integer id;
 
 	private int quantita;
-
+	
+	@ManyToOne
+	private Prodotto prodotto;
+	
 	@ManyToOne
 	private Acquisto acquisto;
 
@@ -30,13 +33,13 @@ public class CardAcquisto {
 		this.id = id;
 	}
 
-//	public List<Acquisto> getAcquisti() {
-//		return acquisti;
-//	}
-//
-//	public void setAcquisti(List<Acquisto> acquisti) {
-//		this.acquisti = acquisti;
-//	}
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
+
+	public void setProdotto(Prodotto prodotto) {
+		this.prodotto = prodotto;
+	}
 
 	public int getQuantita() {
 		return quantita;
@@ -45,7 +48,7 @@ public class CardAcquisto {
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
-
+	
 	public Acquisto getAcquisto() {
 		return acquisto;
 	}
@@ -53,10 +56,7 @@ public class CardAcquisto {
 	public void setAcquisto(Acquisto acquisto) {
 		this.acquisto = acquisto;
 	}
-
-	public void setAcquisto(Optional<Acquisto> acquisto2) {
-		// TODO Auto-generated method stub
-
-	}
+	
+	
 
 }

@@ -18,19 +18,19 @@
   	<hr/>
   	<div class="row">
   		<div class="col-8">
-  			<dl th:object="${acquisto}">
+  			<dl>
   				
   				<dt>Quantità</dt>
-  				<dd th:each="quantita : ${acquisto.quantitaAcq}"  th:text="${quantita.quantita}"></dd>
+  				<dd th:each="card : ${acquisto.cardAcquisto}"  th:text="${card.quantita}"></dd>
   				<dt>Prezzo</dt>
-  				<dd th:text="${acquisto.getPrezzoAc}"></dd>
+  				<dd th:each="cardAcquisto : ${acquisto.cardAcquisto}"  th:text="${cardAcquisto.prodotto.prezzo}"></dd>
   			</dl>
   		</div>
   		
   		<div class="col-4">
   			<h4>Prodotto</h4>
   			<ul>
-  				<li th:each="prodotto : ${acquisto.prodotto}" th:text="${prodotto.nome}"></li>
+  				<li th:each="cardAcquisto : ${acquisto.cardAcquisto}" th:text="${cardAcquisto.prodotto.nome}"></li>
   			</ul>
   		</div>
   	</div>

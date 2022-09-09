@@ -23,10 +23,7 @@ public class Acquisto {
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 
-	@ManyToMany
-	private List<Prodotto> prodotto;
-
-	@OneToMany
+	@OneToMany(mappedBy = "acquisto")
 	private List<CardAcquisto> cardAcquisto;
 
 	// getters and setters
@@ -54,15 +51,7 @@ public class Acquisto {
 	public void setPrezzoTotale(double prezzoTotale) {
 		this.prezzoTotale = prezzoTotale;
 	}
-
-	public List<Prodotto> getProdotto() {
-		return prodotto;
-	}
-
-	public void setProdotto(List<Prodotto> prodotto) {
-		this.prodotto = prodotto;
-	}
-
+	
 	public List<CardAcquisto> getCardAcquisto() {
 		return cardAcquisto;
 	}

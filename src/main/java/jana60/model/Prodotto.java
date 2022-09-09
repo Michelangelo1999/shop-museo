@@ -34,8 +34,8 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 
-	@ManyToMany(mappedBy = "prodotto")
-	private List<Acquisto> acquisto;
+	@OneToMany(mappedBy = "prodotto")
+	private List<CardAcquisto> cardAcquisti;
 
 	@OneToMany(mappedBy = "prodotto")
 	private List<Rifornimento> rifornimenti;
@@ -73,12 +73,14 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public List<Acquisto> getAcquisto() {
-		return acquisto;
+	
+
+	public List<CardAcquisto> getCardAcquisti() {
+		return cardAcquisti;
 	}
 
-	public void setAcquisto(List<Acquisto> acquisto) {
-		this.acquisto = acquisto;
+	public void setCardAcquisti(List<CardAcquisto> cardAcquisti) {
+		this.cardAcquisti = cardAcquisti;
 	}
 
 	public List<Rifornimento> getRifornimenti() {

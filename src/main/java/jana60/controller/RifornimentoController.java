@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,11 +41,10 @@ public class RifornimentoController {
 	}
 
 	// RIFORNIMENTO - ASSORTIMENTO
-	@GetMapping("/add")
-	public String rifForm(Model model) {
+	@GetMapping("/add/{id}")
+	public String rifForm(Model model,@PathVariable("id") Integer assortimentoId) {
 		Rifornimento rifornimento = new Rifornimento();
-		Integer id = 1;
-		Optional<Assortimento> assortimento = repoAss.findById(id);
+		Assortimento assortimento = repoAss.findById(assortimentoId).get();
 		rifornimento.setAssortimento(assortimento);
 		model.addAttribute("rifornimento", rifornimento);
 		model.addAttribute("prodottiList", repo.findAll());
@@ -70,10 +70,7 @@ public class RifornimentoController {
 
 			repoRif.save(formRifornimento);
 
-			return "redirect:/rifornimento/add";
-
-			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
-			// redirect a quel path
+			return "redirect:/rifornimento/add/" + formRifornimento.getAssortimento().getId();
 		}
 	}
 

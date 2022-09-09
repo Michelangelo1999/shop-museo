@@ -73,7 +73,7 @@ public class AssortimentoController {
 
 			repoAss.save(formAssortimento);
 
-			return "redirect:/rifornimento/add";
+			return "redirect:/rifornimento/add/" + formAssortimento.getId();
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path

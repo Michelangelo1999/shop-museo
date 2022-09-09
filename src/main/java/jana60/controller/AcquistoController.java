@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import jana60.model.Acquisto;
+import jana60.model.CardAcquisto;
 import jana60.repository.AcquistoRepo;
+import jana60.repository.CardRepo;
 import jana60.repository.ProdottoRepo;
-import jana60.repository.RifornimentoRepo;
 
 @Controller
 @RequestMapping("/acquisto")
@@ -32,7 +34,7 @@ public class AcquistoController {
 	private ProdottoRepo repo;
 
 	@Autowired
-	private RifornimentoRepo repoRif;
+	private CardRepo repoCard;
 
 	@GetMapping
 	public String assList(Model model) {
@@ -70,7 +72,7 @@ public class AcquistoController {
 
 			repoAc.save(formAc);
 
-			return "redirect:/acquisto";
+			return "redirect:/card/add";
 		}
 	}
 
@@ -78,6 +80,7 @@ public class AcquistoController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer acquistoId, Model model) {
 		Optional<Acquisto> result = repoAc.findById(acquistoId);
+
 		// controllo se l'assortimento con quell'id è presente
 		if (result.isPresent()) {
 			// preparo il template con al form passandogli l'assortimento trovato sul
@@ -99,8 +102,10 @@ public class AcquistoController {
 	public String assortimentoDetail(@PathVariable("id") Integer acquistoId, Model model) {
 
 		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);
+		List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);
 		if (acquisto.isPresent()) {
 			model.addAttribute("acquisto", acquisto.get());
+			model.addAttribute("acList", cardAc);
 			return "/acquisto/detail";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

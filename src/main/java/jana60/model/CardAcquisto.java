@@ -9,24 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Rifornimento {
-
+public class CardAcquisto {
+// carrello
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private double prezzo;
-
 	private int quantita;
 
 	@ManyToOne
-	private Prodotto prodotto;
-
-	@ManyToOne
-	private Assortimento assortimento;
-
-	@ManyToOne
 	private Acquisto acquisto;
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -36,13 +30,13 @@ public class Rifornimento {
 		this.id = id;
 	}
 
-	public double getPrezzo() {
-		return prezzo;
-	}
-
-	public void setPrezzo(double prezzo) {
-		this.prezzo = prezzo;
-	}
+//	public List<Acquisto> getAcquisti() {
+//		return acquisti;
+//	}
+//
+//	public void setAcquisti(List<Acquisto> acquisti) {
+//		this.acquisti = acquisti;
+//	}
 
 	public int getQuantita() {
 		return quantita;
@@ -50,27 +44,6 @@ public class Rifornimento {
 
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
-	}
-
-	public Prodotto getProdotto() {
-		return prodotto;
-	}
-
-	public void setProdotto(Prodotto prodotto) {
-		this.prodotto = prodotto;
-	}
-
-	public Assortimento getAssortimento() {
-		return assortimento;
-	}
-
-	public void setAssortimento(Assortimento assortimento) {
-		this.assortimento = assortimento;
-	}
-
-	public void setAssortimento(Optional<Assortimento> assortimento2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public Acquisto getAcquisto() {

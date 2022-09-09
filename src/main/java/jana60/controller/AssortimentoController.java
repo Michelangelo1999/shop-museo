@@ -21,11 +21,7 @@ import jana60.model.Assortimento;
 import jana60.model.Rifornimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
-
-import jana60.repository.QuantitaRepo;
-
 import jana60.repository.RifornimentoRepo;
-
 
 @Controller
 @RequestMapping("/assortimento")
@@ -35,9 +31,6 @@ public class AssortimentoController {
 
 	@Autowired
 	private ProdottoRepo repo;
-	
-	@Autowired
-	private QuantitaRepo repoQuant;
 
 	@Autowired
 	private RifornimentoRepo repoRif;
@@ -89,9 +82,8 @@ public class AssortimentoController {
 
 	// EDIT ASSORTIMENTO
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Integer assortimentoId, Integer rifornimentoId, Model model) {
+	public String edit(@PathVariable("id") Integer assortimentoId, Model model) {
 		Optional<Assortimento> result = repoAss.findById(assortimentoId);
-		Optional<Rifornimento> result1 = repoRif.findById(rifornimentoId);
 		// controllo se l'assortimento con quell'id è presente
 		if (result.isPresent()) {
 			// preparo il template con al form passandogli l'assortimento trovato sul
@@ -99,7 +91,6 @@ public class AssortimentoController {
 
 			model.addAttribute("assortimento", result.get());
 			model.addAttribute("prodottiList", repo.findAll());
-			model.addAttribute("rifList", result1.get());
 			return "/assortimento/addA";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -111,7 +102,7 @@ public class AssortimentoController {
 	// DETTAGLI assortimento
 	@GetMapping("/detail/{id}")
 	public String assortimentoDetail(@PathVariable("id") Integer assortimentoId, Model model) {
-		
+
 		Optional<Assortimento> assortimento = repoAss.findById(assortimentoId);
 		List<Rifornimento> rifornimento = repoRif.findByAssortimentoId(assortimentoId);
 		if (assortimento.isPresent()) {

@@ -99,7 +99,7 @@ public class AcquistoController {
 
 	// DETTAGLI ACQUISTO
 	@GetMapping("/detail/{id}")
-	public String assortimentoDetail(@PathVariable("id") Integer acquistoId, Model model) {
+	public String acquistoDetail(@PathVariable("id") Integer acquistoId, Model model) {
 
 		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);
 		List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);

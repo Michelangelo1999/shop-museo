@@ -18,20 +18,16 @@
   	<hr/>
   	<div class="row">
   		<div class="col-8">
-  			<dl th:object="${acquisto}">
+  			<dl>
+  				<dt> Prodotti Acquistati</dt>
+  				<dt> Prodotto </dt>
+  				<dd th:each="cardAcquisto : ${acList}" th:text="${cardAcquisto.prodotto.nome}"></dd>
+  				<dt> Prezzo Prodotto </dt>
+  				<dd th:each="cardAcquisto : ${acList}" th:text="${cardAcquisto.quantita}"></dd>
+  				<dt> Quantità </dt>
+  				 <dd th:each="cardAcquisto : ${acList}" th:text="${cardAcquisto.prodotto.prezzo}"></dd>
   				
-  				<dt>Quantità</dt>
-  				<dd th:each="quantita : ${acquisto.quantitaAcq}"  th:text="${quantita.quantita}"></dd>
-  				<dt>Prezzo</dt>
-  				<dd th:text="${acquisto.getPrezzoAc}"></dd>
   			</dl>
-  		</div>
-  		
-  		<div class="col-4">
-  			<h4>Prodotto</h4>
-  			<ul>
-  				<li th:each="prodotto : ${acquisto.prodotto}" th:text="${prodotto.nome}"></li>
-  			</ul>
   		</div>
   	</div>
   </div>

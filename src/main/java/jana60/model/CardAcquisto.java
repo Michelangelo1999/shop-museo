@@ -18,7 +18,7 @@ public class CardAcquisto {
 	private int quantita;
 
 	@ManyToOne
-	private Acquisto acquisto;
+	private Prodotto prod;
 
 	// getters and setters
 
@@ -44,14 +44,6 @@ public class CardAcquisto {
 
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
-	}
-
-	public Acquisto getAcquisto() {
-		return acquisto;
-	}
-
-	public void setAcquisto(Acquisto acquisto) {
-		this.acquisto = acquisto;
 	}
 
 	public void setAcquisto(Optional<Acquisto> acquisto2) {

@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -23,12 +23,11 @@ public class Acquisto {
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 
-	@ManyToMany
-	private List<Prodotto> prodotto;
-
 	@OneToMany
 	private List<CardAcquisto> cardAcquisto;
 
+	@OneToOne
+	private Fattura fattura;
 	// getters and setters
 
 	public Integer getId() {
@@ -55,20 +54,20 @@ public class Acquisto {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	public List<Prodotto> getProdotto() {
-		return prodotto;
-	}
-
-	public void setProdotto(List<Prodotto> prodotto) {
-		this.prodotto = prodotto;
-	}
-
 	public List<CardAcquisto> getCardAcquisto() {
 		return cardAcquisto;
 	}
 
 	public void setCardAcquisto(List<CardAcquisto> cardAcquisto) {
 		this.cardAcquisto = cardAcquisto;
+	}
+
+	public Fattura getFattura() {
+		return fattura;
+	}
+
+	public void setFattura(Fattura fattura) {
+		this.fattura = fattura;
 	}
 
 }

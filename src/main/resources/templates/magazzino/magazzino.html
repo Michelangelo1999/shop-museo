@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+<link rel="stylesheet" th:href="@{/home/home.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Global Museum</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar :: navbar('assortimento')"></nav>
+
+	<!--   <th:block th:if="${successMessage != null && successMessage != ''}"> -->
+	<!-- 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div> -->
+	<!-- 	  	</th:block> -->
+
+	<h1>Magazzino</h1>
+    
+    <div class="container flex-container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Prodotto</th>
+				<th scope="col">Quantita</th>
+				<th scope="col"></th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="prodotto : ${prodotti}">
+				<td th:text="${prodotto.nome}"></td>
+				<td th:text="${prodotto.getQuantitaDisponibile}"></td>
+				<td><button th:if="${prodotto.getQuantitaDisponibile < 6}" type="button" class="btn btn-danger"><i class="fa-solid fa-circle-exclamation"></i></button></td>
+				<td><button type="button" class="btn btn-primary"><i class="fa-solid fa-basket-shopping"></i></button></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+
+
+
+</body>
+</html>

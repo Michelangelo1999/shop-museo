@@ -96,42 +96,4 @@ public class Assortimento {
 		this.rifornimento = rifornimento;
 	}
 
-	// custom
-	// public int getQuantInt() {
-	// int quantitaInt = 0;
-	// Iterator<Quantita> quantIterator = this.quantitaAss.iterator();
-
-	// while (quantIterator.hasNext()) {
-	// Quantita current = quantIterator.next();
-	// quantitaInt += current.getQuantita();
-	// }
-
-	// return quantitaInt;
-	// }
-
-	/*
-	 * public double getCostoAs() { double costo = 0; Iterator<Prodotto>
-	 * prodIterator = this.prodotto.iterator();
-	 * 
-	 * while (prodIterator.hasNext()) { Prodotto current = prodIterator.next();
-	 * costo += this.getQuantInt() * this.getCosto(); } return costo; }
-	 */
-
-	/*
-	 * public int getQuantInt() { int quantitaInt = 0; Iterator<Quantita>
-	 * quantIterator = this.quantitaAss.iterator();
-	 * 
-	 * while (quantIterator.hasNext()) { Quantita current = quantIterator.next();
-	 * quantitaInt = 0; quantitaInt = current.getQuantita(); } return quantitaInt; }
-	 * 
-	 * public double getCostoAs() { int i = 0; double costo = 0; Iterator<Prodotto>
-	 * prodIterator = this.prodotto.iterator();
-	 * 
-	 * while (prodIterator.hasNext()) {
-	 * 
-	 * Prodotto current = prodIterator.next(); int quantita = this.getQuantInt();
-	 * 
-	 * costo += this.getCosto()[i] * quantita; i++; } return costo; }
-	 */
-
 }

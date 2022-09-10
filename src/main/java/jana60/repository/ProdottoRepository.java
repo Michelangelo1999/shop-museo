@@ -11,7 +11,4 @@ public interface ProdottoRepository extends CrudRepository<Prodotto, Integer> {
 
 	List<Prodotto> findAllByOrderByNome();
 	
-	//List<Prodotto>  findByQuantitaDisponibileGreaterThan(int zero); //OrderByQuantitaAsc();
-	//List<Prodotto> findAllOrderByQuantitaDesc();
-
 }

@@ -95,5 +95,24 @@ public class Assortimento {
 	public void setRifornimento(List<Rifornimento> rifornimento) {
 		this.rifornimento = rifornimento;
 	}
+	
+	//metodi custom
+	public boolean isEmpty() {
+		if(this.rifornimento.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public double getCostoTotale() {
+		
+		Iterator<Rifornimento> rifornimentiIter = this.rifornimento.iterator();
+		while(rifornimentiIter.hasNext()) {
+			Rifornimento current = rifornimentiIter.next();
+			this.costo += current.getPrezzo();
+		}
+		
+		return this.costo;
+	}
 
 }

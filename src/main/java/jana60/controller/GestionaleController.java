@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/gestionale")
 public class GestionaleController {
+	
+	
 
 	@GetMapping
 	public String gestionale() {

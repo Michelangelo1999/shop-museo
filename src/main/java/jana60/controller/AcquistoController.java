@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import jana60.model.Acquisto;
 import jana60.model.CardAcquisto;
+import jana60.model.Fattura;
 import jana60.repository.AcquistoRepo;
 import jana60.repository.CardRepo;
 import jana60.repository.ProdottoRepo;
@@ -114,4 +115,6 @@ public class AcquistoController {
 		}
 
 	}
+	
+	
 }

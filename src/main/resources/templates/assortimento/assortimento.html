@@ -6,9 +6,8 @@
     <title>Global Museum</title>
   </head>
   <body>
-  <th:block th:if="${successMessage != null && successMessage != ''}">
-	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
-	  	</th:block>
+  
+
   <div class="wrapper">
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
      
@@ -30,39 +29,56 @@
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
   
+
+	  	
+	  	<div class="mt-3 mb-3 alert alert-success"
+			th:if="${successSms != null && successSms != ''}"
+			th:text="${successSms}"></div>
+    
+    <div class="container flex-container">
     <h1>Gli Assortimenti</h1>
+    
     <div> 
     <a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Assortimento</a>
     </div>
+    </div>
     
     <div class="container text-center w-75 mt-3">
+    
       <div>
         <table class="table mb-5">
           <thead>
             <tr>
               <th>Nome Fornitore</th>
               <th>Data</th>
-              <th>Prezzo Totale</th>
+              <th>Costo Totale</th>
+              <th>Stato</th>
+              <th>Azioni</th>
             </tr>
           </thead>
           <tbody>
             <tr th:each="a : ${assortimentoList}">
               <td th:text="${a.nomeFornitore}"></td>
               <td th:text="${a.data}"></td>
-              
+              <td th:text="${a.getCostoTotale}"></td>
+              <td><span th:class="text-warning" th:if="${a.isEmpty == true}" th:text="INCOMPLETO"></span></td>
               
               <td>
-	  				<a class="btn btn-primary" th:href="@{|/assortimento/edit/${a.id}|}" title="Edit">
+	  				<a class="btn btn-primary" th:classappend="${a.isEmpty == true} ? text-warning : ''" th:href="@{|/assortimento/edit/${a.id}|}" title="Edit">
 	  					<i class="fa-solid fa-pen-to-square"></i>
 	  				</a>
 	  				<a class="btn btn-primary" th:href="@{|/assortimento/detail/${a.id}|}" title="Detail">
 	  					<i class="fa-solid fa-file-invoice"></i>
+	  				</a>
+	  				<a class="btn btn-primary" th:classappend="${a.isEmpty == true} ? text-warning : ''" th:href="@{|/assortimento/delete/${a.id}|}" title="Delete">
+	  					<i class="fa-solid fa-trash"></i>
 	  				</a>
 	  			</td> 
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
       <script src="/gestionale.js"> </script>
   </body>
 </html>

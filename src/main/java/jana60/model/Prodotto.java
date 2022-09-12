@@ -33,6 +33,9 @@ public class Prodotto {
 
 	@OneToMany(mappedBy = "prodotto")
 	private List<Rifornimento> rifornimenti;
+	
+	//costruttore
+	
 
 	// getters and setters
 	public Integer getId() {
@@ -82,6 +85,7 @@ public class Prodotto {
 	public void setRifornimenti(List<Rifornimento> rifornimenti) {
 		this.rifornimenti = rifornimenti;
 	}
+<<<<<<< HEAD
 
 	// metodi custom
 	public int getQuantAcquistata() {
@@ -98,3 +102,31 @@ public class Prodotto {
 		return quantitaAcquistata;
 	}
 }
+=======
+	
+	//metodo custom che restituisce la quantità
+	public int getQuantitaDisponibile() {
+		int quantitaNetta = 0;
+		int quantitaAcquistata = 0;
+		int quantitaAssortita = 0;
+		
+		Iterator<Rifornimento> rifornimentiIter = this.rifornimenti.iterator();
+		while(rifornimentiIter.hasNext()) {
+			Rifornimento current = rifornimentiIter.next();
+			quantitaAssortita += current.getQuantita();
+		}
+		
+		Iterator<CardAcquisto> acquistiIter = this.cardAcquisti.iterator();
+		while(acquistiIter.hasNext()) {
+			CardAcquisto current = acquistiIter.next();
+			quantitaAcquistata += current.getQuantita();
+		}
+		
+		quantitaNetta = quantitaAssortita-quantitaAcquistata;
+		
+		return quantitaNetta;
+	}
+	
+}
+
+>>>>>>> 07e32f64aa464f0ddefa4c2a83740f1be1488d3b

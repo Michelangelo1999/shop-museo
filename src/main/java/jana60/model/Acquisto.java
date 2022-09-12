@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -25,6 +26,9 @@ public class Acquisto {
 
 	@OneToMany(mappedBy = "acquisto")
 	private List<CardAcquisto> cardAcquisto;
+
+	@OneToOne
+	private Fattura fattura;
 
 	// getters and setters
 
@@ -69,6 +73,14 @@ public class Acquisto {
 
 		}
 		return prezzoTotale;
+	}
+
+	public Fattura getFattura() {
+		return fattura;
+	}
+
+	public void setFattura(Fattura fattura) {
+		this.fattura = fattura;
 	}
 
 }

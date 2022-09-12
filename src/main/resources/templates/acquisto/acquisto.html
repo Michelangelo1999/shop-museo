@@ -35,8 +35,8 @@
             <tr>
               
               <th>Data</th>
-              <th>Quantità</th>
               <th>Prezzo Totale</th>
+              <th>Azioni</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +49,9 @@
 	  				</a>
 	  				<a class="btn btn-primary" th:href="@{|/acquisto/detail/${acquisto.id}|}" title="Detail">
 	  					<i class="fa-solid fa-file-invoice"></i>
+	  				</a>
+	  				<a class="btn btn-primary" th:href="@{|/fattura/${acquisto.id}|}" title="Detail">
+	  					<i class="fa-solid fa-file-invoice-dollar"></i>
 	  				</a>
 	  			</td> 
             </tr>

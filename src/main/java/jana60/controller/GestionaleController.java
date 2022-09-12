@@ -22,6 +22,8 @@ import jana60.repository.VisitaRepository;
 @Controller
 @RequestMapping("/gestionale")
 public class GestionaleController {
+	
+	
 
 	@Autowired
 	private ProdottoRepo prodotto;

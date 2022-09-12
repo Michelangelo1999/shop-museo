@@ -1,7 +1,6 @@
 package jana60.model;
 
 import java.time.LocalDate;
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,16 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 import javax.persistence.ManyToMany;
-
-import javax.persistence.JoinColumn;
-
-import javax.persistence.ManyToMany;
-
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class Acquisto {
@@ -29,20 +20,16 @@ public class Acquisto {
 
 	private LocalDate data;
 
-
 	@Column(columnDefinition = "double default 0.00")
-	private double prezzoTotale;	
-	
+	private double prezzoTotale;
+
 	@ManyToMany
 	private List<Prodotto> prodotto;
-	
-//	@ManyToMany(mappedBy = "acquisto")
-//	private Carrello carrello;
 
-
+	@OneToMany
+	private List<CardAcquisto> cardAcquisto;
 
 	// getters and setters
-
 
 	public Integer getId() {
 		return id;
@@ -76,7 +63,12 @@ public class Acquisto {
 		this.prodotto = prodotto;
 	}
 
+	public List<CardAcquisto> getCardAcquisto() {
+		return cardAcquisto;
+	}
 
-
+	public void setCardAcquisto(List<CardAcquisto> cardAcquisto) {
+		this.cardAcquisto = cardAcquisto;
+	}
 
 }

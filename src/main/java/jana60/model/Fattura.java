@@ -6,50 +6,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Fattura {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotNull
 	private String cognome;
-	
+
 	private String nome;
-	
+
 	@NotNull
 	private String citta;
-	
+
 	@NotNull
 	private String via;
-	
+
 	@NotNull
 	private int cap;
-	
+
 	@Size(min = 16, max = 16)
 	@NotNull
 	private String codiceFiscale;
-	
+
 	@Size(min = 11, max = 11)
 	private String partitaIva;
-	
+
 	private String telefono;
-	
+
 	@NotNull
 	private String email;
-	
+
 	@NotNull
 	private LocalDate dataEmissione;
-	
-	@OneToOne(mappedBy = "fattura")
-	private Carrello carrello;
-	
-	//getters and setters
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -138,15 +134,5 @@ public class Fattura {
 	public void setDataEmissione(LocalDate dataEmissione) {
 		this.dataEmissione = dataEmissione;
 	}
-
-	public Carrello getCarrello() {
-		return carrello;
-	}
-
-	public void setCarrello(Carrello carrello) {
-		this.carrello = carrello;
-	}
-	
-	
 
 }

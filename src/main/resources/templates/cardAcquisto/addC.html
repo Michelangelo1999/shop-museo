@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+    <link rel="stylesheet" th:href="@{/home/home.css}"> 
+    <title>Global Museum</title> 
+  </head>
+  <body>
+  	<nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
+  	<div class="container">
+  		<h1>Nuovo Acquisto</h1>
+  		
+  		<hr/>
+<form
+  			id="form-cardAcquisto"
+  			th:object="${cardAcquisto}"
+  			th:action="@{/card/add}"
+  			method="POST"
+  			class="row"
+  		>
+	  		<div class="container">
+	  		<input type="hidden"  th:field="*{id}"> 
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept">
+              <option selected> Seleziona l'acquisto</option>
+			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:field="*{acquisto}" th:text="${acquisto.id}"></option>
+			</select>
+  		<select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="acquisto[]" id="dept">
+              <option selected> Seleziona la data</option>
+			<option th:each="acquisto : ${acList}"  th:value="${acquisto.id}" th:text="${acquisto.data}"></option>
+			</select>
+			<div class="col-8">
+			
+				
+<table id="emptbl">
+		<tr>
+		
+			<th>Quantità</th>
+			
+			<th>Prodotto</th> 
+			 
+		</tr> 
+		<tr> 
+
+           <td id="col2"><input type="number" name="quantita" th:field="*{quantita}" value="" /></td>
+			</td> 
+			 <td id="col3"> 
+              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
+              <option selected> Apri il menù</option>
+               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}+' '+${prodotto.prezzo}"></option>
+               </select>
+		        </td> 
+		</tr>  
+	</table> 
+	<table> 
+		<tr> 
+			<td><input type="button" value="Add Row" onclick="addRows()" />
+			
+			</td> 
+			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
+			 
+		</tr>  
+	</table> 
+			</div>
+	  		</div>
+	  		<div class="bottoni">
+	  				<button type="submit" class="btn btn-primary">Salva</button>
+	  				<a class="btn btn-primary" href="/">Cancel</a>
+	  			</div>
+			</form>
+	<script src="/acquisto.js"></script>
+
+  </body>
+</html>

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,12 +21,14 @@ public class Prodotto {
 	private Integer id;
 
 	@NotNull
+	@NotEmpty
 	private String nome;
 
 	@Lob
 	private String descrizione;
 
 	@NotNull
+	@NotEmpty
 	private double prezzo;
 
 	@OneToMany(mappedBy = "prodotto")
@@ -33,8 +36,6 @@ public class Prodotto {
 
 	@OneToMany(mappedBy = "prodotto")
 	private List<Rifornimento> rifornimenti;
-
-	// costruttore
 
 	// getters and setters
 	public Integer getId() {

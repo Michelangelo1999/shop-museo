@@ -40,6 +40,12 @@
   			method="POST"
   			class="row"
   		>
+  		<ul class="col-12">
+		      <li 
+		         th:each="err : ${#fields.allErrors()}" 
+		         th:text="${err}">
+		      </li>
+			</ul>
 	  		
 			<div class="col-8">
 				<!--  campo nascosto per l'id -->

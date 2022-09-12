@@ -10,9 +10,12 @@
   <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
+	  	
+	  	<div class="container flex-container">
     <h1>Gli acquisti</h1>
     <div> 
-    <a class="btn btn-primary" th:href="@{/acquisto/add}">Nuovo Acquisto</a>
+    <a class="btn btn-primary mt-3" th:href="@{/acquisto/add}">Nuovo Acquisto</a>
+    </div>
     </div>
     
     <div class="container text-center w-75 mt-3">
@@ -22,8 +25,8 @@
             <tr>
               
               <th>Data</th>
-              <th>Quantità</th>
               <th>Prezzo Totale</th>
+              <th>Azioni</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +39,9 @@
 	  				</a>
 	  				<a class="btn btn-primary" th:href="@{|/acquisto/detail/${acquisto.id}|}" title="Detail">
 	  					<i class="fa-solid fa-file-invoice"></i>
+	  				</a>
+	  				<a class="btn btn-primary" th:href="@{|/fattura/${acquisto.id}|}" title="Detail">
+	  					<i class="fa-solid fa-file-invoice-dollar"></i>
 	  				</a>
 	  			</td> 
             </tr>

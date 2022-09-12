@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+<link rel="stylesheet" th:href="@{/home/home.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Global Museum</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
+	<th:block th:if="${successMessage != null && successMessage != ''}">
+		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	</th:block>
+
+	<div class="container flex-container">
+		<h1>Fattura</h1>
+
+	</div>
+
+	<div class="container flex-container">
+		<form id="form-acquisto" th:object="${fattura}"
+			th:action="@{/fattura/save}" method="POST" class="row">
+
+			<ul class="col-12">
+				<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+			</ul>
+
+			<input type="hidden" th:value="${fattura.acquisto}"
+				th:field="*{acquisto}">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cognome">Cognome</label> <input type="text"
+						class="form-control" id="cognome" placeholder="Cognome"
+						th:field=*{cognome}>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputPassword4">Nome</label> <input type="text"
+						class="form-control" id="nome" placeholder="Nome"
+						th:field="*{nome}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="citta">Citta</label> <input type="text"
+					class="form-control" id="citta" placeholder="citta"
+					th:field="*{citta}">
+			</div>
+			<div class="form-group">
+				<label for="via">Indirizzo</label> <input type="text"
+					class="form-control" id="via" placeholder="nome via, numero"
+					th:field="*{via}">
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cap">CAP</label> <input type="text"
+						class="form-control" id="cap" th:field="*{cap}">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="cap">Codice fiscale</label> <input type="text"
+						class="form-control" id="codiceFiscale"
+						th:field="*{codiceFiscale}">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="cap">Partita IVA</label> <input type="text"
+						class="form-control" id="partitaIva" th:field="*{partitaIva}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cap">Telefono</label> <input type="text"
+						class="form-control" id="telefono" th:field="*{telefono}">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="cap">Email</label> <input type="text"
+						class="form-control" id="email" th:field="*{email}">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="cap">Data di emissione</label> <input type="date"
+					class="form-control" id="date" th:field="*{dataEmissione}">
+			</div>
+
+			<button type="submit" class="btn btn-primary mt-4">Crea
+				fattura</button>
+
+
+
+		</form>
+	</div>
+
+</body>
+</html>

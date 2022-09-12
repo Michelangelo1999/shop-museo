@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,8 +13,6 @@
 	  	</th:block>
     <div class="wrapper">
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-     
-     
          <div id="content">
          <!-- INIZIO CONTENUTO PAGINA -->
             <!-- TOP BAR -->
@@ -126,6 +125,7 @@
                             </div>
                         </div>
                     </div>
-<script src="/gestionale.js"> </script>
+    </div>
+<script src="/gestionale.js"></script>
   </body>
 </html>

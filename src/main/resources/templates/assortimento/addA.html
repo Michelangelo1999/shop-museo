@@ -2,14 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-    <link rel="stylesheet" th:href="@{/home/home.css}"> 
+    <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
     <title>Global Museum</title> 
   </head>
   <body>
-  	<nav th:replace="fragments/navbar :: navbar('assortimento')"></nav>
-  	<h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
+  	<th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	  	</th:block>
+    <div class="wrapper">
+     <nav th:replace="fragments/navbarGestionale :: navbar('assortimento')"></nav>
+         <div id="content">
+         <!-- INIZIO CONTENUTO PAGINA -->
+            <!-- TOP BAR -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                <i class="fas fa-align-center"></i>
+           </button>
+           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav> 
+    <!-- FINE TOPBAR -->
+  	
   	<div class="container">
-  		
+  		<h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
   		
   		<hr/>
   		
@@ -59,7 +77,7 @@
   		</form>
   		</div>
   		
-  	
+  	<script src="/gestionale.js"></script>
  
   </body>
 </html>

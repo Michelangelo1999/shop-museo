@@ -98,17 +98,20 @@
 					</div>
 	            </div>
 	            <!--orario di fine-->
+	            
 	        </div>
-	        <!--seleziona guida-->
-            <!--select class="form-select-label" aria-label="Default select example" type="select">
-		        <option selected> Scelgi una Guida</option>
-		        <option th:each="ldg : ${listaGuide}" th:text="${ldg.nome}"><input th:field="*{id}" th:value="${ldg.id}"></option>
-   			 </select-->
-   			 <select th:field="*{guida}">
-			    <option th:each="ldg : ${listaGuide}" th:value="${ldg.id}" th:text="${ldg.nome}">
-		    	</option>
-			</select>
-	        <!--seleziona guida-->
+	        <div class="row justify-content-center">
+	        	<!--seleziona guida-->
+	            <select th:field="*{guida}" class="col-3">
+				    <option th:each="ldg : ${listaGuide}" th:value="${ldg.id}" th:text="${ldg.nome}">
+			    	</option>
+				</select>	
+				<!--seleziona guida-->
+		        <div class"col-5">
+		        	<!--sezione foto -->
+		        </div>
+	        </div>
+	        
 	        <div class="row justify-content-center">
 	        	<div class="col-2">
 	        		<button type="submit" class="btn btn-success">Save</button>

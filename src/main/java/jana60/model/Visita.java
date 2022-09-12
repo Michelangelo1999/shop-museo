@@ -2,6 +2,7 @@ package jana60.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
@@ -46,6 +48,9 @@ public class Visita {
 	
 	@ManyToOne //notnull
 	private Guida guida;
+	
+	@OneToMany (mappedBy = "visita")
+	private List<PrenotazioneVisita> prenotazioni;
 
 	//getters and setters
 	public Integer getId() {
@@ -120,7 +125,7 @@ public class Visita {
 		this.guida = guida;
 	}
 	
-	// metodi custum
+	// metodi custom
 	// formatter 
 	public String orarioInizio () {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

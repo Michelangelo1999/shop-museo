@@ -49,8 +49,8 @@
             <td th:text="${sv.numeroPrenotati}"></td>
             <td> <span th:each="g : ${sv.guida}" th:text="${g.cognome}"></span> </td>
             <td>
-            	<a class="btn btn-success" th:href="@{|visite/modifica/${sv.id}|}" title="Modifica" role="button">
-            		<i class="fa-solid fa-file-pen"></i>
+            	<a class="btn btn-white-50" th:href="@{|visite/modifica/${sv.id}|}" title="Modifica" role="button">
+            		<i class="fa-solid fa-gear"></i>
             	</a>
             	<a class="btn btn-danger" th:href="@{|visite/elimina/${sv.id}|}" title="Elimina" role="button">
             		<i class="fa-solid fa-trash-can"></i>

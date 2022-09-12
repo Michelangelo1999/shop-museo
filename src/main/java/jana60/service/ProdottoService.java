@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jana60.model.Prodotto;
-import jana60.repository.ProdottoRepository;
+import jana60.repository.ProdottoRepo;
 
 @Service
 public class ProdottoService {
 
 	@Autowired
-	ProdottoRepository prodottoRepo;
+	ProdottoRepo prodottoRepo;
 
 	public List<Prodotto> getProdottiPresenti() throws NullPointerException {
 		List<Prodotto> prodottiAll = (List<Prodotto>) prodottoRepo.findAll();

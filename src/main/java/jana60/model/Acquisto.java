@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -27,6 +25,7 @@ public class Acquisto {
 
 	@OneToMany(mappedBy = "acquisto")
 	private List<CardAcquisto> cardAcquisto;
+
 
 	// getters and setters
 
@@ -51,9 +50,10 @@ public class Acquisto {
 	}
 
 	public void setPrezzoTotale(double prezzoTotale) {
+
 		this.prezzoTotale = prezzoTotale;
 	}
-	
+
 	public List<CardAcquisto> getCardAcquisto() {
 		return cardAcquisto;
 	}
@@ -71,5 +71,7 @@ public class Acquisto {
 		}
 		return prezzoTotale;
 	}
+
+	
 
 }

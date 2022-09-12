@@ -13,6 +13,7 @@
 	  	</th:block>
     <div class="wrapper">
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+
          <div id="content">
          <!-- INIZIO CONTENUTO PAGINA -->
             <!-- TOP BAR -->
@@ -26,10 +27,13 @@
             </button>
         </div>
     </nav> 
+
     <div class="container">
   	<h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
   	
   		
+
+    <!-- FINE TOPBAR -->
   		
   		<hr/>
   		
@@ -79,7 +83,12 @@
   		</form>
   		</div>
   		
+
   	 <script src="/assortimento.js"></script> 
      <script src="/gestionale.js"></script>
+
+  	
+ 
+
   </body>
 </html>

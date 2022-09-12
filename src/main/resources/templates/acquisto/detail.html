@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
@@ -13,6 +14,7 @@
 	  	</th:block>
     <div class="wrapper">
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+
          <div id="content">
          <!-- INIZIO CONTENUTO PAGINA -->
             <!-- TOP BAR -->
@@ -26,6 +28,7 @@
             </button>
         </div>
     </nav> 
+
   <div class="container">
   	<!--  messaggi alert  -->
   	<th:block th:if="${successMessage != null && successMessage != ''}">
@@ -58,6 +61,8 @@
   <a th:href="@{|/fattura/detail/${acquisto.id}|}"><button>Riepilogo fattura</button></a>
   </div>
   
-   <script src="/gestionale.js"></script>
+
+<script src="/gestionale.js"> </script>
+
   </body>
 </html>

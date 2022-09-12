@@ -1,8 +1,7 @@
 package jana60.model;
 
-
+import java.time.LocalDate;
 import java.util.Iterator;
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,12 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-
-import javax.persistence.OneToOne;
-
 import javax.persistence.OneToMany;
-
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -39,9 +33,8 @@ public class Prodotto {
 
 	@OneToMany(mappedBy = "prodotto")
 	private List<Rifornimento> rifornimenti;
-	
-	//costruttore
-	
+
+	// costruttore
 
 	// getters and setters
 	public Integer getId() {
@@ -76,8 +69,6 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	
-
 	public List<CardAcquisto> getCardAcquisti() {
 		return cardAcquisti;
 	}
@@ -93,29 +84,43 @@ public class Prodotto {
 	public void setRifornimenti(List<Rifornimento> rifornimenti) {
 		this.rifornimenti = rifornimenti;
 	}
-	
-	//metodo custom che restituisce la quantità
+
+	// metodi custom
+	public int getQuantAcquistata() {
+		int quantitaAcquistata = 0;
+		Iterator<CardAcquisto> acquistIter = this.cardAcquisti.iterator();
+		while (acquistIter.hasNext()) {
+			CardAcquisto current = acquistIter.next();
+			LocalDate unMeseFa = LocalDate.now().minusDays(30);
+			if (current.getAcquisto().getData().isAfter(unMeseFa)) {
+				quantitaAcquistata += current.getQuantita();
+			}
+
+		}
+		return quantitaAcquistata;
+	}
+
+	// metodo custom che restituisce la quantità
 	public int getQuantitaDisponibile() {
 		int quantitaNetta = 0;
 		int quantitaAcquistata = 0;
 		int quantitaAssortita = 0;
-		
+
 		Iterator<Rifornimento> rifornimentiIter = this.rifornimenti.iterator();
-		while(rifornimentiIter.hasNext()) {
+		while (rifornimentiIter.hasNext()) {
 			Rifornimento current = rifornimentiIter.next();
 			quantitaAssortita += current.getQuantita();
 		}
-		
+
 		Iterator<CardAcquisto> acquistiIter = this.cardAcquisti.iterator();
-		while(acquistiIter.hasNext()) {
+		while (acquistiIter.hasNext()) {
 			CardAcquisto current = acquistiIter.next();
 			quantitaAcquistata += current.getQuantita();
 		}
-		
-		quantitaNetta = quantitaAssortita-quantitaAcquistata;
-		
+
+		quantitaNetta = quantitaAssortita - quantitaAcquistata;
+
 		return quantitaNetta;
 	}
-	
-}
 
+}

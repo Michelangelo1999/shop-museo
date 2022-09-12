@@ -22,6 +22,7 @@ import jana60.model.CardAcquisto;
 import jana60.model.Fattura;
 import jana60.repository.AcquistoRepo;
 import jana60.repository.CardRepo;
+import jana60.repository.FatturaRepo;
 import jana60.repository.ProdottoRepo;
 
 @Controller
@@ -36,6 +37,9 @@ public class AcquistoController {
 
 	@Autowired
 	private CardRepo repoCard;
+	
+	@Autowired
+	private FatturaRepo repoFattura;
 
 	@GetMapping
 	public String assList(Model model) {

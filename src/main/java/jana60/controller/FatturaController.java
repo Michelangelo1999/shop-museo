@@ -29,6 +29,9 @@ public class FatturaController {
 	@Autowired
 	AcquistoRepo repoAc;
 	
+	@Autowired
+	FatturaRepo repoFattura;
+	
 	@GetMapping("/{id}")
 	public String fattura(@PathVariable("id") Integer acquistoId, Model model) {
 		Optional<Acquisto> acquistoDaFatturare = repoAc.findById(acquistoId);
@@ -63,6 +66,14 @@ public class FatturaController {
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path
 		}
+	}
+	
+	@GetMapping("/detail/{id}")
+	public String fatturaDetail(@PathVariable("id") Integer acquistoId, Model model) {
+		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);
+		Fattura fattura = repoFattura.findByAcquisto(acquisto);
+		model.addAttribute("fattura", fattura);
+		return "/acquisto/fatturadetail";
 	}
 
 }

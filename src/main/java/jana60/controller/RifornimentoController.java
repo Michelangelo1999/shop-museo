@@ -1,7 +1,5 @@
 package jana60.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class RifornimentoController {
 
 	// RIFORNIMENTO - ASSORTIMENTO
 	@GetMapping("/add/{id}")
-	public String rifForm(Model model,@PathVariable("id") Integer assortimentoId) {
+	public String rifForm(Model model, @PathVariable("id") Integer assortimentoId) {
 		Rifornimento rifornimento = new Rifornimento();
 		Assortimento assortimento = repoAss.findById(assortimentoId).get();
 		rifornimento.setAssortimento(assortimento);
@@ -66,7 +64,7 @@ public class RifornimentoController {
 
 			return "/rifornimento/addR";
 		} else {
-			// se non ci sono errori salvo l'assortimento che arriva dalla form
+			// se non ci sono errori salvo il rifornimento che arriva dalla form
 
 			repoRif.save(formRifornimento);
 

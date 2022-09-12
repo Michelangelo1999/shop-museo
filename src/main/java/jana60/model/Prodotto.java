@@ -1,8 +1,7 @@
 package jana60.model;
 
-
+import java.time.LocalDate;
 import java.util.Iterator;
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,12 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-
-import javax.persistence.OneToOne;
-
 import javax.persistence.OneToMany;
-
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -73,8 +67,6 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	
-
 	public List<CardAcquisto> getCardAcquisti() {
 		return cardAcquisti;
 	}
@@ -90,55 +82,19 @@ public class Prodotto {
 	public void setRifornimenti(List<Rifornimento> rifornimenti) {
 		this.rifornimenti = rifornimenti;
 	}
-	
-}
-
 
 	// metodi custom
-	// public int getQuantitaMagazzino() {
-	// int quantitaDisp = 0;
-	// int assortiti = ((Assortimento) this.assortimento).getQuantita();
-	/// int acquistati = ((Acquisto) this.acquisto).getQuantita();
-	// quantitaDisp = assortiti - acquistati;
-	// return quantitaDisp;
-	// }
+	public int getQuantAcquistata() {
+		int quantitaAcquistata = 0;
+		Iterator<CardAcquisto> acquistIter = this.cardAcquisti.iterator();
+		while (acquistIter.hasNext()) {
+			CardAcquisto current = acquistIter.next();
+			LocalDate unMeseFa = LocalDate.now().minusDays(30);
+			if (current.getAcquisto().getData().isAfter(unMeseFa)) {
+				quantitaAcquistata += current.getQuantita();
+			}
 
-	// public int getQuantitaAssortimento() {
-	// int quantita = 0;
-	// List<Assortimento> ass = this.assortimento;
-	// Iterator<Assortimento> assIter = ass.iterator();
-	// while (assIter.hasNext()) {
-	// Assortimento current = assIter.next();
-	// quantita += current.getQuantita();
-	// }
-	// return quantita;
-	// }
-
-	/*
-	 * public int quantitaDisponibile() { int quantitaDisponibile = 0;
-	 * 
-	 * int assortiti = 0; int acquistati = 0;
-	 * 
-	 * Iterator<Assortimento> assIter = this.assortimento.iterator();
-	 * Iterator<Acquisto> acqIter = this.acquisto.iterator();
-	 * 
-	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); assortiti
-	 * += current.getQuantInt(); }
-	 * 
-	 * while (acqIter.hasNext()) { Acquisto current = acqIter.next(); acquistati +=
-	 * current.getQuantInt(); }
-	 * 
-	 * quantitaDisponibile = assortiti - acquistati;
-	 * 
-	 * return quantitaDisponibile; }
-	 * 
-	 * public int getQuantitaAss() { int quantita = 0; Iterator<Assortimento>
-	 * assIter = this.assortimento.iterator();
-	 * 
-	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); quantita
-	 * += current.getQuantInt();
-	 * 
-	 * } return quantita; }
-	 */
-
-
+		}
+		return quantitaAcquistata;
+	}
+}

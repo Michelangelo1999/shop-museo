@@ -23,16 +23,22 @@
     <!-- inizio griglia centrale -->
     <div class="container visite guidate">
     <div class="row text-center">
-    <div class="col-4 card text-center" style="width: 400px;">
-     
-  <img src="/img/prima-visita.jpeg" class="card-img-top lavoro" alt="prima visita guidata">
-  <div class="card-body">
-    <p class="card-text">Visita guidata n.1</p>
-    <hr>
-    <p class="card-text"> djnjdshfjdbsjfbidsjbfihdsj </p> 
-  </div>
-    <!-- </div> -->
+    <!-- sezione su cui lavorare davide--> 
+    
+    <div class="col-4 card text-center bg-success" style="width: 400px;" th:each="visite: ${insiemeVisite}">
+		  <img src="/img/prima-visita.jpeg" class="card-img-top lavoro" alt="">
+	  	<div class="card-body">
+	  		<p hidden th:text="${visite.id}"></p>
+		    <p class="card-text" th:text ="${visite.titolo}"></p>
+		    <hr>
+		    <p class="card-text" th:text ="${visite.descrizione}"></p> 
+		</div>
+		<div class="card-footer">
+			<a th:href="@{|prenotazionevisita/nuova/${visite.id}|}">Prenota adesso</a>
+		</div>
+		
     </div>
+    <!-- sezione su cui lavorare davide--> 
     <div class="col-4 card text-center" style="width: 400px;">
     
   <img src="/img/seconda-guida.jpg" class="card-img-top lavoro" alt="seconda visita guidata">

@@ -1,16 +1,21 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-     <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}">  
-    <title>Global Museum</title> 
+
+<head>
+  <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+  <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <title>Global Museum</title>
   </head>
-  <body>
+
+  <body id="body-pd">
+  <!--  messaggi alert  -->
   <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
   	  	 <!-- TOP BAR -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-white">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-dark">
                 <i class="fas fa-align-center"></i>
@@ -25,19 +30,15 @@
    </div>
         </div>
     </nav> 
-    <!-- FINE TOPBAR -->
-  <div class="wrapper">
+<!-- FINE TOPBAR -->
+    <div class="wrapper">
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-     
-     
+
          <div id="content">
          <!-- INIZIO CONTENUTO PAGINA -->
-           
-  <div class="container">
-  	<!--  messaggi alert  -->
-  	<th:block th:if="${successMessage != null && successMessage != ''}">
-  		<div  class="alert alert-success" th:text="${successMessage}"></div>
-  	</th:block>
+<div id="content">
+ <div class="container-fluid px-4">
+  	
   	<h1>Dettagli acquisto</h1>
   	<h2 th:text="${acquisto.data}"></h2>
   	
@@ -61,7 +62,12 @@
   		</div>
   	</div>
   </div>
+  <div class="container flex container" >
+  <a th:href="@{|/fattura/detail/${acquisto.id}|}"><button>Riepilogo fattura</button></a>
+  </div>
   
+
 <script src="/gestionale.js"> </script>
+
   </body>
 </html>

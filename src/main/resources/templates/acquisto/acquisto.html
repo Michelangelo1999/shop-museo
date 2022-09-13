@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,45 +28,47 @@
     </nav> 
     <!-- FINE TOPBAR -->
    <div class="wrapper">
+   <!-- SIDEBAR -->
      <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-     
-     
+     <!-- FINE SIDEBAR -->
          <div id="content">
-         <!-- INIZIO CONTENUTO PAGINA -->
-            
-    <h1>Gli acquisti</h1>
-    <div class="container text-center w-75 mt-3">
-      <div>
-        <table class="table mb-5">
-          <thead>
-            <tr>
-              
-              <th>Data</th>
-              <th>Prezzo Totale</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="acquisto : ${acquistoList}">
-              <td th:text="${acquisto.data}"></td>
-              <td th:text="${acquisto.prezzoTotale}"></td>
-              <td>
-	  				<a class="btn btn-primary" th:href="@{|/acquisto/edit/${acquisto.id}|}" title="Edit">
-	  					<i class="fa-solid fa-pen-to-square"></i>
-	  				</a>
-	  				<a class="btn btn-primary" th:href="@{|/acquisto/detail/${acquisto.id}|}" title="Detail">
-	  					<i class="fa-solid fa-file-invoice"></i>
-	  				</a>
-	  				<a class="btn btn-primary" th:href="@{|/fattura/${acquisto.id}|}" title="Detail">
-	  					<i class="fa-solid fa-file-invoice-dollar"></i>
-	  				</a>
-	  			</td> 
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <script src="/gestionale.js"> </script>
-  </body>
+			<div class="container flex-container">
+
+				<h1>Gli acquisti</h1>
+				<div class="container text-center w-75 mt-3">
+					<div>
+						<table class="table mb-5">
+							<thead>
+								<tr>
+
+									<th>Data</th>
+									<th>Prezzo Totale</th>
+									<th>Azioni</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="acquisto : ${acquistoList}">
+									<td th:text="${acquisto.data}"></td>
+									<td th:text="${acquisto.prezzoTotale}"></td>
+									<td><a class="btn btn-primary"
+										th:href="@{|/acquisto/edit/${acquisto.id}|}" title="Edit">
+											<i class="fa-solid fa-pen-to-square"></i>
+									</a> <a class="btn btn-primary"
+										th:href="@{|/acquisto/detail/${acquisto.id}|}" title="Detail">
+											<i class="fa-solid fa-file-invoice"></i>
+									</a> <a class="btn btn-primary"
+										th:href="@{|/fattura/${acquisto.id}|}" title="Detail"> <i
+											class="fa-solid fa-file-invoice-dollar"></i>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<script src="/gestionale.js"></script>
+					
+</body>
+
 </html>
 
 

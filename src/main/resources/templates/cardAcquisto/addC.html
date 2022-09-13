@@ -73,7 +73,7 @@
 		<h3 class="mt-5">Aggiungi prodotto</h3>
 
 		<form id="form-cardAcquisto" th:object="${cardAcquisto}"
-			th:action="@{/card/add}" method="POST" class="row">
+			th:action="@{/card/add}" method="POST" class="row mt-4">
 			<div class="container">
 				<input type="hidden" th:field="*{id}"> <input type="hidden"
 					th:value="*{acquisto}" th:field="*{acquisto}">
@@ -118,7 +118,7 @@
 			
 		</form>
 		
-		<div class="bottoni">
+		<div class="bottoni container mt-4">
 				<a th:href="@{/acquisto}"><button type="submit" class="btn btn-primary">Termina</button></a>
 				<a class="btn btn-primary" th:href="@{|/assortimento/delete/${cardAcquisto.acquisto.id}|}">Elimina</a>
 			</div>

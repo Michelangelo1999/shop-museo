@@ -3,12 +3,12 @@
 
 <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
 <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
 	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Global Museum</title>
 </head>
+
 <body id="body-pd">
 <!-- TOP BAR -->
      <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -38,72 +38,114 @@
 	<div class="container-fluid px-4">
 		<h1>Fattura</h1>
 
-	</div>
+			<div class="container flex-container">
+				<form id="form-acquisto" th:object="${fattura}" th:action="@{/fattura/save}" method="POST" class="row">
 
-	<div class="container flex-container">
-		<form id="form-acquisto" th:object="${fattura}"
-			th:action="@{/fattura/save}" method="POST" class="row">
+					<ul class="col-12">
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+					</ul>
 
-			<ul class="col-12">
-				<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
-			</ul>
+					<input type="hidden" th:value="${fattura.acquisto}" th:field="*{acquisto}">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cognome">Cognome</label> <input type="text" class="form-control" id="cognome"
+								placeholder="Cognome" th:field=*{cognome}>
+							<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputPassword4">Nome</label> <input type="text" class="form-control" id="nome"
+								placeholder="Nome" th:field="*{nome}">
+							<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="citta">Citta</label> <input type="text" class="form-control" id="citta"
+							placeholder="citta" th:field="*{citta}">
+						<div th:if="${#fields.hasErrors('citta')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('citta')}" th:text="${err}">
+							</ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="via">Indirizzo</label> <input type="text" class="form-control" id="via"
+							placeholder="nome via, numero" th:field="*{via}">
+						<div th:if="${#fields.hasErrors('via')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('via')}" th:text="${err}">
+							</ul>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cap">CAP</label> <input type="text" class="form-control" id="cap"
+								th:field="*{cap}">
+							<div th:if="${#fields.hasErrors('cap')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('cap')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cap">Codice fiscale</label> <input type="text" class="form-control"
+								id="codiceFiscale" th:field="*{codiceFiscale}">
+							<div th:if="${#fields.hasErrors('codiceFiscale')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('codiceFiscale')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cap">Partita IVA</label> <input type="text" class="form-control" id="partitaIva"
+								th:field="*{partitaIva}">
+							<div th:if="${#fields.hasErrors('partitaIva')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('partitaIva')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cap">Telefono</label> <input type="text" class="form-control" id="telefono"
+								th:field="*{telefono}">
+							<div th:if="${#fields.hasErrors('telefono')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('telefono')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cap">Email</label> <input type="text" class="form-control" id="email"
+								th:field="*{email}">
+							<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+								<ul>
+									<li th:each="err : ${#fields.errors('email')}" th:text="${err}">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="cap">Data di emissione</label> <input type="date" class="form-control" id="date"
+							th:field="*{dataEmissione}">
+						<div th:if="${#fields.hasErrors('dataEmissione')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('dataEmissione')}" th:text="${err}">
+							</ul>
+						</div>
+					</div>
 
-			<input type="hidden" th:value="${fattura.acquisto}"
-				th:field="*{acquisto}">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="cognome">Cognome</label> <input type="text"
-						class="form-control" id="cognome" placeholder="Cognome"
-						th:field=*{cognome}>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="inputPassword4">Nome</label> <input type="text"
-						class="form-control" id="nome" placeholder="Nome"
-						th:field="*{nome}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="citta">Citta</label> <input type="text"
-					class="form-control" id="citta" placeholder="citta"
-					th:field="*{citta}">
-			</div>
-			<div class="form-group">
-				<label for="via">Indirizzo</label> <input type="text"
-					class="form-control" id="via" placeholder="nome via, numero"
-					th:field="*{via}">
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="cap">CAP</label> <input type="text"
-						class="form-control" id="cap" th:field="*{cap}">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="cap">Codice fiscale</label> <input type="text"
-						class="form-control" id="codiceFiscale"
-						th:field="*{codiceFiscale}">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="cap">Partita IVA</label> <input type="text"
-						class="form-control" id="partitaIva" th:field="*{partitaIva}">
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="cap">Telefono</label> <input type="text"
-						class="form-control" id="telefono" th:field="*{telefono}">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="cap">Email</label> <input type="text"
-						class="form-control" id="email" th:field="*{email}">
-				</div>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="cap">Data di emissione</label> <input type="date"
-					class="form-control" id="date" th:field="*{dataEmissione}">
-			</div>
+					<button type="submit" class="btn btn-primary mt-4">Crea
+						fattura</button>
 
-			<button type="submit" class="btn btn-primary mt-4">Crea
-				fattura</button>
 
 
 
@@ -112,5 +154,7 @@
 
 <script src="/gestionale.js"> </script>
 
+
 </body>
+
 </html>

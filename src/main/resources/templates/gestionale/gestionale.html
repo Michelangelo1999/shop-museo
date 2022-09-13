@@ -141,13 +141,18 @@
                                Prodotti in magazzino con quantità minore di n.3 
                             </div>
                             <div class="card-body">
-                            <div class="row" th:each="prodotto : ${prodotti}"  th:if="${prodotto.getQuantitaDisponibile < 4}">
+                            <div class="row" th:each="prodotto : ${prodottoList}">
                                         <div class="col">
-                                           <div th:text="${prodotto.nome}"></div>
+                                           <div th:if="${prodotto.getQuantitaDisponibile < 4 && prodotto.getQuantitaDisponibile >0}" th:text="${prodotto.nome}"></div>
                                          </div>
                                         <div class="col">
-                                        <div  th:text="n.+' '+${prodotto.getQuantitaDisponibile}"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                        <div th:if="${prodotto.getQuantitaDisponibile < 4 && prodotto.getQuantitaDisponibile >0}" th:text="n.+' '+${prodotto.getQuantitaDisponibile}"></div>
+                                        
                                           </div>
+                                          <div class="col">
+                                        <div th:if="${prodotto.getQuantitaDisponibile < 4 && prodotto.getQuantitaDisponibile >0}"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                          </div>
+                                          
                                        </div></div> 
                             </div>
                         </div>

@@ -1,23 +1,17 @@
 package jana60.model;
 
 import java.time.LocalDate;
-
 import java.util.Iterator;
-
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.ManyToMany;
-
-import javax.persistence.OneToOne;
-
 import javax.persistence.OneToMany;
-
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -32,21 +26,16 @@ public class Assortimento {
 
 	private LocalDate data;
 
-
 	@NotNull
 	@Column(columnDefinition = "double default 0.00")
 	private double costo;
 
-	
 	@ManyToMany
 	private List<Prodotto> prodotto;
-	
-	
 
-	@OneToMany(mappedBy = "assortimento")
+	@OneToMany(mappedBy = "assortimento", cascade = CascadeType.ALL)
 
 	private List<Rifornimento> rifornimento;
-
 
 	public Integer getId() {
 		return id;
@@ -72,8 +61,6 @@ public class Assortimento {
 		this.data = data;
 	}
 
-
-
 	public double getCosto() {
 		return costo;
 	}
@@ -81,7 +68,6 @@ public class Assortimento {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-
 
 	public List<Prodotto> getProdotto() {
 		return prodotto;
@@ -95,24 +81,24 @@ public class Assortimento {
 	public void setRifornimento(List<Rifornimento> rifornimento) {
 		this.rifornimento = rifornimento;
 	}
-	
-	//metodi custom
+
+	// metodi custom
 	public boolean isEmpty() {
-		if(this.rifornimento.isEmpty()) {
+		if (this.rifornimento.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public double getCostoTotale() {
-		
+		double costoTotale = 0;
 		Iterator<Rifornimento> rifornimentiIter = this.rifornimento.iterator();
-		while(rifornimentiIter.hasNext()) {
+		while (rifornimentiIter.hasNext()) {
 			Rifornimento current = rifornimentiIter.next();
-			this.costo += current.getPrezzo();
+			costoTotale += current.getPrezzo() * current.getQuantita();
 		}
-		
-		return this.costo;
+
+		return costoTotale;
 	}
 
 }

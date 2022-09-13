@@ -13,11 +13,7 @@ insert into prodotto (nome, prezzo, descrizione) VALUES ('Tazza', '5','Recipient
 
 
 insert into assortimento(nome_fornitore, data) values("McDonalds", "2022-08-29 12:35");
-insert into assortimento(nome_fornitore, data) values("KFC", "2022-08-29 12:35");
-insert into assortimento(nome_fornitore, data) values("Starbucks", "2022-08-29 12:35");
-insert into assortimento(nome_fornitore, data) values("Subway", "2022-08-29 12:35");
-insert into assortimento(nome_fornitore, data) values("Old Wild West", "2022-08-29 12:35");
-insert into assortimento(nome_fornitore, data) values("Burger Kings", "2022-08-29 12:35");
+
 
 insert into prodotto(nome, descrizione, prezzo) values("Cartolina", "Immagine quadro rinascimentale", 4.99);
 insert into prodotto(nome, descrizione, prezzo) values("Souvenir", "Ricordo del museo", 9.99);
@@ -25,4 +21,6 @@ insert into prodotto(nome, descrizione, prezzo) values("Penna", "Penna con motiv
 insert into prodotto(nome, descrizione, prezzo) values("Riproduzione", "Riproduzione in miniatura scultura medievale", 49.99);
 insert into prodotto(nome, descrizione, prezzo) values("Biglietto", "Ingresso omaggio da regalare", 6.99);
 insert into prodotto(nome, descrizione, prezzo) values("Libro", "Spiegazione dettagliata delle opere del museo", 9.99);
+
+
 

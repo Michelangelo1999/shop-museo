@@ -9,6 +9,7 @@
   </head>
 
 
+
 <body id="body-pd">
     <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
@@ -39,19 +40,39 @@
 	<div class="container-fluid px-4">
 		<h1>Inserisci prodotto</h1>
 		<hr>
-		<form id="crea-prodotto" th:object="${prodotto}" th:action="@{/prodotto/crea}" method="POST"> 
+		<form id="crea-prodotto" th:object="${prodotto}" th:action="@{/prodotto/crea}" method="POST">
 			<input type="hidden" th:field="*{id}">
+			<ul class="col-12">
+				<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+				</li>
+			</ul>
 			<div class="mb-3">
 				<label for="inputNome" class="form-label">Nome</label>
 				<input type="text" class="form-control" th:field="*{nome}" id="inputNome">
+				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+					</ul>
+				</div>
 			</div>
 			<div class="mb-3">
 				<label for="inputPrezzo" class="form-label">Prezzo</label>
 				<input type="number" min="0" step="any" class="form-control" th:field="*{prezzo}" id="inputPrezzo">
+				<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+	  					<ul>
+	  						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}">
+	  					</ul>
+	  				</div>
 			</div>
 			<div class="mb-3">
 				<label for="inputDescrizione" class="form-label">Descrizione</label>
-				<textarea type="text" class="form-control" th:field="*{descrizione}" id="inputDescrizione">Inserisci una descrizione</textarea>
+				<textarea type="text" class="form-control" th:field="*{descrizione}" id="inputDescrizione">Inserisci una
+					descrizione</textarea>
+					<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+	  					<ul>
+	  						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}">
+	  					</ul>
+	  				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Aggiungi</button>
 			<a class="btn btn-primary" href="/prodotto">Annulla</a>
@@ -61,6 +82,8 @@
          </div>
 
 		<script src="/gestionale.js"></script>
+
+
 </body>
 
 </html>

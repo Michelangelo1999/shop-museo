@@ -49,7 +49,7 @@
 							<tbody>
 								<tr th:each="acquisto : ${acquistoList}">
 									<td th:text="${acquisto.data}"></td>
-									<td th:text="${acquisto.prezzoTotale}"></td>
+									<td th:text="${acquisto.getPrezzoTotaleCustom}"></td>
 									<td><a class="btn btn-primary"
 										th:href="@{|/acquisto/edit/${acquisto.id}|}" title="Edit">
 											<i class="fa-solid fa-pen-to-square"></i>

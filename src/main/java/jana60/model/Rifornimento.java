@@ -70,7 +70,6 @@ public class Rifornimento {
 
 	}
 
-
 	public void setAcquisto(Optional<Acquisto> acquisto2) {
 		// TODO Auto-generated method stub
 

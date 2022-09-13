@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Acquisto {
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 
-	@OneToMany(mappedBy = "acquisto")
+	@OneToMany(mappedBy = "acquisto", cascade = CascadeType.ALL)
 	private List<CardAcquisto> cardAcquisto;
 
 	@OneToOne

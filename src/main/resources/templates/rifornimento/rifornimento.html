@@ -42,7 +42,7 @@
           </thead>
           <tbody>
             <tr th:each="r : ${rifList}">
-              <td th:text="${r.prezzo}"></td>
+               <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(r.prezzo, 1, 2)}"></td>
               <td th:text="${r.quantita}"></td>
               <td>
   			

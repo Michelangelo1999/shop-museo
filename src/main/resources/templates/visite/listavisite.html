@@ -44,7 +44,7 @@
             <td th:text="${sv.descrizione}"></td>
             <td th:text="${sv.orarioInizio}"></td>
             <td th:text="${sv.orarioInizio}"></td>
-            <td th:text="${sv.prezzo}"></td>
+             <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(sv.prezzo, 1, 2)}"></td>
             <td th:text="${sv.capienza}"></td>
             <td th:text="${sv.numeroPrenotati}"></td>
             <td> <span th:each="g : ${sv.guida}" th:text="${g.cognome}"></span> </td>

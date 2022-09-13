@@ -1,6 +1,5 @@
 package jana60.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -18,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import jana60.model.Acquisto;
-import jana60.model.CardAcquisto;
 import jana60.repository.AcquistoRepo;
 import jana60.repository.CardRepo;
+import jana60.repository.FatturaRepo;
 import jana60.repository.ProdottoRepo;
 
 @Controller
@@ -35,6 +34,9 @@ public class AcquistoController {
 
 	@Autowired
 	private CardRepo repoCard;
+
+	@Autowired
+	private FatturaRepo repoFattura;
 
 	@GetMapping
 	public String assList(Model model) {
@@ -72,7 +74,7 @@ public class AcquistoController {
 
 			repoAc.save(formAc);
 
-			return "redirect:/card/add";
+			return "redirect:/card/add/" + formAc.getId();
 		}
 	}
 
@@ -102,10 +104,10 @@ public class AcquistoController {
 	public String acquistoDetail(@PathVariable("id") Integer acquistoId, Model model) {
 
 		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);
-		List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);
+		// List<CardAcquisto> cardAc = repoCard.findByAcquistoId(acquistoId);
 		if (acquisto.isPresent()) {
 			model.addAttribute("acquisto", acquisto.get());
-			model.addAttribute("acList", cardAc);
+
 			return "/acquisto/detail";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -113,4 +115,5 @@ public class AcquistoController {
 		}
 
 	}
+
 }

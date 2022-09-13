@@ -1,6 +1,7 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,6 +29,7 @@ public class Acquisto {
 
 	@OneToOne
 	private Fattura fattura;
+
 	// getters and setters
 
 	public Integer getId() {
@@ -51,6 +53,7 @@ public class Acquisto {
 	}
 
 	public void setPrezzoTotale(double prezzoTotale) {
+
 		this.prezzoTotale = prezzoTotale;
 	}
 
@@ -60,6 +63,16 @@ public class Acquisto {
 
 	public void setCardAcquisto(List<CardAcquisto> cardAcquisto) {
 		this.cardAcquisto = cardAcquisto;
+	}
+
+	public double getPrezzoTotaleCustom() {
+		Iterator<CardAcquisto> card = this.cardAcquisto.iterator();
+		while (card.hasNext()) {
+			CardAcquisto current = card.next();
+			this.prezzoTotale += current.getProdotto().getPrezzo() * current.getQuantita();
+
+		}
+		return prezzoTotale;
 	}
 
 	public Fattura getFattura() {

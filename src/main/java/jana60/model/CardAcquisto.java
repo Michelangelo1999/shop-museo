@@ -1,7 +1,5 @@
 package jana60.model;
 
-import java.util.Optional;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +16,9 @@ public class CardAcquisto {
 	private int quantita;
 
 	@ManyToOne
-	private Prodotto prod;
+	private Prodotto prodotto;
+	@ManyToOne
+	private Acquisto acquisto;
 
 	// getters and setters
 
@@ -30,13 +30,13 @@ public class CardAcquisto {
 		this.id = id;
 	}
 
-//	public List<Acquisto> getAcquisti() {
-//		return acquisti;
-//	}
-//
-//	public void setAcquisti(List<Acquisto> acquisti) {
-//		this.acquisti = acquisti;
-//	}
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
+
+	public void setProdotto(Prodotto prodotto) {
+		this.prodotto = prodotto;
+	}
 
 	public int getQuantita() {
 		return quantita;
@@ -46,9 +46,12 @@ public class CardAcquisto {
 		this.quantita = quantita;
 	}
 
-	public void setAcquisto(Optional<Acquisto> acquisto2) {
-		// TODO Auto-generated method stub
+	public Acquisto getAcquisto() {
+		return acquisto;
+	}
 
+	public void setAcquisto(Acquisto acquisto) {
+		this.acquisto = acquisto;
 	}
 
 }

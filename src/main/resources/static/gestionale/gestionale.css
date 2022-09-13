@@ -1,22 +1,103 @@
-/* link per il font del nome centro pagina */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+html,body{
+                height: 100%;
+            }
 
-/* BODY */
-/* body {
-	background-color: rgb(0, 0, 0);
-}*/
+/*SIDEBAR*/
+.wrapper {
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	height: 100%;
+	}
 
-/* testo IL GESTIONALE */
-h1 {
-	font-family: 'Dancing Script', cursive;
-	font-size: 80px;
-	color: black;
-	
-	margin-top: 10px;
-	margin-left:50px;
-}
+#sidebar {
+	width: 250px;
+	background: #000 !important;
+	color: rgb(0, 0, 0);
+	transition: all 0.3s;
+	height: 100%;
+	}
 
-/*CARD*/
-div.row {
-	margin-top: 30px;
-}
+.custom-color-sidebar{
+	background-color: #000 !important;
+	}
+
+#sidebar.active {
+	margin-left: -250px;
+	}
+
+#sidebar .sidebar-header {
+	padding: 20px;
+	background: white;
+	}
+
+#sidebar ul.components {
+	padding: 20px 0;
+	}
+
+#sidebar ul p {
+	color: #fff;
+	padding: 10px;
+	}
+
+#sidebar ul li a {
+	padding: 10px;
+	font-size: 1.1em;
+	display: block;
+    }
+
+#sidebar ul li a:hover {
+     color: #848484;
+     background: #fff;
+     }
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+     color: #fff;
+     background: #848484;
+     }
+
+a[data-toggle="collapse"] {
+     position: relative;
+     }
+
+.dropdown-toggle::after {
+     display: block;
+     position: absolute;
+     top: 50%;
+     right: 20px;
+     transform: translateY(-50%);
+     }
+
+ul ul a {
+     font-size: 0.9em !important;
+     padding-left: 30px !important;
+     background: #848484;
+     }
+
+a.download {
+     background: #fff;
+     color: #7386D5;
+     }
+
+a.article,
+a.article:hover {
+     background: #6d7fcc !important;
+     color: #fff !important;
+     }
+
+.list-unstyled li a{
+     color: #fff;
+     }
+
+.list-unstyled li a:hover{
+     color: #fff;
+     text-decoration: none;
+     background-color: #848484;
+     }
+
+#content {
+     width: 100%;
+     padding: 20px;
+     min-height: 100%;
+     }

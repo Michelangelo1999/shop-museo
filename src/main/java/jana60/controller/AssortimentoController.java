@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Assortimento;
+import jana60.model.CardAcquisto;
 import jana60.model.Rifornimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
@@ -73,7 +75,7 @@ public class AssortimentoController {
 
 			repoAss.save(formAssortimento);
 
-			return "redirect:/rifornimento/add";
+			return "redirect:/rifornimento/add/" + formAssortimento.getId();
 
 			// return "redirect:/assortimento"; // non cercare un template, ma fai la HTTP
 			// redirect a quel path
@@ -114,5 +116,17 @@ public class AssortimentoController {
 					"L'assortimento con id " + assortimentoId + " non è presente");
 		}
 
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer assortimentoId, RedirectAttributes redAtt) {
+		Optional<Assortimento> result = repoAss.findById(assortimentoId);
+		if(result.isPresent()) {
+			repoAss.delete(result.get());
+			redAtt.addFlashAttribute("successSms", "L'assortimento vuoto è stato eliminato dalla lista");
+			return "redirect:/assortimento";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "L'assortimento con id " + assortimentoId + " non è presente nell'ordine!");
+		}
 	}
 }

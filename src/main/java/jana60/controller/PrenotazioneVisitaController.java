@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,8 +40,14 @@ public class PrenotazioneVisitaController {
 	@PostMapping("/salva")
 	public String salvaPrenotazione(
 			@Valid @ModelAttribute("aggiungiPrenotazione") PrenotazioneVisita prenotazioneAggiunta, BindingResult br) {
-		if (br.hasErrors() || prenotazioneAggiunta.getVisita().getNumeroPrenotati()
+		boolean hasErrors = br.hasErrors();
+		if (prenotazioneAggiunta.getVisita().getNumeroPrenotati()
 				+ prenotazioneAggiunta.getNumeriBiglietti() >= prenotazioneAggiunta.getVisita().getCapienza()) {
+			br.addError(new FieldError("aggiungiPrenotazione", "numeriBiglietti", "Non ci sono abbastanza biglietti"));
+			hasErrors = true;
+		}
+
+		if (hasErrors) {
 			return "prenotazionevisite/aggiungiprenotazionevisite";
 		} else {
 			repo.save(prenotazioneAggiunta);

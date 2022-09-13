@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Acquisto;
 import jana60.model.CardAcquisto;
-import jana60.model.Rifornimento;
 import jana60.repository.AcquistoRepo;
 import jana60.repository.CardRepo;
 import jana60.repository.ProdottoRepo;
@@ -64,7 +64,10 @@ public class CardAcquistoController {
 			Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
-
+		if (formCardAcquisto.getQuantita() > formCardAcquisto.getProdotto().getQuantitaDisponibile()) {
+			br.addError(new FieldError("cardAcquisto", "quantita", "La quantità disponibile non è sufficiente!!"));
+			hasErrors = true;
+		}
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
@@ -82,17 +85,19 @@ public class CardAcquistoController {
 			// redirect a quel path
 		}
 	}
-	
-	//controller per cancellare
-			@GetMapping("/delete/{id}")
-			public String delete(@PathVariable("id") Integer cardAcquistoId, RedirectAttributes redAtt) {
-				Optional<CardAcquisto> result = repoCard.findById(cardAcquistoId);
-				if(result.isPresent()) {
-					repoCard.delete(result.get());
-					redAtt.addFlashAttribute("successSms", "Il prodotto " + result.get().getProdotto().getNome() + " è stato eliminato dal carrello");
-					return "redirect:/card/add/" + result.get().getAcquisto().getId();
-				} else {
-					throw new ResponseStatusException(HttpStatus.NOT_FOUND, "L'acquisto con id " + cardAcquistoId + " non è presente nell'ordine!");
-				}
-			}
+
+	// controller per cancellare
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer cardAcquistoId, RedirectAttributes redAtt) {
+		Optional<CardAcquisto> result = repoCard.findById(cardAcquistoId);
+		if (result.isPresent()) {
+			repoCard.delete(result.get());
+			redAtt.addFlashAttribute("successSms",
+					"Il prodotto " + result.get().getProdotto().getNome() + " è stato eliminato dal carrello");
+			return "redirect:/card/add/" + result.get().getAcquisto().getId();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"L'acquisto con id " + cardAcquistoId + " non è presente nell'ordine!");
+		}
+	}
 }

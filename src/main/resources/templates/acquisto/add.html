@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
+
 <head>
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
@@ -64,7 +64,7 @@
 		<th>Data</th>
 		</tr> 
 		<tr> 
-		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
+		<td id="col0"><input type="date" name="data[]" th:field="*{data}" value="" />
 			</td>
 		</tr>  
 	</table> 

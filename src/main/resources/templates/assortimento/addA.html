@@ -68,7 +68,7 @@
 	  			</div>
 	  			<div class="mb-3">
 	  				<label class="form-label" for="data">Data</label>
-	  				<input type="text" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
+	  				<input type="date" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
 	  				<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
 	  					<ul>
 	  						<li th:each="err : ${#fields.errors('data')}" th:text="${err}">

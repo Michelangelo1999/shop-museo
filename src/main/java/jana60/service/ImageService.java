@@ -6,11 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jana60.model.Guida;
 import jana60.model.Image;
 import jana60.model.ImageForm;
 import jana60.model.Prodotto;
+import jana60.model.Visita;
+import jana60.repository.GuidaRepository;
 import jana60.repository.ImageRepository;
 import jana60.repository.ProdottoRepo;
+import jana60.repository.VisitaRepository;
 
 @Service
 public class ImageService {
@@ -21,8 +25,13 @@ public class ImageService {
 	@Autowired
 	private ProdottoRepo prodottoRepo;
 
-//	@Autowired
-//	private GuidaRepository guidaRepo;
+	@Autowired
+	private VisitaRepository visitaRepo;
+
+	@Autowired
+	private GuidaRepository guidaRepo;
+
+	// PRODOTTO ----------
 
 	// prima ricerco il prodotto tramite id, poi passo quel prodotto alla repo
 	// immagini per vedere tutte le img ad esso associate
@@ -78,4 +87,79 @@ public class ImageService {
 		return img.getContent();
 	}
 
+	// VISITE GUIDATE ------------------
+
+	public List<Image> getImageByVisitaId(Integer visitaId) {
+		Visita visita = visitaRepo.findById(visitaId).get();
+		return imageRepo.findByVisita(visita);
+	}
+
+	public ImageForm createImageFormVisita(Integer visitaId) {
+		Visita visita = visitaRepo.findById(visitaId).get(); // per ora accedo al prodotto a cui dare l'ing
+																// tramite il suo id
+
+		// creo l'imageform
+		ImageForm imgVisita = new ImageForm();
+
+		// associo a questo imageform un prodotto, e lo faccio tramite il suo metodo set
+		imgVisita.setVisita(visita);
+		return imgVisita;
+	}
+
+	public Image createImageVisita(ImageForm imageFormVisita) throws IOException {
+		Image imgToSave = new Image(); // creo una nuova immagine, per ora vuota
+		imgToSave.setVisita(imageFormVisita.getVisita());
+		// converto il multipart in un array di byte (multipart = imgForm --> byte[] =
+		// img)
+		if (imageFormVisita.getContentMultipart() != null) {
+			byte[] contentSerialized = imageFormVisita.getContentMultipart().getBytes();
+			imgToSave.setContent(contentSerialized); // il content dell'img è tipo byte[], guarda la classe
+		}
+
+		// salvo img sul db e la ritorno
+		return imageRepo.save(imgToSave);
+	}
+
+	public byte[] getImageContentV(Integer id) {
+		Image imgVisita = imageRepo.findById(id).get();
+		return imgVisita.getContent();
+	}
+
+	// GUIDE TURISTICHE ------------------
+
+	public List<Image> getImageByGuidaId(Integer guidaId) {
+		Guida guida = guidaRepo.findById(guidaId).get();
+		return imageRepo.findByGuida(guida);
+	}
+
+	public ImageForm createImageFormGuida(Integer guidaId) {
+		Guida guida = guidaRepo.findById(guidaId).get(); // per ora accedo al prodotto a cui dare l'ing
+															// tramite il suo id
+
+		// creo l'imageform
+		ImageForm imgGuida = new ImageForm();
+
+		// associo a questo imageform un prodotto, e lo faccio tramite il suo metodo set
+		imgGuida.setGuida(guida);
+		return imgGuida;
+	}
+
+	public Image createImageGuida(ImageForm imageFormGuida) throws IOException {
+		Image imgToSave = new Image(); // creo una nuova immagine, per ora vuota
+		imgToSave.setGuida(imageFormGuida.getGuida());
+		// converto il multipart in un array di byte (multipart = imgForm --> byte[] =
+		// img)
+		if (imageFormGuida.getContentMultipart() != null) {
+			byte[] contentSerialized = imageFormGuida.getContentMultipart().getBytes();
+			imgToSave.setContent(contentSerialized); // il content dell'img è tipo byte[], guarda la classe
+		}
+
+		// salvo img sul db e la ritorno
+		return imageRepo.save(imgToSave);
+	}
+
+	public byte[] getImageContentG(Integer id) {
+		Image imgGuida = imageRepo.findById(id).get();
+		return imgGuida.getContent();
+	}
 }

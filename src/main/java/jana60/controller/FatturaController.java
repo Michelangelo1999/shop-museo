@@ -22,20 +22,20 @@ import jana60.repository.FatturaRepo;
 @Controller
 @RequestMapping("/fattura")
 public class FatturaController {
-	
+
 	@Autowired
 	FatturaRepo repo;
-	
+
 	@Autowired
 	AcquistoRepo repoAc;
-	
+
 	@Autowired
 	FatturaRepo repoFattura;
-	
+
 	@GetMapping("/{id}")
 	public String fattura(@PathVariable("id") Integer acquistoId, Model model) {
 		Optional<Acquisto> acquistoDaFatturare = repoAc.findById(acquistoId);
-		if(acquistoDaFatturare.isPresent()) {
+		if (acquistoDaFatturare.isPresent()) {
 			model.addAttribute(acquistoDaFatturare);
 			Fattura fattura = new Fattura();
 			Acquisto acquistoDafatturare = repoAc.findById(acquistoId).get();
@@ -45,11 +45,16 @@ public class FatturaController {
 		}
 		return "/acquisto/fattura";
 	}
-	
+
 	@PostMapping("/save")
 	public String saveFattura(@Valid @ModelAttribute("fattura") Fattura formFattura, BindingResult br, Model model) {
 		boolean hasErrors = br.hasErrors();
 
+//		if (formFattura.getDataEmissione() != formFattura.getAcquisto().getData()) {
+//			br.addError(new FieldError("formFattura", "dataEmissione",
+//					"La data deve corrispondere alla data dell'acquisto!!"));
+//			hasErrors = true;
+//		}
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata
@@ -67,7 +72,7 @@ public class FatturaController {
 			// redirect a quel path
 		}
 	}
-	
+
 	@GetMapping("/detail/{id}")
 	public String fatturaDetail(@PathVariable("id") Integer acquistoId, Model model) {
 		Optional<Acquisto> acquisto = repoAc.findById(acquistoId);

@@ -84,4 +84,10 @@ public class Acquisto {
 		this.fattura = fattura;
 	}
 
+	public boolean isEmpty() {
+		if (this.cardAcquisto.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 }

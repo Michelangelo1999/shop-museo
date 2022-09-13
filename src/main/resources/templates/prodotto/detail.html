@@ -45,7 +45,7 @@
 <!--    <div class="carousel-item active">-->
 <!--      <img class="d-block w-100" th:src="@{|/image/${imageList[0].id}/content|}" alt="">-->
 <!--    </div>-->
-    <div class="carousel-item" th:each="img : ${imageList}"  th:classAppend="${img.id == 1} ? active ">
+    <div class="carousel-item"  th:each="img,i : ${imageList}"  th:classAppend="${i.index}==0 ? 'active'">
       <img class="d-block w-100" th:src="@{|/image/${img.id}/content|}" alt="">
     </div>
   </div>

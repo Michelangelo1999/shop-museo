@@ -94,7 +94,7 @@
 									<th></th>
 								</tr>
 								<tr>
-									<td id="col2"><input type="number" name="quantita" th:field="*{quantita}"
+									<td id="col2"><input min="1" type="number" name="quantita" th:field="*{quantita}"
 											value="" /></td>
 									<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 										<ul>

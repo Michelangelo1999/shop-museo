@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Visita {
 	@ManyToOne // notnull
 	private Guida guida;
 
-	@OneToMany(mappedBy = "visita")
+	@OneToMany(mappedBy = "visita", cascade = CascadeType.ALL)
 	private List<PrenotazioneVisita> prenotazioni;
 
 	// getters and setters

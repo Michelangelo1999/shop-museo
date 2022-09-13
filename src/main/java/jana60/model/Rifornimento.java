@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Rifornimento {
@@ -17,6 +18,7 @@ public class Rifornimento {
 
 	private double prezzo;
 
+	@Min(value = 1)
 	private int quantita;
 
 	@ManyToOne

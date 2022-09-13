@@ -9,19 +9,22 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Image {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Lob
 	private byte[] content;
-	
+
 	@ManyToOne
 	private Prodotto prodotto;
-	
-//	@ManyToOne
-//	private Guida guida;
+
+	@ManyToOne
+	private Visita visita;
+
+	@ManyToOne
+	private Guida guida;
 
 	public Integer getId() {
 		return id;
@@ -47,14 +50,20 @@ public class Image {
 		this.prodotto = prodotto;
 	}
 
-//	public Guida getGuida() {
-//		return guida;
-//	}
-//
-//	public void setGuida(Guida guida) {
-//		this.guida = guida;
-//	}
-	
-	
+	public Visita getVisita() {
+		return visita;
+	}
+
+	public void setVisita(Visita visita) {
+		this.visita = visita;
+	}
+
+	public Guida getGuida() {
+		return guida;
+	}
+
+	public void setGuida(Guida guida) {
+		this.guida = guida;
+	}
 
 }

@@ -65,7 +65,6 @@ public class RifornimentoController {
 			Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
-
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata

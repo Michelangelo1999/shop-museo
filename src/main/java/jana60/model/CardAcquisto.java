@@ -17,6 +17,7 @@ public class CardAcquisto {
 
 	@ManyToOne
 	private Prodotto prodotto;
+
 	@ManyToOne
 	private Acquisto acquisto;
 

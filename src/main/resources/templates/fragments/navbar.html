@@ -14,7 +14,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" href="/gestionale">Gestionale</a>
+             
+                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" href="/gestionale" sec:authorize="hasAuthority('ADMIN')">Gestionale</a>
+              
               </li>
               
             </ul>

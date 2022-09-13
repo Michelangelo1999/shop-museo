@@ -46,13 +46,16 @@
 					<th>Nome</th>
 					<th>Descrizione</th>
 					<th>Prezzo</th>
+					
+					
+					
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="pr : ${prodotto}">
 					<td th:text="${pr.nome}"></td>
 					<td th:text="${pr.descrizione}"></td>
-					<td th:text="${pr.prezzo}"></td>
+					<td th:text="&euro; + ' ' + ${#numbers.formatDecimal(pr.prezzo, 1, 2)}"></td>
 					<td>
 						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
 						<a class="btn btn-primary" th:href="@{|/image/${pr.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>

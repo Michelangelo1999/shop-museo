@@ -23,23 +23,26 @@ public class PrenotazioneVisitaController {
 
 	@Autowired
 	private PrenotazioneVisitaRepository repo;
-	
+
 	@Autowired
 	private VisitaRepository repoVisita;
-	
-	@GetMapping ("/nuova/{id}")
-	public String aggiungiPrenotazione (Model model, @PathVariable("id") Integer visitaId) {
+
+	@GetMapping("/nuova/{id}")
+	public String aggiungiPrenotazione(Model model, @PathVariable("id") Integer visitaId) {
 		PrenotazioneVisita nuovaPrenotazione = new PrenotazioneVisita();
 		Visita visitaDaPrenotare = repoVisita.findById(visitaId).get();
 		nuovaPrenotazione.setVisita(visitaDaPrenotare);
 		model.addAttribute("aggiungiPrenotazione", nuovaPrenotazione);
 		return "prenotazionevisite/aggiungiprenotazionevisite";
 	}
-	@PostMapping ("/salva")
-	public String salvaPrenotazione (@Valid @ModelAttribute("aggiungiPrenotazione")PrenotazioneVisita prenotazioneAggiunta, BindingResult br) {
-		if (br.hasErrors()) {
+
+	@PostMapping("/salva")
+	public String salvaPrenotazione(
+			@Valid @ModelAttribute("aggiungiPrenotazione") PrenotazioneVisita prenotazioneAggiunta, BindingResult br) {
+		if (br.hasErrors() || prenotazioneAggiunta.getVisita().getNumeroPrenotati()
+				+ prenotazioneAggiunta.getNumeriBiglietti() >= prenotazioneAggiunta.getVisita().getCapienza()) {
 			return "prenotazionevisite/aggiungiprenotazionevisite";
-		}else {
+		} else {
 			repo.save(prenotazioneAggiunta);
 			return "redirect:/";
 		}

@@ -4,13 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
@@ -18,41 +16,37 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Visita {
-	
-	//attributi classe
-	
+
+	// attributi classe
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@NotNull
 	private String titolo;
-	
-	
+
 	private String descrizione;
-	
+
 	private LocalDateTime dataInizio;
-	
+
 	private LocalDateTime dataFine;
-	
-	 //notnull
+
+	// notnull
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzo;
-	
+
 	@Max(100)
 	@Column(columnDefinition = "int default 0")
 	private int capienza;
-	
-	@Column(columnDefinition = "int default 0")
-	private int numeroPrenotati;
-	
-	@ManyToOne //notnull
+
+	@ManyToOne // notnull
 	private Guida guida;
-	
-	@OneToMany (mappedBy = "visita")
+
+	@OneToMany(mappedBy = "visita")
 	private List<PrenotazioneVisita> prenotazioni;
 
-	//getters and setters
+	// getters and setters
 	public Integer getId() {
 		return id;
 	}
@@ -110,11 +104,11 @@ public class Visita {
 	}
 
 	public int getNumeroPrenotati() {
+		int numeroPrenotati = 0;
+		for (PrenotazioneVisita pv : prenotazioni) {
+			numeroPrenotati += pv.getNumeriBiglietti();
+		}
 		return numeroPrenotati;
-	}
-
-	public void setNumeroPrenotati(int numeroPrenotati) {
-		this.numeroPrenotati = numeroPrenotati;
 	}
 
 	public Guida getGuida() {
@@ -124,18 +118,19 @@ public class Visita {
 	public void setGuida(Guida guida) {
 		this.guida = guida;
 	}
-	
+
 	// metodi custom
-	// formatter 
-	public String orarioInizio () {
+	// formatter
+	public String orarioInizio() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String formatDateTime = dataInizio.format(formatter);
 		return formatDateTime;
 	}
-	public String orarioFine () {
+
+	public String orarioFine() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String formatDateTime = dataFine.format(formatter);
 		return formatDateTime;
 	}
-	
+
 }

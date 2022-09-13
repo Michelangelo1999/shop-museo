@@ -29,7 +29,7 @@
     <!-- FINE TOPBAR -->
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
-    <h1>Gli Assortimenti</h1>
+    <h1 class="text-center">Prodotti</h1>
     <div> 
     <!--<a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Prodotto</a>-->
     </div>
@@ -42,6 +42,7 @@
               <th>Nome </th>
               <th>Descrizione</th>
               <th>Prezzo</th>
+              <th>Azioni</th>
             </tr>
           </thead>
           <tbody>
@@ -49,12 +50,13 @@
               <td th:text="${p.nome}"></td>
               <td th:text="${p.descrizione}"></td>
               <td th:text="${p.prezzo}"></td>
-              <!--<td>
-	  				<a class="btn btn-primary" th:href="@{|/edit/${assortimento.Id}|}" title="Edit">
-	  					<i class="fa-solid fa-pen-to-square"></i>
-	  				</a>
-	  				
-	  			</td> -->
+              <!-- <td>
+						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
+						<a class="btn btn-primary" th:href="@{|/image/${pr.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
+						<a class="btn btn-primary" th:href="@{|prodotto/elimina/${pr.id}|}" title="Elimina"
+							onclick="return confirm('Sei sicuro?')"><i class="fa-solid fa-trash"></i></a>
+							
+					</td> -->
             </tr>
           </tbody>
         </table>

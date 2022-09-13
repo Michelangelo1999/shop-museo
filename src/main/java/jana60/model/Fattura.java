@@ -12,44 +12,44 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Fattura {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotNull
 	private String cognome;
-	
+
 	private String nome;
-	
+
 	@NotNull
 	private String citta;
-	
+
 	@NotNull
 	private String via;
-	
+
 	@NotNull
 	private int cap;
-	
+
 	@Size(min = 16, max = 16)
 	@NotNull
 	private String codiceFiscale;
-	
+
 	@Size(min = 11, max = 11)
 	private String partitaIva;
-	
+
 	private String telefono;
-	
+
 	@NotNull
 	private String email;
-	
+
 	@NotNull
 	private LocalDate dataEmissione;
-	
-	@OneToOne(mappedBy = "fattura")
-	private Carrello carrello;
-	
-	//getters and setters
+
+	@OneToOne
+	private Acquisto acquisto;
+
+	// getters and setters
 
 	public Integer getId() {
 		return id;
@@ -139,14 +139,16 @@ public class Fattura {
 		this.dataEmissione = dataEmissione;
 	}
 
-	public Carrello getCarrello() {
-		return carrello;
+	public Acquisto getAcquisto() {
+		return acquisto;
 	}
 
-	public void setCarrello(Carrello carrello) {
-		this.carrello = carrello;
+	public void setAcquisto(Acquisto acquisto) {
+		this.acquisto = acquisto;
 	}
-	
-	
 
+	// prezzo totale fattura
+//	public double getTotaleFattura() {
+//		return this.acquisto.getPrezzoTotaleCustom() + (this.acquisto.getPrezzoTotaleCustom() / 100) * 2;
+//	}
 }

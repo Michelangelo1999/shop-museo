@@ -1,6 +1,5 @@
 package jana60.controller;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -28,59 +27,58 @@ public class VisitaController {
 
 	@Autowired
 	private VisitaRepository repo;
-	
+
 	@Autowired
 	private GuidaRepository repoGuide;
-	
+
 	@GetMapping
-	public String schedeVisite (Model model) {
+	public String schedeVisite(Model model) {
 		model.addAttribute("schedaVisita", repo.findAll());
 		return "visite/listavisite";
 	}
-	
-	@GetMapping ("/aggiungivisita")
-	public String aggiungiVisita (Model model) {
+
+	@GetMapping("/aggiungivisita")
+	public String aggiungiVisita(Model model) {
 		model.addAttribute("aggiungiVisita", new Visita());
 		model.addAttribute("listaGuide", repoGuide.findAll());
 		return "visite/aggiungivisita";
 	}
+
 	@PostMapping("/salva")
-	public String salvaVisita (@Valid @ModelAttribute("aggiungiVisita")Visita visitaAggiunta, BindingResult br) {
+	public String salvaVisita(@Valid @ModelAttribute("aggiungiVisita") Visita visitaAggiunta, BindingResult br) {
 		if (br.hasErrors()) {
 			return "visite/aggiungivisita";
-		}else {
+		} else {
 //			LocalDateTime ldt = visitaAggiunta.getDataInizio();
 			repo.save(visitaAggiunta);
 			return "redirect:/visite";
 		}
 	}
-	
+
 //	String str = "1986-04-08 12:30";
 //	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 //	LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-	
-	
-	@GetMapping ("/elimina/{id}")
-	public String eliminaVisita (@PathVariable("id") Integer idVisita,RedirectAttributes reAt) {
+
+	@GetMapping("/elimina/{id}")
+	public String eliminaVisita(@PathVariable("id") Integer idVisita, RedirectAttributes reAt) {
 		Optional<Visita> visitaEliminata = repo.findById(idVisita);
 		if (visitaEliminata.isPresent()) {
 			repo.delete(visitaEliminata.get());
 			return "redirect:/visite";
-		}else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					  "Visita selezionata inesistente");
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Visita selezionata inesistente");
 		}
 	}
-	@GetMapping ("modifica/{id}")
-	public String modificaVisita (@PathVariable("id") Integer idVisita, Model model) {
+
+	@GetMapping("modifica/{id}")
+	public String modificaVisita(@PathVariable("id") Integer idVisita, Model model) {
 		Optional<Visita> visitaModificata = repo.findById(idVisita);
 		if (visitaModificata.isPresent()) {
-			model.addAttribute("aggiungiVisita",visitaModificata.get());
+			model.addAttribute("aggiungiVisita", visitaModificata.get());
 			model.addAttribute("listaGuide", repoGuide.findAll());
-			return "visite/aggiungivisita";	
-		}else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					"Visita selezionata inesistente");
+			return "visite/aggiungivisita";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Visita selezionata inesistente");
 		}
 	}
 }

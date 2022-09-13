@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Guida;
 import jana60.repository.GuidaRepository;
-import jana60.repository.VisitaRepository;
 
 @Controller
 @RequestMapping("/guide")
@@ -27,50 +26,49 @@ public class GuidaController {
 
 	@Autowired
 	private GuidaRepository repo;
-	
+
 	@GetMapping
 	public String schedeGuide(Model model) {
 		model.addAttribute("schedaGuida", repo.findAll());
 		return "guide/listaguide";
 	}
-	
+
 	@GetMapping("/aggiungiguida")
 	public String aggiungiGuida(Model model) {
 		model.addAttribute("aggiungiGuida", new Guida());
 		return "guide/aggiungiguida";
 	}
-	
+
 	@PostMapping("/salva")
-	public String salvaGuida (@Valid @ModelAttribute("aggiungiGuida")Guida guidaAggiunta, BindingResult br) {
+	public String salvaGuida(@Valid @ModelAttribute("aggiungiGuida") Guida guidaAggiunta, BindingResult br) {
 		if (br.hasErrors()) {
 			return "guide/aggiungiguida";
-		}else {
+		} else {
 			repo.save(guidaAggiunta);
 			return "redirect:/guide";
 		}
 	}
-	
-	@GetMapping ("/elimina/{id}")
-	public String eliminaGuida (@PathVariable ("id") Integer idGuida, RedirectAttributes reAt) {
+
+	@GetMapping("/elimina/{id}")
+	public String eliminaGuida(@PathVariable("id") Integer idGuida, RedirectAttributes reAt) {
 		Optional<Guida> guidaEliminata = repo.findById(idGuida);
 		if (guidaEliminata.isPresent()) {
 			repo.delete(guidaEliminata.get());
 			return "redirect:/guide";
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-			  "Guida selezionata inesistente");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Guida selezionata inesistente");
 		}
 	}
-	
-	@GetMapping ("/modifica/{id}")
-	public String modificaGuida (@PathVariable("id") Integer idGuida,Model model) {
-		Optional <Guida> guidaModificata = repo.findById(idGuida);
+
+	@GetMapping("/modifica/{id}")
+	public String modificaGuida(@PathVariable("id") Integer idGuida, Model model) {
+		Optional<Guida> guidaModificata = repo.findById(idGuida);
 		if (guidaModificata.isPresent()) {
-			model.addAttribute("aggiungiGuida",guidaModificata.get()); // aggiungiGuida deve coincidere con quello dell aggiungo guida
+			model.addAttribute("aggiungiGuida", guidaModificata.get()); // aggiungiGuida deve coincidere con quello dell
+																		// aggiungo guida
 			return "guide/aggiungiguida";
-		}else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					"Guida selezionata inesistente");
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Guida selezionata inesistente");
 		}
 	}
 }

@@ -1,13 +1,42 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-    <link rel="stylesheet" th:href="@{/home/home.css}"> 
-    <title>Global Museum</title> 
+<<<<<<< HEAD
+<head>
+  <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+  <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <title>Global Museum</title>
   </head>
-  <body>
-  	<nav th:replace="fragments/navbar :: navbar('acquisto')"></nav>
-  	<div class="container">
+  <body id="body-pd">
+    <th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	  	</th:block>
+ <!-- TOP BAR -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+               <i class="fa-solid fa-bars"></i> 
+           </button>
+           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="sidebar-header">
+         <span class="size-font-sidebar"> 
+         <img src="/img/logo-museo.png" alt="logo museo" width="50" height="50" class="ml-2">
+         <span class="mt-4"> Global Museum</span></span>
+   </div>
+        </div>
+    </nav> 
+    <!-- FINE TOPBAR -->
+    <div class="wrapper">
+     <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+     
+         <div id="content">
+         <!-- INIZIO CONTENUTO PAGINA -->
+            
+  	<div class="container-fluid px-4">
+
   		<h1>Nuovo Acquisto</h1>
   		
   		<hr/>
@@ -20,6 +49,12 @@
   			method="POST"
   			class="row"
   		>
+  		<ul class="col-12">
+		      <li 
+		         th:each="err : ${#fields.allErrors()}" 
+		         th:text="${err}">
+		      </li>
+			</ul>
 	  		
 			<div class="col-8">
 				<!--  campo nascosto per l'id -->
@@ -27,46 +62,22 @@
 	  			<table id="emptbl">
 		<tr>
 		<th>Data</th>
-			<th>Quantità</th>
-			<th>Prezzo</th>
-			<th>Prodotto</th> 
-			 
 		</tr> 
 		<tr> 
 		<td id="col0"><input type="text" name="data[]" th:field="*{data}" value="" />
 			</td>
-			<td id="col1"><select class="form-select" aria-label="Default select example" type="select" name="quantita[]" id="dept" th:field="*{quantitaAcq}" >
-           <!-- <option selected>Open this select menu</option>-->
-            
-            <option th:each="quantita : ${quantitaList}" th:value="${quantita.id}"  th:text="${quantita.quantita}"></option>
-            
-             </select>
-			</td> 
-			<td id="col2"><input type="number" name="prezzo" th:field="*{prezzoTotale}" value="" /></td> 
-			 <td id="col3"> 
-              <select class="form-select form-select mb-3" aria-label=".form-select example" type="select" name="prodotto[]" id="dept">
-              <option selected> Apri il menù</option>
-               <option th:each="prodotto : ${prodottiList}"  th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
-               </select>
-		        </td> 
 		</tr>  
 	</table> 
-	<table> 
-		<tr> 
-			<td><input type="button" value="Add Row" onclick="addRows()" />
-			
-			</td> 
-			<td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
-			 
-		</tr>  
-	</table> 
+	
 	<div class="bottoni">
-	  				<button type="submit" class="btn btn-primary">Save</button>
+	  				<button type="submit" class="btn btn-primary">Avanti</button>
 	  				<a class="btn btn-primary" href="/">Cancel</a>
 	  			</div>
   		</form>
   	</div>
-  	<script src="/acquisto.js"></script>
+
+  
+    <script src="/gestionale.js"></script>
 
   </body>
 </html>

@@ -1,38 +1,81 @@
-<body>
-    <!-- NAVBAR -->
-    <nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
-        <div class="container-fluid">
-        
-          <a class="navbar-brand" href="/">
-          <img src="/img/logo-museo.png" alt="logo museo" width="100" height="100" class="ml-2">
-         Global Museum
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'prodotto'} ? active : not-active" href="/prodotto">Prodotti</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'assortimento'} ? active : not-active" href="/assortimento">Assortimento</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'rifornimento'} ? active : not-active" href="/rifornimento"></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'acquisto'} ? active : not-active" href="/acquisto">Acquisto</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'visiteTuristiche'} ? active : not-active" href="/visite">Visite Guidate</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'guide'} ? active : not-active" href="/guide">Guide</a>
-              </li>
+
+<nav th:fragment="navbar(current)" id="sidebar" class="custom-color-sidebar">
+   <ul class="list-unstyled components">
+       <li>
+          <a href="/gestionale"><i class="fas fa-home mr-3"></i>Gestionale</a>
+      </li>
+      <li>
+         <a href="#voce-2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-shirt mr-3"></i> Prodotti</a>
+         <ul class="collapse list-unstyled" id="voce-2">
+                <li>
+                    <a href="/prodotto">Lista dei prodotti</a>
+                </li>
+                <li>
+                    <a href="/prodotto/crea">Aggiungi nuovo prodotto</a>
+                </li>
             </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- fine navbar -->
-</body>
+       </li>
+       <li>
+           <a href="#voce-3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fa-solid fa-clipboard mr-3 ml-1"></i> Assortimento</a>
+          <ul class="collapse list-unstyled" id="voce-3">
+                  <li>
+                      <a href="/assortimento">Lista degli assortimenti</a>
+                  </li>
+                  <li>
+                      <a href="/assortimento/add">Aggiungi nuovo assortimento</a>
+                  </li>
+              </ul>
+       </li>
+       <li>
+          <a href="#voce-4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-cart-shopping mr-3"></i> Acquisto</a>
+         <ul class="collapse list-unstyled" id="voce-4">
+             <li>
+                 <a href="/acquisto">Lista degli acquisti</a>
+             </li>
+             <li>
+                 <a href="/acquisto/add">Aggiungi nuovo acquisto</a>
+             </li>
+             
+         </ul>
+      </li>
+      <li>
+          <a href="#voce-5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Magazzino</a>
+         <ul class="collapse list-unstyled" id="voce-5">
+             <li>
+                 <a href="/magazzino">Magazzino</a>
+             </li>
+         </ul>
+      </li>
+   <li>
+         <a href="#voce-6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-person mr-3 ml-1"></i>Guide Turistiche</a>
+         <ul class="collapse list-unstyled" id="voce-6">
+                <li>
+                    <a href="/guide">Lista delle guide turistiche</a>
+                </li>
+                <li>
+                    <a href="/guide/aggiungiguida">Aggiungi nuova guida turistica</a>
+                </li>
+            </ul>
+       </li>
+     
+   <li>
+          <a href="#voce-7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-building-columns mr-3"></i>Visite Guidate</a>
+         <ul class="collapse list-unstyled" id="voce-7">
+             <li>
+                 <a href="/visite">Lista delle visite guidate</a>
+             </li>
+             <li>
+                 <a href="/visite/aggiungivisita">Aggiungi nuova visita guidata</a>
+             </li>
+         </ul>
+      </li>
+      <li>
+      <a href="#voce-8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-user mr-3"></i>Admin</a>
+         <ul class="collapse list-unstyled" id="voce-8">
+                <li>
+                    <a href="/">Torna alla home</a>
+                </li>
+            </ul>
+       </li>
+   </ul>
+</nav>

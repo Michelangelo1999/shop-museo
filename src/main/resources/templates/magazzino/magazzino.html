@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
@@ -8,15 +7,14 @@
    
     <title>Global Museum</title>
   </head>
-
   <body id="body-pd">
-  <!--  messaggi alert  -->
-  <th:block th:if="${successMessage != null && successMessage != ''}">
+    <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
-  	  	 <!-- TOP BAR -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+
+	  	<!-- TOP BAR -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-white">
+     <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-dark">
                 <i class="fas fa-align-center"></i>
            </button>
@@ -30,43 +28,45 @@
    </div>
         </div>
     </nav> 
-<!-- FINE TOPBAR -->
+
     <div class="wrapper">
-     <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-
-         <div id="content">
-         <!-- INIZIO CONTENUTO PAGINA -->
+     <nav th:replace="fragments/navbarGestionale :: navbar('magazzino')"></nav>
 <div id="content">
- <div class="container-fluid px-4">
-  	
-  	<h1>Dettagli acquisto</h1>
-  	<h2 th:text="${acquisto.data}"></h2>
-  	
-  	<hr/>
-  	<div class="row">
-  		<div class="col-8">
-  			<dl>
-  				<dt>Quantità</dt>
-  				<dd th:each="card : ${acquisto.cardAcquisto}"  th:text="${card.quantita}"></dd>
-  				<dt>Prezzo</dt>
-  				<dd th:each="cardAcquisto : ${acquisto.cardAcquisto}"  th:text="${cardAcquisto.prodotto.prezzo}"></dd>
-  			</dl>
-  		</div>
-  		
-  		<div class="col-4">
-  			<h4>Prodotto</h4>
-  			<ul>
-  				<li th:each="cardAcquisto : ${acquisto.cardAcquisto}" th:text="${cardAcquisto.prodotto.nome}"></li>
-  			</ul>
-  		</div>
-  	</div>
-  </div>
-  <div class="container flex container" >
-  <a th:href="@{|/fattura/detail/${acquisto.id}|}"><button>Riepilogo fattura</button></a>
-  </div>
-  
 
-<script src="/gestionale.js"> </script>
+         <!-- INIZIO CONTENUTO PAGINA -->
+           
+    <!-- CONTENUTO -->
+   <div class="container-fluid px-4">
 
-  </body>
+    <h1>Magazzino</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Prodotto</th>
+				<th scope="col">Quantita</th>
+				<th scope="col"></th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="prodotto : ${prodotti}">
+				<td th:text="${prodotto.nome}"></td>
+				<td th:text="${prodotto.getQuantitaDisponibile}"></td>
+				<td><button th:if="${prodotto.getQuantitaDisponibile < 6}" type="button" class="btn btn-danger"><i class="fa-solid fa-circle-exclamation"></i></button></td>
+				<td><a th:href="@{/assortimento/add}"><button type="button" class="btn btn-primary"><i class="fa-solid fa-basket-shopping"></i></button></a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+         </div>
+    </div>
+    
+
+
+
+
+ <script src="/gestionale.js"></script>
+
+
+</body>
 </html>

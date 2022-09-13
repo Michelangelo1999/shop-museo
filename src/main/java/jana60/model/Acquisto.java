@@ -1,6 +1,7 @@
 package jana60.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Acquisto {
@@ -23,11 +24,11 @@ public class Acquisto {
 	@Column(columnDefinition = "double default 0.00")
 	private double prezzoTotale;
 
-	@ManyToMany
-	private List<Prodotto> prodotto;
-
-	@OneToMany
+	@OneToMany(mappedBy = "acquisto")
 	private List<CardAcquisto> cardAcquisto;
+
+	@OneToOne
+	private Fattura fattura;
 
 	// getters and setters
 
@@ -52,15 +53,8 @@ public class Acquisto {
 	}
 
 	public void setPrezzoTotale(double prezzoTotale) {
+
 		this.prezzoTotale = prezzoTotale;
-	}
-
-	public List<Prodotto> getProdotto() {
-		return prodotto;
-	}
-
-	public void setProdotto(List<Prodotto> prodotto) {
-		this.prodotto = prodotto;
 	}
 
 	public List<CardAcquisto> getCardAcquisto() {
@@ -69,6 +63,24 @@ public class Acquisto {
 
 	public void setCardAcquisto(List<CardAcquisto> cardAcquisto) {
 		this.cardAcquisto = cardAcquisto;
+	}
+
+	public double getPrezzoTotaleCustom() {
+		Iterator<CardAcquisto> card = this.cardAcquisto.iterator();
+		while (card.hasNext()) {
+			CardAcquisto current = card.next();
+			this.prezzoTotale += current.getProdotto().getPrezzo() * current.getQuantita();
+
+		}
+		return prezzoTotale;
+	}
+
+	public Fattura getFattura() {
+		return fattura;
+	}
+
+	public void setFattura(Fattura fattura) {
+		this.fattura = fattura;
 	}
 
 }

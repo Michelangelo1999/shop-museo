@@ -1,8 +1,7 @@
 package jana60.model;
 
-
+import java.time.LocalDate;
 import java.util.Iterator;
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,12 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-
-import javax.persistence.OneToOne;
-
 import javax.persistence.OneToMany;
-
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -34,11 +28,13 @@ public class Prodotto {
 	@NotNull
 	private double prezzo;
 
-	@ManyToMany(mappedBy = "prodotto")
-	private List<Acquisto> acquisto;
+	@OneToMany(mappedBy = "prodotto")
+	private List<CardAcquisto> cardAcquisti;
 
 	@OneToMany(mappedBy = "prodotto")
 	private List<Rifornimento> rifornimenti;
+
+	// costruttore
 
 	// getters and setters
 	public Integer getId() {
@@ -73,12 +69,12 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public List<Acquisto> getAcquisto() {
-		return acquisto;
+	public List<CardAcquisto> getCardAcquisti() {
+		return cardAcquisti;
 	}
 
-	public void setAcquisto(List<Acquisto> acquisto) {
-		this.acquisto = acquisto;
+	public void setCardAcquisti(List<CardAcquisto> cardAcquisti) {
+		this.cardAcquisti = cardAcquisti;
 	}
 
 	public List<Rifornimento> getRifornimenti() {
@@ -88,55 +84,43 @@ public class Prodotto {
 	public void setRifornimenti(List<Rifornimento> rifornimenti) {
 		this.rifornimenti = rifornimenti;
 	}
-	
-}
-
 
 	// metodi custom
-	// public int getQuantitaMagazzino() {
-	// int quantitaDisp = 0;
-	// int assortiti = ((Assortimento) this.assortimento).getQuantita();
-	/// int acquistati = ((Acquisto) this.acquisto).getQuantita();
-	// quantitaDisp = assortiti - acquistati;
-	// return quantitaDisp;
-	// }
+	public int getQuantAcquistata() {
+		int quantitaAcquistata = 0;
+		Iterator<CardAcquisto> acquistIter = this.cardAcquisti.iterator();
+		while (acquistIter.hasNext()) {
+			CardAcquisto current = acquistIter.next();
+			LocalDate unMeseFa = LocalDate.now().minusDays(30);
+			if (current.getAcquisto().getData().isAfter(unMeseFa)) {
+				quantitaAcquistata += current.getQuantita();
+			}
 
-	// public int getQuantitaAssortimento() {
-	// int quantita = 0;
-	// List<Assortimento> ass = this.assortimento;
-	// Iterator<Assortimento> assIter = ass.iterator();
-	// while (assIter.hasNext()) {
-	// Assortimento current = assIter.next();
-	// quantita += current.getQuantita();
-	// }
-	// return quantita;
-	// }
+		}
+		return quantitaAcquistata;
+	}
 
-	/*
-	 * public int quantitaDisponibile() { int quantitaDisponibile = 0;
-	 * 
-	 * int assortiti = 0; int acquistati = 0;
-	 * 
-	 * Iterator<Assortimento> assIter = this.assortimento.iterator();
-	 * Iterator<Acquisto> acqIter = this.acquisto.iterator();
-	 * 
-	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); assortiti
-	 * += current.getQuantInt(); }
-	 * 
-	 * while (acqIter.hasNext()) { Acquisto current = acqIter.next(); acquistati +=
-	 * current.getQuantInt(); }
-	 * 
-	 * quantitaDisponibile = assortiti - acquistati;
-	 * 
-	 * return quantitaDisponibile; }
-	 * 
-	 * public int getQuantitaAss() { int quantita = 0; Iterator<Assortimento>
-	 * assIter = this.assortimento.iterator();
-	 * 
-	 * while (assIter.hasNext()) { Assortimento current = assIter.next(); quantita
-	 * += current.getQuantInt();
-	 * 
-	 * } return quantita; }
-	 */
+	// metodo custom che restituisce la quantità
+	public int getQuantitaDisponibile() {
+		int quantitaNetta = 0;
+		int quantitaAcquistata = 0;
+		int quantitaAssortita = 0;
 
+		Iterator<Rifornimento> rifornimentiIter = this.rifornimenti.iterator();
+		while (rifornimentiIter.hasNext()) {
+			Rifornimento current = rifornimentiIter.next();
+			quantitaAssortita += current.getQuantita();
+		}
 
+		Iterator<CardAcquisto> acquistiIter = this.cardAcquisti.iterator();
+		while (acquistiIter.hasNext()) {
+			CardAcquisto current = acquistiIter.next();
+			quantitaAcquistata += current.getQuantita();
+		}
+
+		quantitaNetta = quantitaAssortita - quantitaAcquistata;
+
+		return quantitaNetta;
+	}
+
+}

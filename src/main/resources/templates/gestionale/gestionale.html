@@ -1,50 +1,159 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
   <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
   <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
     <title>Global Museum</title>
   </head>
-  <body>
-  <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-  <th:block th:if="${successMessage != null && successMessage != ''}">
+  <body id="body-pd">
+    <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
-	  	
-    <h1>Il Gestionale</h1>
-    
-    <!-- INIZIO CARD COLLEGATE ALLE PAGINE -->
-    <div class="container">
-  <div class="row">
-    <div class="col">
-      <a href="/assortimento">
-    <div class="card" style="width: 18rem;">
-  <img src="/img/icon-assortimento.png" class="card-img-top" alt="icona assortimento">
-  </a>
-  <div class="card-body">
-    <p class="card-text">Qui puoi registrare gli assortimenti dei prodotti del magazzino</p>
-  </div>
-</div>
+	  	 <!-- TOP BAR -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+               <i class="fa-solid fa-bars"></i> 
+           </button>
+           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="sidebar-header">
+         <span class="size-font-sidebar"> 
+         <img src="/img/logo-museo.png" alt="logo museo" width="50" height="50" class="ml-2">
+         <span class="mt-4"> Global Museum</span></span>
+   </div>
+        </div>
+    </nav> 
+    <!-- FINE TOPBAR -->
+    <div class="wrapper">
+   
+     <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+         <div id="content">
+         <!-- INIZIO CONTENUTO PAGINA -->
+            
+    <!-- CONTENUTO -->
+   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body">Prodotti</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="/prodotto">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body">Assortimento</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="/assortimento">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body">Acquisti</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="/acquisto">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-body">Magazzino</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="/magazzino">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Riepilogo degli incassi - ultimi 30 giorni
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                           <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="${gestionale.data}"></div>
+                                         </div>
+                                        <div class="col">
+                                        <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="€+' '+${gestionale.getPrezzoTotaleCustom}"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Lista visite guidate - prossimi 7gg
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                           <div th:each="gestionale : ${visiteProgrammate}"  th:text="${gestionale.titolo}"></div>
+                                         </div>
+                                        <div class="col">
+                                        <div th:each="gestionale : ${visiteProgrammate}"  th:text="${gestionale.orarioInizio}+'/'+ ${gestionale.orarioFine}"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1"></i>
+                               Classifica prodotti più venduti - ultimi 30 giorni
+                            </div>
+                            <div class="card-body">
+                            <div class="row">
+                                        <div class="col">
+                                           <div th:each="gestionale : ${bestSellerProd}"  th:text="${gestionale.nome}"></div>
+                                         </div>
+                                        <div class="col">
+                                        <div th:each="gestionale : ${bestSellerProd}"  th:text="n.+' '+${gestionale.getQuantAcquistata}"></div>
+                                          </div>
+                                       </div> 
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1"></i>
+                               Prodotti in magazzino con quantità minore di n.3 
+                            </div>
+                            <div class="card-body">
+                            <div class="row" th:each="prodotto : ${prodotti}"  th:if="${prodotto.getQuantitaDisponibile < 4}">
+                                        <div class="col">
+                                           <div th:text="${prodotto.nome}"></div>
+                                         </div>
+                                        <div class="col">
+                                        <div  th:text="n.+' '+${prodotto.getQuantitaDisponibile}"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                          </div>
+                                       </div></div> 
+                            </div>
+                        </div>
+                        </div>
+                        </div>
     </div>
-    <div class="col">
-      <a href="/acquisto">
-    <div class="card" style="width: 18rem;">
-  <img src="/img/icon-acquisto.jpg" class="card-img-top" alt="icona acquisto">
-  </a>
-  <div class="card-body">
-    <p class="card-text">Qui puoi registrare gli acquisti dei prodotti del cliente</p>
-  </div></div>
-    </div>
-    <div class="col">
-      <a href="/prodotti">
-    <div class="card" style="width: 18rem;">
-  <img src="/img/icon-prodotti.jpg" class="card-img-top" alt="icona prodotti">
-  </a>
-  <div class="card-body">
-    <p class="card-text">Qui puoi vedere, modificare, aggiungere ed eliminare i prodotti</p>
-  </div>
-    </div>
-  </div>
-</div>
+<script src="/gestionale.js"></script>
   </body>
 </html>

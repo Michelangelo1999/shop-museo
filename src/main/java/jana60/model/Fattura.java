@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -44,6 +45,9 @@ public class Fattura {
 
 	@NotNull
 	private LocalDate dataEmissione;
+
+	@OneToOne
+	private Acquisto acquisto;
 
 	// getters and setters
 
@@ -135,4 +139,16 @@ public class Fattura {
 		this.dataEmissione = dataEmissione;
 	}
 
+	public Acquisto getAcquisto() {
+		return acquisto;
+	}
+
+	public void setAcquisto(Acquisto acquisto) {
+		this.acquisto = acquisto;
+	}
+
+	// prezzo totale fattura
+//	public double getTotaleFattura() {
+//		return this.acquisto.getPrezzoTotaleCustom() + (this.acquisto.getPrezzoTotaleCustom() / 100) * 2;
+//	}
 }

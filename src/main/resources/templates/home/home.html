@@ -1,88 +1,92 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-  <link rel="stylesheet" th:href="@{/home/home.css}"> 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Global Museum</title>
-  </head>
-  <body>
-  <nav th:replace="fragments/navbar :: navbar('home')"></nav>
-   <main>
-    <div class="container">
-    <div class="row">
-    <div class="col-6">
-      <p class="auto">Global Museum </p>
-    </div>
-    <div class="col-6 immagine">
-      <img class="profilo" src="/img/logo-museo.png" alt="logo museo">
-    </div> 
-  </div>
-    </div>
-    <!-- fine griglia iniziale -->
-    <hr class="centrale">
-    <!-- inizio griglia centrale -->
-    <div class="container visite guidate">
-    <div class="row text-center">
-    <div class="col-4 card text-center" style="width: 400px;">
-     
-  <img src="/img/prima-visita.jpeg" class="card-img-top lavoro" alt="prima visita guidata">
-  <div class="card-body">
-    <p class="card-text">Visita guidata n.1</p>
-    <hr>
-    <p class="card-text"> djnjdshfjdbsjfbidsjbfihdsj </p> 
-  </div>
-    <!-- </div> -->
-    </div>
-    <div class="col-4 card text-center" style="width: 400px;">
-    
-  <img src="/img/seconda-guida.jpg" class="card-img-top lavoro" alt="seconda visita guidata">
-  <div class="card-body">
-    <p class="card-text">Visita guidata n.2</p>
-    <hr>
-    <p class="card-text"> ojsnvjnfjfnvjsfnokvoksdvsdokoksmdokvksv </p> 
-  </div>
-    <!-- </div> -->
-    </div>
-   <div class="col-4 card text-center" style="width: 400px;">
-    
-  <img src="/img/terza-guida.jpg" class="card-img-top lavoro" alt="terza visita guidata">
-  <div class="card-body">
-    <p class="card-text">Visita guidata n.2</p>
-    <hr>
-    <p class="card-text"> djckjhdjfnjdsnlnlsdnfljsdhfj </p> 
-  </div>
-   <!-- </div> -->
-    </div>
-  </div>
-    </div>
-    <hr class="centrale">
-  </main>
-    <footer>
-            <div class="container-fluid divfooter">
-                <div class="row d-flex justify-contente-around">
-                <div class="col-lg-6 col-12 mb-2  contatti">
-                    <h3>
-                        CONTACTS
-                    </h3>
-                    <p class="pt-2">
-                        Global Museum
-                    </p>
-                    <p>
-                    <i class="fa-regular fa-envelope"></i>
-                        E-mail: global.museum@gmail.com
-                    </p>
-                    <p>
-                    <i class="fa-brands fa-whatsapp"></i>
-                        Whatsapp: +39 3476859627
-                    </p>
-                  </div>
-                </div>
-                <div>
-                    <p class="text-white text-center pb-5">
-                        Copyright &copy; Your Website 2022
-                    </p>
-                </div>
-                </div>
-        </footer>
-  </body>
+<th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+<link rel="stylesheet" th:href="@{/home/home.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Global Museum</title>
+</head>
+
+<body>
+	<nav th:replace="fragments/navbar :: navbar('home')"></nav>
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<p class="auto">Global Museum </p>
+				</div>
+				<div class="col-6 immagine">
+					<img class="profilo" src="/img/logo-museo.png" alt="logo museo">
+				</div>
+			</div>
+		</div>
+		<!-- fine griglia iniziale -->
+		<hr class="centrale">
+		<!-- inizio griglia centrale -->
+		<div class="container visite guidate">
+			<div class="row text-center">
+				<div class="col-4 card text-center" style="width: 400px;">
+
+					<img src="/img/prima-visita.jpeg" class="card-img-top lavoro" alt="prima visita guidata">
+					<div class="card-body">
+						<p class="card-text">Visita guidata n.1</p>
+						<hr>
+						<p class="card-text"> djnjdshfjdbsjfbidsjbfihdsj </p>
+					</div>
+					<!-- </div> -->
+				</div>
+				<div class="col-4 card text-center" style="width: 400px;">
+
+					<img src="/img/seconda-guida.jpg" class="card-img-top lavoro" alt="seconda visita guidata">
+					<div class="card-body">
+						<p class="card-text">Visita guidata n.2</p>
+						<hr>
+						<p class="card-text"> ojsnvjnfjfnvjsfnokvoksdvsdokoksmdokvksv </p>
+					</div>
+					<!-- </div> -->
+				</div>
+				<div class="col-4 card text-center" style="width: 400px;">
+
+					<img src="/img/terza-guida.jpg" class="card-img-top lavoro" alt="terza visita guidata">
+					<div class="card-body">
+						<p class="card-text">Visita guidata n.2</p>
+						<hr>
+						<p class="card-text"> djckjhdjfnjdsnlnlsdnfljsdhfj </p>
+					</div>
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+		<hr class="centrale">
+	</main>
+	<footer>
+		<div class="container-fluid divfooter">
+			<div class="row d-flex justify-contente-around">
+				<div class="col-lg-6 col-12 mb-2  contatti">
+					<h3>
+						CONTACTS
+					</h3>
+					<p class="pt-2">
+						Global Museum
+					</p>
+					<p>
+						<i class="fa-regular fa-envelope"></i>
+						E-mail: global.museum@gmail.com
+					</p>
+					<p>
+						<i class="fa-brands fa-whatsapp"></i>
+						Whatsapp: +39 3476859627
+					</p>
+				</div>
+			</div>
+			<div>
+				<p class="text-white text-center pb-5">
+					Copyright &copy; Your Website 2022
+				</p>
+			</div>
+		</div>
+	</footer>
+</body>
+
 </html>

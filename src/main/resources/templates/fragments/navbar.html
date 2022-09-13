@@ -1,24 +1,31 @@
 <body>
-    <!-- NAVBAR HOME -->
-    <nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
-        <div class="container-fluid">
-        
-          <a class="navbar-brand" href="/">
-          <img src="/img/logo-museo.png" alt="logo museo" width="100" height="100" class="ml-2">
-         Global Museum
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" href="/gestionale">Gestionale</a>
-              </li>
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- fine navbar -->
+	<!-- NAVBAR HOME -->
+	<nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
+		<div class="container-fluid">
+
+			<a class="navbar-brand" href="/">
+				<img src="/img/logo-museo.png" alt="logo museo" width="100" height="100" class="ml-2">
+				Global Museum
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" th:classappend="${current == 'prodotti'} ? active : not-active"
+							href="/prodotto/vetrina">I nostri prodotti</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active"
+							th:href="@{/accesso}">Accesso ADMIN</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- fine navbar -->
 </body>

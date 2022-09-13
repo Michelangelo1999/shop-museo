@@ -32,7 +32,7 @@ public class ProdottoController {
 	public String prodottoLista(Model m) {
 		m.addAttribute("prodotto", repo.findAll());
 		m.addAttribute("newProdotto", new Prodotto());
-		return "/prodotto/prodotto";
+		return "/prodotto/listaprodotti";
 	}
 
 	@GetMapping("/crea")

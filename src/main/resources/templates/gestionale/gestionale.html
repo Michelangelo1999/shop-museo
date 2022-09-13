@@ -11,22 +11,29 @@
     <th:block th:if="${successMessage != null && successMessage != ''}">
 	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
-    <div class="wrapper">
-     <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
-         <div id="content">
-         <!-- INIZIO CONTENUTO PAGINA -->
-            <!-- TOP BAR -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  	 <!-- TOP BAR -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-dark">
-                <i class="fas fa-align-center"></i>
+               <i class="fa-solid fa-bars"></i> 
            </button>
            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
+                <i class="fa-solid fa-bars"></i>
             </button>
+            <div class="sidebar-header">
+         <span class="size-font-sidebar"> 
+         <img src="/img/logo-museo.png" alt="logo museo" width="50" height="50" class="ml-2">
+         <span class="mt-4"> Global Museum</span></span>
+   </div>
         </div>
     </nav> 
     <!-- FINE TOPBAR -->
+    <div class="wrapper">
+   
+     <nav th:replace="fragments/navbarGestionale :: navbar('gestionale')"></nav>
+         <div id="content">
+         <!-- INIZIO CONTENUTO PAGINA -->
+            
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -82,7 +89,7 @@
                                            <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="${gestionale.data}"></div>
                                          </div>
                                         <div class="col">
-                                        <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="${gestionale.getPrezzoTotaleCustom}"></div>
+                                        <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="€+' '+${gestionale.getPrezzoTotaleCustom}"></div>
                                           </div>
                                        </div>
                                     </div>
@@ -92,7 +99,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Lista di visite guidate - prossimi 7gg
+                                        Lista visite guidate - prossimi 7gg
                                     </div>
                                     <div class="card-body">
                                     <div class="row">
@@ -100,7 +107,7 @@
                                            <div th:each="gestionale : ${visiteProgrammate}"  th:text="${gestionale.titolo}"></div>
                                          </div>
                                         <div class="col">
-                                        <div th:each="gestionale : ${visiteProgrammate}"  th:text="${gestionale.dataInizio}+'/'+ ${gestionale.dataFine}"></div>
+                                        <div th:each="gestionale : ${visiteProgrammate}"  th:text="${gestionale.orarioInizio}+'/'+ ${gestionale.orarioFine}"></div>
                                           </div>
                                        </div>
                                     </div>
@@ -108,6 +115,8 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                        <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-bar me-1"></i>
@@ -119,12 +128,31 @@
                                            <div th:each="gestionale : ${bestSellerProd}"  th:text="${gestionale.nome}"></div>
                                          </div>
                                         <div class="col">
-                                        <div th:each="gestionale : ${bestSellerProd}"  th:text="${gestionale.getQuantAcquistata}"></div>
+                                        <div th:each="gestionale : ${bestSellerProd}"  th:text="n.+' '+${gestionale.getQuantAcquistata}"></div>
                                           </div>
-                                       </div>
+                                       </div> 
                             </div>
                         </div>
-                    </div>
+                        </div>
+                        <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1"></i>
+                               Prodotti in magazzino con quantità minore di n.3 
+                            </div>
+                            <div class="card-body">
+                            <div class="row" th:each="prodotto : ${prodotti}"  th:if="${prodotto.getQuantitaDisponibile < 4}">
+                                        <div class="col">
+                                           <div th:text="${prodotto.nome}"></div>
+                                         </div>
+                                        <div class="col">
+                                        <div  th:text="n.+' '+${prodotto.getQuantitaDisponibile}"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                          </div>
+                                       </div></div> 
+                            </div>
+                        </div>
+                        </div>
+                        </div>
     </div>
 <script src="/gestionale.js"></script>
   </body>

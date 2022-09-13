@@ -22,8 +22,6 @@ import jana60.repository.VisitaRepository;
 @Controller
 @RequestMapping("/gestionale")
 public class GestionaleController {
-	
-	
 
 	@Autowired
 	private ProdottoRepo prodotto;
@@ -40,6 +38,7 @@ public class GestionaleController {
 		model.addAttribute("visiteList", visita.findAll());
 		model.addAttribute("acquistiList", acquisto.findAll());
 
+		// PRODOTTI PIù VENDUTI
 		List<Prodotto> bestSellerProd = new ArrayList<Prodotto>();
 		Iterator<Prodotto> ListaProdotti = prodotto.findAll().iterator();
 		while (ListaProdotti.hasNext()) {
@@ -50,6 +49,7 @@ public class GestionaleController {
 		}
 		model.addAttribute("bestSellerProd", bestSellerProd); // da passare in html gestionale
 
+		// VISITE PROGRAMMATE
 		List<Visita> visiteProgrammate = new ArrayList<Visita>();
 		Iterator<Visita> tutteLeVisite = visita.findAll().iterator();
 		while (tutteLeVisite.hasNext()) {
@@ -61,6 +61,7 @@ public class GestionaleController {
 		}
 		model.addAttribute("visiteProgrammate", visiteProgrammate); // da passare in gestionale
 
+		// RIEPILOGO ACQUISTI
 		List<Acquisto> riepilogoAcquisto = new ArrayList<Acquisto>();
 		Iterator<Acquisto> tuttiGliAcquisti = acquisto.findAll().iterator();
 		while (tuttiGliAcquisti.hasNext()) {

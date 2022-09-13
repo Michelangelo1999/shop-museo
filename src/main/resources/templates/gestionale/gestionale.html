@@ -85,11 +85,11 @@
                                     </div>
                                     <div class="card-body">
                                     <div class="row">
-                                        <div class="col">
-                                           <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="${gestionale.data}"></div>
+                                        <div class="col" >
+                                           <div  th:each="gestionale : ${riepilogoAcquisto}"  th:text="${gestionale.data}" th:if="${gestionale.isEmpty == false}"></div>
                                          </div>
                                         <div class="col">
-                                        <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="€+' '+${gestionale.getPrezzoTotaleCustom}"></div>
+                                        <div th:each="gestionale : ${riepilogoAcquisto}"  th:text="€+' '+${gestionale.getPrezzoTotaleCustom}" th:if="${gestionale.isEmpty == false}"></div>
                                           </div>
                                        </div>
                                     </div>

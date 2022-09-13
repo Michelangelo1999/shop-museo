@@ -32,10 +32,9 @@
         </div>
     </nav> 
 
-	<div class="container">
+	<div class="container" >
 	<h1>Dettagli fattura</h1>
-		<div class="col-md-12">
-			<div class="invoice">
+	<div class="invoice">
 				<!-- begin invoice-company -->
 				<div class="invoice-company text-inverse f-w-600">
 					<span class="pull-right hidden-print"> <a
@@ -44,12 +43,16 @@
 							as PDF</a> <a href="javascript:;" onclick="window.print()"
 						class="btn btn-sm btn-white m-b-10 p-l-5"><i
 							class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
-					</span> Global Museum, Inc
+					</span> Global Museum <img src="/img/logo-museo.png" alt="lofo museo" width="100" height="100">
 				</div>
+		<div class="col-md-12" id="ciao">
 				<!-- end invoice-company -->
 				<!-- begin invoice-header -->
-				<div class="invoice-header">
+				
+				<div class="invoice-header" >
+				<h5>Global Museum, Inc</h5>
 					<div class="invoice-from">
+					
 						<small>from</small>
 						<address class="m-t-5 m-b-5">
 							<strong class="text-inverse">Global Museum, Inc.</strong><br>
@@ -60,9 +63,13 @@
 					<div class="invoice-to">
 						<small>to</small>
 						<address class="m-t-5 m-b-5">
-							<strong class="text-inverse">Company Name:</strong><br>
-							Street Address:<br> City, Zip Code:<br> Phone:
-							<br> Fax:
+							<strong class="text-inverse" th:text="${fattura.nome + ' ' + fattura.cognome}">Company Name: </strong><br>
+							<span th:text="${fattura.via}">
+							Street Address: </span><br>
+							<span th:text="${fattura.citta + ' '+ fattura.cap}" > City, Zip Code: </span><br> 
+							<span th:text="${fattura.telefono}" >Phone:
+							</span>
+					
 						</address>
 					</div>
 					<div class="invoice-date">
@@ -142,8 +149,13 @@
 				</div>
 				<!-- end invoice-footer -->
 			</div>
+			</div>
+		</div>
+		
 		</div>
 	</div>
+    
+    
 	<script src="/gestionale.js"></script>
 	<script src="/fattura.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>

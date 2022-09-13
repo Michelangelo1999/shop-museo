@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class FatturaController {
 			Fattura fattura = new Fattura();
 			Acquisto acquistoDafatturare = repoAc.findById(acquistoId).get();
 			fattura.setAcquisto(acquistoDafatturare);
+			fattura.setDataEmissione(acquistoDaFatturare.get().getData());
 			model.addAttribute("fattura", fattura);
 			return "acquisto/fattura";
 		}
@@ -50,11 +52,12 @@ public class FatturaController {
 	public String saveFattura(@Valid @ModelAttribute("fattura") Fattura formFattura, BindingResult br, Model model) {
 		boolean hasErrors = br.hasErrors();
 
-//		if (formFattura.getDataEmissione() != formFattura.getAcquisto().getData()) {
-//			br.addError(new FieldError("formFattura", "dataEmissione",
-//					"La data deve corrispondere alla data dell'acquisto!!"));
-//			hasErrors = true;
-//		}
+		if (formFattura.getDataEmissione().isBefore(formFattura.getAcquisto().getData())
+				|| formFattura.getDataEmissione().isAfter(formFattura.getAcquisto().getData())) {
+			br.addError(new FieldError("formFattura", "dataEmissione",
+					"La data deve corrispondere alla data dell'acquisto!!"));
+			hasErrors = true;
+		}
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata

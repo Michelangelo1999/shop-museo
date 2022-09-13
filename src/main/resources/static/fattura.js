@@ -12,7 +12,8 @@ document.getElementById('pdf').addEventListener("click", doPdf);
 
 
 function doPdf() {
-	const docElement = document.getElementById('body-pd');
+	const docElement = document.getElementById('ciao');
+	
 	html2pdf().from(docElement).save();
 }
 

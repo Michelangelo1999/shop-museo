@@ -30,13 +30,13 @@
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
     <h1 class="text-center">Prodotti</h1>
-    <div> 
-    <!--<a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Prodotto</a>-->
-    </div>
+    <!-- <div> 
+    <a class="btn btn-primary" th:href="@{/assortimento/add}">Nuovo Prodotto</a>
+    </div> -->
     
-    <div class="container text-center w-75 mt-3">
+    <div class="container text-center">
       <div>
-        <table class="table mb-5">
+        <table class="table mx-auto">
           <thead>
             <tr>
               <th>Nome </th>
@@ -49,14 +49,14 @@
             <tr th:each="p : ${prodotto}">
               <td th:text="${p.nome}"></td>
               <td th:text="${p.descrizione}"></td>
-              <td th:text="${p.prezzo}"></td>
-              <!-- <td>
-						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
-						<a class="btn btn-primary" th:href="@{|/image/${pr.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
-						<a class="btn btn-primary" th:href="@{|prodotto/elimina/${pr.id}|}" title="Elimina"
+              <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(p.prezzo, 1, 2)}"></td>
+            <td>
+						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${p.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
+						<a class="btn btn-primary" th:href="@{|/image/${p.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
+						<a class="btn btn-primary" th:href="@{|prodotto/elimina/${p.id}|}" title="Elimina"
 							onclick="return confirm('Sei sicuro?')"><i class="fa-solid fa-trash"></i></a>
 							
-					</td> -->
+					</td> 
             </tr>
           </tbody>
         </table>

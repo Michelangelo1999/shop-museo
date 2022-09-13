@@ -115,7 +115,7 @@
 							</div>
 						</div>
 						<div class="invoice-price-right">
-							<small>TOTAL</small> <span class="f-w-600" th:text="'€ ' + ${fattura.acquisto.getPrezzoTotaleCustom/100+fattura.acquisto.getPrezzoTotaleCustom}"></span>
+							<small>TOTAL</small> <span class="f-w-600" th:text="'€ ' + ${fattura.acquisto.getPrezzoTotaleCustom/3 + (fattura.acquisto.getPrezzoTotaleCustom/100)/2}"></span>
 						</div>
 					</div>
 					<!-- end invoice-price -->

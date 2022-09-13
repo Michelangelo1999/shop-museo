@@ -147,4 +147,8 @@ public class Fattura {
 		this.acquisto = acquisto;
 	}
 
+	// prezzo totale fattura
+//	public double getTotaleFattura() {
+//		return this.acquisto.getPrezzoTotaleCustom() + (this.acquisto.getPrezzoTotaleCustom() / 100) * 2;
+//	}
 }

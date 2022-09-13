@@ -28,12 +28,11 @@ public class PrenotazioneVisitaController {
 	private VisitaRepository repoVisita;
 	
 	@GetMapping ("/nuova/{id}")
-	public String aggiungiPrenotazione (Model model, @PathVariable("id") String visitaId) {
+	public String aggiungiPrenotazione (Model model, @PathVariable("id") Integer visitaId) {
 		PrenotazioneVisita nuovaPrenotazione = new PrenotazioneVisita();
-		Integer intVisitaId = Integer.valueOf(visitaId);
-		Visita visitaDaPrenotare = repoVisita.findById(intVisitaId).get();
+		Visita visitaDaPrenotare = repoVisita.findById(visitaId).get();
 		nuovaPrenotazione.setVisita(visitaDaPrenotare);
-		model.addAttribute("aggiungiPrenotazione", new PrenotazioneVisita());
+		model.addAttribute("aggiungiPrenotazione", nuovaPrenotazione);
 		return "prenotazionevisite/aggiungiprenotazionevisite";
 	}
 	@PostMapping ("/salva")

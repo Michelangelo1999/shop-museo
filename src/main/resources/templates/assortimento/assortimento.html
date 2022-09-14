@@ -40,9 +40,9 @@
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
     <h1>Gli Assortimenti</h1>
-   
+   <hr class="border border-dark">
     
-    <div class="container text-center w-75 mt-3">
+    <div class="container w-75 mt-3">
     
       <div>
         <table class="table mb-5">
@@ -59,7 +59,7 @@
             <tr th:each="a : ${assortimentoList}">
               <td th:text="${a.nomeFornitore}"></td>
               <td th:text="${a.data}"></td>
-              <td th:text="${a.getCostoTotale}"></td>
+              <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(a.getCostoTotale, 1,2)}"></td>
               <td><span th:class="text-warning" th:if="${a.isEmpty == true}" th:text="INCOMPLETO"></span></td>
               
               <td>

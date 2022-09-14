@@ -39,15 +39,18 @@
   	
   	<h1 th:text="${assortimento.nomeFornitore}"></h1>
   	
-  	<hr/>
+  	<hr class="border border-dzark">
   	<div class="row">
   		<div class="col-8">
   			 <dl> 
   			
   				<dt>Data</dt>
-  				<dd th:text="${data}"></dd>
+  				<dd th:text="${assortimento.data}"></dd>
+  				<hr class="border border-dzark">
   				<dt> Prodotti Assortiti </dt>
   				<dd th:each="rifornimento : ${rifList}" th:text="${rifornimento.prodotto.nome}+' ' + ${rifornimento.quantita}+' '+ ${rifornimento.prezzo}" ></dd>
+  				<dd th:each="rifornimento : ${rifList}" th:text=" ${rifornimento.quantita}"></dd>
+  				<dd th:each="rifornimento : ${rifList}" th:text="${rifornimento.prezzo}"></dd>
   			</dl>
   		</div>
   		</div>

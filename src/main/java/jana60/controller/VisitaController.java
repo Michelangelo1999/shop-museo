@@ -152,4 +152,11 @@ public class VisitaController {
 		// ritorno il conteuto di headers e lo stato http (guarda ispeziona elemento)
 		return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);
 	}
+
+	@GetMapping("/vetrinaVisite")
+	public String vetrinaVisite(Model model) {
+		model.addAttribute("visita", repo.findAll());
+		model.addAttribute("img", imageRepo.findAll());
+		return "/visite/vetrinaVisite";
+	}
 }

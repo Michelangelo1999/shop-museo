@@ -34,7 +34,7 @@ public class PrenotazioneVisitaController {
 		Visita visitaDaPrenotare = repoVisita.findById(visitaId).get();
 		nuovaPrenotazione.setVisita(visitaDaPrenotare);
 		model.addAttribute("aggiungiPrenotazione", nuovaPrenotazione);
-		return "prenotazionevisite/aggiungiprenotazionevisite";
+		return "visite/vetrinaVisite";
 	}
 
 	@PostMapping("/salva")
@@ -53,5 +53,12 @@ public class PrenotazioneVisitaController {
 			repo.save(prenotazioneAggiunta);
 			return "redirect:/";
 		}
+	}
+
+	@GetMapping("/vetrinaVisite")
+	public String vetrinaVisite(Model model) {
+		model.addAttribute("visita", repoVisita.findAll());
+		// model.addAttribute("img", imageRepo.findAll());
+		return "/visite/vetrinaVisite";
 	}
 }

@@ -9,16 +9,32 @@
 </head>
 
 <body>
-<nav th:replace="fragments/navbar :: navbar('vetrina')"></nav>
-	<h1>I nostri prodotti</h1>
+<nav th:replace="fragments/navbar :: navbar('visite')"></nav>
+	<h1>Visite Guidate</h1>
+<!--<div class="container">
+            
+                <div class="col-4 card text-center border border-radius" style="width: 400px;" th:each="visite: ${visita}">
+	  	<div class="card-body">
+	  		<p hidden th:text="${visite.id}"></p>
+		    <h4 class="card-text" th:text ="${visite.titolo}"></h4>
+		    <hr class="border border-dark">
+		    <p> Descrizione della visita:
+		    <p class="card-text " th:text ="${visite.descrizione}"></p> </p>
+		</div>
+		<div class="card-footer bg-info mb-2">
+			<a class="text-white" th:href="@{|prenotazionevisita/nuova/${visite.id}|}">Prenota adesso</aclass>
+		</div>
+    </div>
+        
+</div>-->
 <div class="container">
             <div class="flex-container">
-                <div class="col-4" th:each="p : ${prodotto}" >
+                <div class="col-4" th:each="v : ${visita}" >
                     <div class="product">
                         <p class="heart">&hearts;</p>
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item" th:if="${i.prodotto == p}" th:each="i,k : ${img}"  th:classappend="${k.index}==0 ? 'active'">
+    <div class="carousel-item"  th:each="i,k : ${img}" th:if="${i.visita == v}" th:classappend="${k.index}==0 ? 'active'">
                        <img  th:src="@{|/visite/${i.id}/content|}" alt="">
                        </div>
   <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -30,9 +46,12 @@
     <span class="visually-hidden">Next</span>
   </button> -->
 </div>
-                       <p th:text="${p.descrizione}"></p>
-                       <h3 th:text="${p.nome}"></h3>
-                       <p><span class="prezzo-rosso" th:text="${p.prezzo}+' '+ &euro;"></span></p>
+
+                       <h3 th:text ="${v.titolo}"></h3>
+                       <p th:text="${v.descrizione}"></p>
+                       <p th:text="${v.orarioInizio + ' ' + v.orarioFine}"></p>
+                       
+                       <p><span class="prezzo-rosso" th:text="${v.prezzo}+' '+ &euro;"></span></p>
                     </div>
                 </div>
         </div>

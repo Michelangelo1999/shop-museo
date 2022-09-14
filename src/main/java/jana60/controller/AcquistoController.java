@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Acquisto;
 import jana60.repository.AcquistoRepo;
@@ -116,4 +117,16 @@ public class AcquistoController {
 
 	}
 
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer acquistoId, RedirectAttributes redAtt) {
+		Optional<Acquisto> result = repoAc.findById(acquistoId);
+		if (result.isPresent()) {
+			repoAc.delete(result.get());
+			redAtt.addFlashAttribute("successSms", "L'assortimento vuoto è stato eliminato dalla lista");
+			return "redirect:/acquisto";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"L'assortimento con id " + acquistoId + " non è presente nell'ordine!");
+		}
+	}
 }

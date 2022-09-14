@@ -34,10 +34,9 @@
 
          <div id="content">
          <!-- INIZIO CONTENUTO PAGINA -->
-    <div class="container">
-  	<h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
-  		
-  		<hr/>
+         <h1 th:text="${assortimento.id != null} ? 'Modifica assortimento' : 'Nuovo assortimento'"></h1>
+         <hr class="border border-dark"/>
+    <div class="container w-75">
   		
   		<!-- form  -->
   		
@@ -59,7 +58,7 @@
   		<input type="hidden" th:field="*{id}">
   		<div class="mb-3">
 	  				<label class="form-label" for="nomeFornitore">Nome fornitore</label>
-	  				<input type="text" id="nomeFornitore" class="form-control" th:field="*{nomeFornitore}" th:errorClass="is-invalid">
+	  				<input type="text" id="nomeFornitore" class="form-control w-50" th:field="*{nomeFornitore}" th:errorClass="is-invalid">
 	  				<div th:if="${#fields.hasErrors('nomeFornitore')}" class="invalid-feedback">
 	  					<ul>
 	  						<li th:each="err : ${#fields.errors('nomeFornitore')}" th:text="${err}">
@@ -68,7 +67,7 @@
 	  			</div>
 	  			<div class="mb-3">
 	  				<label class="form-label" for="data">Data</label>
-	  				<input type="date" id="data" class="form-control" th:field="*{data}" th:errorClass="is-invalid">
+	  				<input type="date" id="data" class="form-control w-25 border-radius" th:field="*{data}" th:errorClass="is-invalid">
 	  				<div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
 	  					<ul>
 	  						<li th:each="err : ${#fields.errors('data')}" th:text="${err}">

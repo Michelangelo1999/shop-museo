@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Prodotto;
+import jana60.repository.ImageRepository;
 import jana60.repository.ProdottoRepo;
 
 @Controller
@@ -27,6 +28,8 @@ public class ProdottoController {
 
 	@Autowired
 	private ProdottoRepo repo;
+	@Autowired
+	private ImageRepository img;
 
 	@GetMapping
 	public String prodottoLista(Model m) {
@@ -77,6 +80,7 @@ public class ProdottoController {
 	@GetMapping("/vetrina")
 	public String vetrinaProdotto(Model m) {
 		m.addAttribute("prodotto", repo.findAll());
+		m.addAttribute("img", img.findAll());
 		return "/prodotto/vetrina";
 	}
 

@@ -43,23 +43,29 @@
 
 									<th>Data</th>
 									<th>Prezzo Totale</th>
+									<th> Stato </th>
 									<th>Azioni</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="acquisto : ${acquistoList}">
-									<td th:text="${acquisto.data}"></td>
-									<td th:text="${acquisto.getPrezzoTotaleCustom}"></td>
-									<td><a class="btn btn-primary"
-										th:href="@{|/acquisto/edit/${acquisto.id}|}" title="Edit">
+								<tr th:each="a : ${acquistoList}">
+									<td th:text="${a.data}"></td>
+									<td th:text="${a.getPrezzoTotaleCustom}"></td>
+									<td><span th:class="text-warning" th:if="${a.isEmpty == true}" th:text="INCOMPLETO"></span></td>
+									<td><a class="btn btn-primary" th:classappend="${a.isEmpty == true} ? text-warning : ''"
+										th:href="@{|/acquisto/edit/${a.id}|}" title="Edit">
 											<i class="fa-solid fa-pen-to-square"></i>
 									</a> <a class="btn btn-primary"
-										th:href="@{|/acquisto/detail/${acquisto.id}|}" title="Detail">
+										th:href="@{|/acquisto/detail/${a.id}|}" title="Detail">
 											<i class="fa-solid fa-file-invoice"></i>
 									</a> <a class="btn btn-primary"
-										th:href="@{|/fattura/${acquisto.id}|}" title="Detail"> <i
+										th:href="@{|/fattura/${a.id}|}" title="Detail"> <i
 											class="fa-solid fa-file-invoice-dollar"></i>
-									</a></td>
+									</a>
+									<a class="btn btn-primary" th:classappend="${a.isEmpty == true} ? text-warning : ''" th:href="@{|/acquisto/delete/${a.id}|}" title="Delete">
+	  					<i class="fa-solid fa-trash"></i>
+	  				</a>
+	  				</td>
 								</tr>
 							</tbody>
 						</table>

@@ -38,8 +38,9 @@
            
     <!-- CONTENUTO -->
 	<div class="container-fluid px-4">
-		<h1>Inserisci prodotto</h1>
-		<hr>
+		<h1>Aggiungi nuovo prodotto</h1>
+		<hr class="border border-dark">
+		<div class="container-fluid w-75">
 		<form id="crea-prodotto" th:object="${prodotto}" th:action="@{/prodotto/crea}" method="POST">
 			<input type="hidden" th:field="*{id}">
 			<ul class="col-12">
@@ -57,7 +58,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="inputPrezzo" class="form-label">Prezzo</label>
-				<input type="number" min="0" step="any" class="form-control" th:field="*{prezzo}" id="inputPrezzo">
+				<input type="number" min="0" step="0.50" class="form-control" th:field="*{prezzo}" id="inputPrezzo">
 				<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
 	  					<ul>
 	  						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}">
@@ -74,11 +75,11 @@
 	  					</ul>
 	  				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Aggiungi</button>
-			<a class="btn btn-primary" href="/prodotto">Annulla</a>
+			<button type="submit" class="btn btn-info">Salva</button>
+			<a class="btn btn-info" href="/prodotto">Annulla</a>
 		</form>
 		</div>
-
+	</div>
          </div>
 
 		<script src="/gestionale.js"></script>

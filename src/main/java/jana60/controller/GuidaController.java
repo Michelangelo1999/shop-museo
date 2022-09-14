@@ -45,6 +45,7 @@ public class GuidaController {
 	@GetMapping
 	public String schedeGuide(Model model) {
 		model.addAttribute("schedaGuida", repo.findAll());
+		model.addAttribute("imageList", imageRepo.findAll());
 		return "guide/listaguide";
 	}
 

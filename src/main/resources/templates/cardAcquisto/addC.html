@@ -104,9 +104,9 @@
 									<td id="col3">
 										<select class="form-select form-select" aria-label=".form-select example"
 											type="select" name="prodotto[]" id="dept">
-											<option selected>Apri il menù</option>
+											
 											<option th:each="prodotto : ${prodottiList}" th:value="${prodotto.id}"
-												th:text="${prodotto.nome}+' '+${prodotto.prezzo}"></option>
+												th:text="${prodotto.nome}"></option>
 										</select>
 									</td>
 									<td>

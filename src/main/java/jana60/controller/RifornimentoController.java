@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +66,10 @@ public class RifornimentoController {
 			Model model) {
 		// testo se ci sono errori di validazione
 		boolean hasErrors = br.hasErrors();
+		if (formRifornimento.getPrezzo() <= 0) {
+			br.addError(new FieldError("creaProdotto", "prezzo", "il prezzo non può essere = 0 o minore di 0"));
+			hasErrors = true;
+		}
 		if (hasErrors) {
 			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
 			// precaricata

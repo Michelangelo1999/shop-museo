@@ -43,7 +43,7 @@
             <th scope="col">Nome</th>
             <th scope="col">Descrizione</th>
             <th scope="col">Data di inizio</th>
-            <th scope="col">Orario</th>
+           
             <th scope="col">Prezzo</th>
             <th scope="col">Capienza</th>
             <th scope="col">Prenotati</th>
@@ -53,10 +53,10 @@
         </thead>
         <tbody>
           <tr th:each ="sv : ${schedaVisita}">
-            <td th:text="${sv.titolo}"></td>
+            <td class="mx-1" th:text="${sv.titolo}"></td>
             <td th:text="${sv.descrizione}"></td>
             <td th:text="${sv.orarioInizio}"></td>
-            <td th:text="${sv.orarioInizio}"></td>
+            
              <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(sv.prezzo, 1, 2)}"></td>
             <td th:text="${sv.capienza}"></td>
             <td th:text="${sv.numeroPrenotati}"></td>

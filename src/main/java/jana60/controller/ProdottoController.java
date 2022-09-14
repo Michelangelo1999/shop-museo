@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,13 @@ public class ProdottoController {
 
 	@PostMapping("/crea")
 	public String crea(@Valid @ModelAttribute("prodotto") Prodotto creaProdotto, BindingResult br) {
-		if (br.hasErrors()) {
+		boolean hasErrors = br.hasErrors();
+		if (creaProdotto.getPrezzo() <= 0) {
+			br.addError(new FieldError("creaProdotto", "prezzo", "il prezzo non può essere = 0 o minore di 0"));
+			hasErrors = true;
+		}
+
+		if (hasErrors) {
 			return "/prodotto/crea";
 		} else {
 			repo.save(creaProdotto);

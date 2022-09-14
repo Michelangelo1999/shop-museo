@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +61,13 @@ public class AcquistoController {
 		boolean validateData = true;
 		if (formAc.getId() != null) { // sono in edit non in create
 			Acquisto acBeforeUpdate = repoAc.findById(formAc.getId()).get();
-			if (acBeforeUpdate.getData().equals(formAc.getData())) {
+			if (acBeforeUpdate.getData() == (formAc.getData())) {
 				validateData = false;
 			}
+		}
+		if (formAc.getData().isAfter(LocalDate.now())) {
+			br.addError(new FieldError("formAc", "data", "La data non può essere futura!"));
+			hasErrors = true;
 		}
 		// se ho errori torno alla form
 		if (hasErrors) {

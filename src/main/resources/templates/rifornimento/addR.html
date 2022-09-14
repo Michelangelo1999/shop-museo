@@ -85,8 +85,8 @@
 						<tr>
 							<th>Quantità</th>
 							<th>Prezzo</th>
-							<th>Prodotto</th>
-							<th>Save</th>
+							<th>Seleziona Prodotto</th>
+							<th></th>
 						</tr>
 						<tr>
 
@@ -94,16 +94,18 @@
 								th:field="*{quantita}" value="" /></td>
 							<td id="col1"><input class="border border-radius mr-5 w-50" type="number" name="prezzo" step="0.50"
 								th:field="*{prezzo}" value="" /></td>
-							<td id="col2"><select class="form-select form-select"
+							<td id="col2">
+							<select class="form-select form-select"
 								aria-label=".form-select example" type="select"
 								name="prodotto[]" id="dept">
-									<option selected>Apri il menù</option>
+									
 									<option th:each="prodotto : ${prodottiList}"
 										th:value="${prodotto.id}" th:text="${prodotto.nome}"></option>
 							</select></td>
+							
 							<td>
 								<div class="bottoni">
-									<button type="submit" class="btn btn-info m-10">Save</button>
+									<button type="submit" class="btn btn-info mx-5">Save</button>
 									<!-- 	  				<a class="btn btn-primary" href="/">Cancel</a> -->
 								</div>
 							</td>

@@ -65,7 +65,8 @@ public class VisitaController {
 	public String salvaVisita(@Valid Model model, @ModelAttribute("aggiungiVisita") Visita visitaAggiunta,
 			BindingResult br) {
 		boolean hasErrors = br.hasErrors();
-		if (visitaAggiunta.getDataInizio().isBefore(LocalDateTime.now())
+		if (visitaAggiunta.getDataInizio() == null || visitaAggiunta.getDataFine() == null
+				|| visitaAggiunta.getDataInizio().isBefore(LocalDateTime.now())
 				|| visitaAggiunta.getDataFine().isBefore(visitaAggiunta.getDataInizio())) {
 			br.addError(new FieldError("visitaAggiunta", "dataInizio", "Inserimento data non valido!!"));
 			hasErrors = true;

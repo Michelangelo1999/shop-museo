@@ -36,10 +36,10 @@
     <!-- CONTENUTO -->
     <div class="container-fluid px-4">
 	<!-- Insieme delle guide turistiche-->
-		 <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col px-4" th:each ="sg : ${schedaGuida}">
+		 <div class="row">
+        <div class="col-3 px-4" th:each ="sg : ${schedaGuida}">
           <div class="card h-100">
-            <img src=".." class="card-img-top" alt="...">
+            <img th:each="i : ${imageList}" th:if="${i.guida == sg}" th:src="@{|/guide/${i.id}/content|}" class="card-img-top" alt="...">
             <div class="card-body text-center">
               <h4 class="card-title" th:text="${sg.nome}+' '+${sg.cognome}"></h4>
               <!--ul class="list-group" th:each="lvg : ${listaVisite}">

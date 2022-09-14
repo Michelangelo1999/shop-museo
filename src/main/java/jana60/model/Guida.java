@@ -26,6 +26,9 @@ public class Guida {
 	@OneToMany(mappedBy = "guida", cascade = CascadeType.ALL)
 	private List<Visita> visite;
 
+	@OneToMany(mappedBy = "guida", cascade = CascadeType.ALL)
+	private List<Image> image;
+
 	// getters and setters
 
 	public Integer getId() {

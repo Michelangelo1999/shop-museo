@@ -29,10 +29,8 @@ public class Prodotto {
 	private String descrizione;
 
 	@NotNull
-	@NotEmpty
-	private double prezzo;
 
-	private int numeroLike;
+	private double prezzo;
 
 	@OneToMany(mappedBy = "prodotto", cascade = CascadeType.ALL)
 	private List<CardAcquisto> cardAcquisti;
@@ -87,14 +85,6 @@ public class Prodotto {
 
 	public void setRifornimenti(List<Rifornimento> rifornimenti) {
 		this.rifornimenti = rifornimenti;
-	}
-
-	public int getNumeroLike() {
-		return numeroLike;
-	}
-
-	public void setNumeroLike(int numeroLike) {
-		this.numeroLike = numeroLike;
 	}
 
 	// metodi custom

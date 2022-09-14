@@ -20,7 +20,7 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active"
-							th:href="@{/accesso}">Accesso ADMIN</a>
+							th:href="@{/accesso}" sec:authorize="hasAuthority('ADMIN')">Accesso ADMIN</a>
 					</li>
 
 				</ul>

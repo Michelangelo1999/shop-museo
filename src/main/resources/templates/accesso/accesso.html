@@ -13,20 +13,37 @@
 		<h2>Sei un amministratore?</h2>
 		<h1>Accedi qui</h1>
 		<hr>
-		<div class="mb-3 ">
-			<label for="email" class="col-form-label">Inserisci la tua e-mail</label>
-			<div>
-				<input type="email" class="form-control" id="email">
+		<form>
+			<div class="mb-3 ">
+				<label for="email" class="col-form-label">Inserisci la tua e-mail</label>
+				<div>
+					<input type="text" class="form-control" id="email">
+				</div>
 			</div>
-		</div>
-		<div class="mb-3 ">
-			<label for="password" class="col-form-label">Inserisci la tua password</label>
-			<div>
-				<input type="password" class="form-control" id="password">
+			<div class="mb-3 ">
+				<label for="password" class="col-form-label">Inserisci la tua password</label>
+				<div>
+					<input type="password" class="form-control" id="password">
+				</div>
 			</div>
-		</div>
+			<div>
+				<button id="myButton" sec:authorize="hasAuthority('ADMIN')" type="submit"
+					class="btn btn-primary">Accedi</button>
+				<!-- <a href="/admin" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a> -->
+			</div>
+		</form>
 	</div>
-
+	<!--
+	<div sec:authorize="isAuthenticated()">
+		<p>Logged user: <span sec:authentication="nome"></span></p>
+		<p>Roles: <span sec:authentication="principal.authorities"></span></p>
+		<a href="/logout">Fai Logout</a>
+	</div> -->
+	<script type="text/javascript">
+		document.getElementById("myButton").onclick = function () {
+			location.href = "/gestionale";
+		};
+	</script>
 </body>
 
 </html>

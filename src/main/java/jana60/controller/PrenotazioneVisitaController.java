@@ -34,7 +34,8 @@ public class PrenotazioneVisitaController {
 		Visita visitaDaPrenotare = repoVisita.findById(visitaId).get();
 		nuovaPrenotazione.setVisita(visitaDaPrenotare);
 		model.addAttribute("aggiungiPrenotazione", nuovaPrenotazione);
-		return "visite/vetrinaVisite";
+		model.addAttribute("visita", repoVisita.findAll());
+		return "/prenotazionevisite/aggiungiprenotazionevisite";
 	}
 
 	@PostMapping("/salva")

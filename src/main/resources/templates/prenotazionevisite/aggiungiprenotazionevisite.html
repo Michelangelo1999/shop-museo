@@ -6,6 +6,7 @@
     <title>Global Museum</title>
   </head>
   <body>
+    <div class="container w-75 text-center">
     <div class="container-custom">
     <form
     		id="visita-form"
@@ -17,13 +18,13 @@
 			<input type="hidden" th:field="*{id}">
 		<!--id field-->
 		<!-- title field-->
-        <div class="row">
-            <div class="title-style" th:text="${aggiungiPrenotazione.visita.titolo}"></div>
+        <div class="text-center mb-5">
+            <h1 class="title-style text-center mt-5" th:text="${aggiungiPrenotazione.visita.titolo}"></h1>
             <input type="hidden" th:value="${aggiungiPrenotazione.visita}" th:field="*{visita}">
         </div>
         <!-- title field-->
         <!-- nome field-->
-        <div class="row">
+        <div class="row mt-4">
             <div class="mb-3 col-6">
   				<label class="form-label" for="name">Nome</label>
   				<input type="text" id="name" class="form-control" th:field="*{nome}" th:errorClass="is-invalid">
@@ -48,7 +49,7 @@
         </div>
         <!-- cognome field-->
         <!-- telefono field-->
-        <div class="row">
+        <div class="row mt-4">
             <div class="mb-3 col-6">
   				<label class="form-label" for="telephone">Numero telefonico</label>
   				<input type="tel" id="telephone" class="form-control" th:field="*{telefono}" th:errorClass="is-invalid">
@@ -72,11 +73,12 @@
         </div>
         <!-- Biglietti field-->
         <div class="row">
-            <div class="col-4">
-                <button type="submit" class="btn btn-info">Conferma la prenotazione</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info text-center mt-4">Conferma la prenotazione</button>
             </div>
         </div>
     </form>
+    </div>
     </div>
 
 

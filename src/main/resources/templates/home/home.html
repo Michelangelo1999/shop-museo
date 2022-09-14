@@ -22,28 +22,7 @@
     <!-- fine griglia iniziale -->
     <hr class="centrale">
     <!-- inizio griglia centrale -->
-    <!-- CARD PRENOTAZIONE VISITE --> 
-    <div class="container d-flex flex-row">
-    <div class="row text-center">
-    <div class="col-4 card text-center border border-radius" style="width: 400px;" th:each="visite: ${insiemeVisite}">
-	  	<div class="card-body">
-	  		<p hidden th:text="${visite.id}"></p>
-		    <h4 class="card-text" th:text ="${visite.titolo}"></h4>
-		    <hr class="border border-dark">
-		    <p> Descrizione della visita:
-		    <p class="card-text " th:text ="${visite.descrizione}"></p> </p>
-		</div>
-		<div class="card-footer bg-info mb-2">
-			<a class="text-white" th:href="@{|prenotazionevisita/nuova/${visite.id}|}">Prenota adesso</aclass>
-		</div>
-    </div>
-
-    </div>
-  </div>
-  
-  
-  
-    </div>
+ 
     <hr class="centrale">
   </main>
     <th:block th:replace="fragments/footer :: footer"></th:block>

@@ -19,7 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Assortimento;
-import jana60.model.CardAcquisto;
 import jana60.model.Rifornimento;
 import jana60.repository.AssortimentoRepo;
 import jana60.repository.ProdottoRepo;
@@ -117,16 +116,17 @@ public class AssortimentoController {
 		}
 
 	}
-	
+
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Integer assortimentoId, RedirectAttributes redAtt) {
 		Optional<Assortimento> result = repoAss.findById(assortimentoId);
-		if(result.isPresent()) {
+		if (result.isPresent()) {
 			repoAss.delete(result.get());
 			redAtt.addFlashAttribute("successSms", "L'assortimento vuoto è stato eliminato dalla lista");
 			return "redirect:/assortimento";
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "L'assortimento con id " + assortimentoId + " non è presente nell'ordine!");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"L'assortimento con id " + assortimentoId + " non è presente nell'ordine!");
 		}
 	}
 }

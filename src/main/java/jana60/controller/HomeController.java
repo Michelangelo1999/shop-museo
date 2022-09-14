@@ -14,7 +14,7 @@ public class HomeController {
 
 	@Autowired
 	private VisitaRepository visiteRepo;
-	
+
 	@GetMapping
 	private String home(Model model) {
 		model.addAttribute("insiemeVisite", visiteRepo.findAll());

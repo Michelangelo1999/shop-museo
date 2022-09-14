@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 	<h1>Index</h1>
-	<a href="/gestionale" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a>
+	<a href="/admin" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a>
 	<a href="/user" sec:authorize="hasAuthority('USER')">Go to user area</a>
 	<!--  utenti anonimi -->
 	<div sec:authorize="isAnonymous()">

@@ -86,7 +86,7 @@
 	            </div>
 				<!--prezzo-->
 	        </div>
-	        <div class="row justify-content-center">
+	        <div class="row justify-content-center mt-4">
 	            <div class="col-8">
 	                <label for="descrizionevisita" class="form-label">Descrizione Visita Guidata</label>
 	                <input type="text" class="form-control" id="descrizionevisita" th:field="*{descrizione}" th:errorClass="is-invalid"></input>
@@ -97,7 +97,7 @@
 		  					</ul>
   				</div>
 	        </div>
-	        <div class="row justify-content-center">
+	        <div class="row justify-content-center mt-4">
 	        	<!--orario di inizio-->
 	            <div class="col-4">
 	                <label for="orarioinizio">Giorno e orario inizio:</label>
@@ -117,25 +117,24 @@
 		  					<ul>
 		  						<li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
 		  					</ul>
-<<<<<<< HEAD
+
 					</div>
 	            </div>
 	            <!--orario di fine-->
 	            
 	        </div>
-	        <div class="row justify-content-center">
+	        <div class="row mt-4 justify-content-center">
 	        	<!--seleziona guida-->
-	            <select th:field="*{guida}" class="col-3">
+	        	<label class="col-2" for="guida">Seleziona una guida:</label>
+	            <select th:field="*{guida}" class="col-2">
 				    <option th:each="ldg : ${listaGuide}" th:value="${ldg.id}" th:text="${ldg.nome}">
 			    	</option>
 				</select>	
 				<!--seleziona guida-->
-		        <div class"col-5">
-		        	<!--sezione foto -->
-		        </div>
+		        
 	        </div>
 	        
-	        <div class="row justify-content-center">
+	        <div class="row justify-content-center mt-4">
 	        	<div class="col-2">
 	        		<button type="submit" class="btn btn-success">Save</button>
   					<a class="btn btn-danger" th:href="@{/visite}">Cancel</a>

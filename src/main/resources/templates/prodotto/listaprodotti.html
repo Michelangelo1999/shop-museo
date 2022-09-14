@@ -46,23 +46,28 @@
 					<th>Nome</th>
 					<th>Descrizione</th>
 					<th>Prezzo</th>
-					<th></th>
+
 					
-					
+					<th>Azioni</th>
+
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="pr : ${prodotto}">
 					<td th:text="${pr.nome}"></td>
+
 					<td class="w-50 pr-5"  th:text="${pr.descrizione}"></td>
 					<td class="text-left" th:text="&euro; + ' ' + ${#numbers.formatDecimal(pr.prezzo, 1, 2)}"></td>
-					<td>
+					
+					
+					 <td>
+
 						<a class="btn btn-primary" th:href="@{|prodotto/modifica/${pr.id}|}" title="Modifica"><i class="fa-solid fa-pen-to-square"></i></a>
 						<a class="btn btn-primary" th:href="@{|/image/${pr.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
 						<a class="btn btn-primary" th:href="@{|prodotto/elimina/${pr.id}|}" title="Elimina"
 							onclick="return confirm('Sei sicuro?')"><i class="fa-solid fa-trash"></i></a>
 							
-					</td>
+					</td> 
 				</tr>
 			</tbody>
 		</table>

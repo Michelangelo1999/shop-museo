@@ -25,5 +25,11 @@ insert into prodotto(nome, descrizione, prezzo) values("Riproduzione", "Riproduz
 insert into prodotto(nome, descrizione, prezzo) values("Biglietto", "Ingresso omaggio da regalare", 6.99);
 insert into prodotto(nome, descrizione, prezzo) values("Libro", "Spiegazione dettagliata delle opere del museo", 9.99);
 
-
+INSERT INTO `role`(id, nome) VALUES (1,'ADMIN');
+INSERT INTO `role`(id, nome) VALUES (2,'USER');
+INSERT INTO `user`(id, username, `password`) VALUES (1,'user', '{noop}user');
+INSERT INTO `user`(id, username, `password`) VALUES (2,'admin', '{noop}admin');
+INSERT INTO user_ruoli(user_id, ruoli_id) VALUES (1, 2);
+INSERT INTO user_ruoli(user_id, ruoli_id) VALUES (2, 1);
+INSERT INTO user_ruoli(user_id, ruoli_id) VALUES (2, 2);
 

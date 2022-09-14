@@ -1,5 +1,5 @@
-
 <nav th:fragment="navbar(current)" id="sidebar" class="custom-color-sidebar">
+
    <ul class="list-unstyled components">
        <li>
           <a href="/gestionale"><i class="fas fa-home mr-3"></i>Gestionale</a>
@@ -72,10 +72,17 @@
       <li>
       <a href="#voce-8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-user mr-3"></i>Admin</a>
          <ul class="collapse list-unstyled" id="voce-8">
-                <li>
-                    <a href="/">Torna alla home</a>
-                </li>
+               <li>
+			<a href="#voce-8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Admin</a>
+			<ul class="collapse list-unstyled" id="voce-8">
+				<li>
+					<a th:href="@{/logout}">Fai Logout</a>
+				</li>
+			</ul>
+		</li>
             </ul>
        </li>
    </ul>
+
 </nav>

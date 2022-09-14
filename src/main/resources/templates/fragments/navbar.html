@@ -1,5 +1,6 @@
 
 <body>
+
     <!-- NAVBAR HOME -->
     <nav th:fragment="navbar(current)" class="navbar navbar-expand-lg navbar-light bg-white mb-3">
         <div class="container-fluid">
@@ -25,7 +26,8 @@
               </li>
               <li class="nav-item">
              
-                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" href="/gestionale">Gestionale</a>
+                <a class="nav-link" th:classappend="${current == 'gestionale'} ? active : not-active" 
+                th:href="@{/accesso}" sec:authorize="hasAuthority('ADMIN')">Gestionale</a>
               
               </li>
               
@@ -34,4 +36,5 @@
         </div>
       </nav>
       <!-- fine navbar -->
+
 </body>

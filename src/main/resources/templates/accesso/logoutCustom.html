@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments/risorse :: risorse-head"></th:block>
+    <link rel="stylesheet" th:href="@{/gestionale/gestionale.css}"> 
+    <title>Global Museum</title> 
+  </head>
+  <body>
+  <form class="form-signin" method="post" th:action="@{/logout/logout}">
+        <h2 class="form-signin-heading">Are you sure you want to log out?, stronzooooooo</h2>
+<input name="_csrf" type="hidden" value="01887da9-ad20-4274-be4a-f236982b4632">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" href="/">Log Out</button>
+      </form>
+      
+      
+      
+  </body>
+</html>

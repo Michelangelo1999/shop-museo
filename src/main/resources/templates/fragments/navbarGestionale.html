@@ -1,84 +1,90 @@
-
 <nav th:fragment="navbar(current)" id="sidebar" class="custom-color-sidebar">
-    <div class="sidebar-header">
-         <span class="size-font-sidebar"><span class="mt-4">Global Museum</span></span>
-   </div>
-   <ul class="list-unstyled components">
-       <li>
-          <a href="/gestionale"><i class="fas fa-home mr-3"></i>Gestionale</a>
-      </li>
-      <li>
-         <a href="#voce-2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Prodotti</a>
-         <ul class="collapse list-unstyled" id="voce-2">
-                <li>
-                    <a href="/prodotto">Lista dei prodotti</a>
-                </li>
-                <li>
-                    <a href="/prodotto/crea">Aggiungi nuovo prodotto</a>
-                </li>
-            </ul>
-       </li>
-       <li>
-           <a href="#voce-3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Assortimento</a>
-          <ul class="collapse list-unstyled" id="voce-3">
-                  <li>
-                      <a href="/assortimento">Lista degli assortimenti</a>
-                  </li>
-                  <li>
-                      <a href="/assortimento/add">Aggiungi nuovo assortimento</a>
-                  </li>
-              </ul>
-       </li>
-       <li>
-          <a href="#voce-4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Acquisto</a>
-         <ul class="collapse list-unstyled" id="voce-4">
-             <li>
-                 <a href="/acquisto">Lista degli acquisti</a>
-             </li>
-             <li>
-                 <a href="/acquisto/add">Aggiungi nuovo acquisto</a>
-             </li>
-             
-         </ul>
-      </li>
-      <li>
-          <a href="#voce-5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Magazzino</a>
-         <ul class="collapse list-unstyled" id="voce-5">
-             <li>
-                 <a href="/magazzino">Magazzino</a>
-             </li>
-         </ul>
-      </li>
-   <li>
-         <a href="#voce-6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Guide Turistiche</a>
-         <ul class="collapse list-unstyled" id="voce-6">
-                <li>
-                    <a href="/guide">Lista delle guide turistiche</a>
-                </li>
-                <li>
-                    <a href="/guide/aggiungiguida">Aggiungi nuova guida turistica</a>
-                </li>
-            </ul>
-       </li>
-     
-   <li>
-          <a href="#voce-7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Visite Guidate</a>
-         <ul class="collapse list-unstyled" id="voce-7">
-             <li>
-                 <a href="/visite">Lista delle visite guidate</a>
-             </li>
-             <li>
-                 <a href="/visite/aggiungivisita">Aggiungi nuova visita guidata</a>
-             </li>
-         </ul>
-      </li>
-      <li>
-      <a href="#voce-8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Admin</a>
-         <ul class="collapse list-unstyled" id="voce-8">
-                <li>
-                    <a href="/">Torna alla home</a>
-                </li>
-            </ul>
-       </li>
-   </ul>
+	<div class="sidebar-header">
+		<span class="size-font-sidebar"><span class="mt-4">Global Museum</span></span>
+	</div>
+	<ul class="list-unstyled components">
+		<li>
+			<a href="/gestionale"><i class="fas fa-home mr-3"></i>Gestionale</a>
+		</li>
+		<li>
+			<a href="#voce-2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Prodotti</a>
+			<ul class="collapse list-unstyled" id="voce-2">
+				<li>
+					<a href="/prodotto">Lista dei prodotti</a>
+				</li>
+				<li>
+					<a href="/prodotto/crea">Aggiungi nuovo prodotto</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#voce-3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Assortimento</a>
+			<ul class="collapse list-unstyled" id="voce-3">
+				<li>
+					<a href="/assortimento">Lista degli assortimenti</a>
+				</li>
+				<li>
+					<a href="/assortimento/add">Aggiungi nuovo assortimento</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#voce-4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Acquisto</a>
+			<ul class="collapse list-unstyled" id="voce-4">
+				<li>
+					<a href="/acquisto">Lista degli acquisti</a>
+				</li>
+				<li>
+					<a href="/acquisto/add">Aggiungi nuovo acquisto</a>
+				</li>
+
+			</ul>
+		</li>
+		<li>
+			<a href="#voce-5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Magazzino</a>
+			<ul class="collapse list-unstyled" id="voce-5">
+				<li>
+					<a href="/magazzino">Magazzino</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#voce-6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Guide Turistiche</a>
+			<ul class="collapse list-unstyled" id="voce-6">
+				<li>
+					<a href="/guide">Lista delle guide turistiche</a>
+				</li>
+				<li>
+					<a href="/guide/aggiungiguida">Aggiungi nuova guida turistica</a>
+				</li>
+			</ul>
+		</li>
+
+		<li>
+			<a href="#voce-7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Visite Guidate</a>
+			<ul class="collapse list-unstyled" id="voce-7">
+				<li>
+					<a href="/visite">Lista delle visite guidate</a>
+				</li>
+				<li>
+					<a href="/visite/aggiungivisita">Aggiungi nuova visita guidata</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#voce-8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+					class="fas fa-cog mr-3"></i>Admin</a>
+			<ul class="collapse list-unstyled" id="voce-8">
+				<li>
+					<a th:href="@{/logout}">Fai Logout</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </nav>

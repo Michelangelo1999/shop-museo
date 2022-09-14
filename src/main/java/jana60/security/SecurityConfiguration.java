@@ -38,7 +38,7 @@ public class SecurityConfiguration {
 				.hasAuthority("ADMIN").antMatchers("/guide").hasAuthority("ADMIN").antMatchers("/magazzino")
 				.hasAuthority("ADMIN").antMatchers("/prodotto").hasAuthority("ADMIN").antMatchers("/rifornimento")
 				.hasAuthority("ADMIN").antMatchers("/visite").hasAuthority("ADMIN").antMatchers("/").permitAll().and()
-				.formLogin().and().logout();
+				.formLogin().and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 		return http.build();
 	}
 

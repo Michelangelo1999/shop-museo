@@ -11,7 +11,7 @@ public class AccessoController {
 
 	@GetMapping
 	private String accesso() {
-		return "/accesso/accesso";
+		return "/gestionale/gestionale";
 	}
 
 	@PostMapping("/entra")

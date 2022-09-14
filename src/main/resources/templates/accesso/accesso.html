@@ -1,49 +1,17 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<th:block th:replace="fragments/risorse :: risorse-head"></th:block>
-	<title>Accesso</title>
-</head>
-
-<body>
-	<div class="text-center w-25 mx-auto">
-		<h2>Sei un amministratore?</h2>
-		<h1>Accedi qui</h1>
-		<hr>
-		<form>
-			<div class="mb-3 ">
-				<label for="email" class="col-form-label">Inserisci la tua e-mail</label>
-				<div>
-					<input type="text" class="form-control" id="email">
-				</div>
-			</div>
-			<div class="mb-3 ">
-				<label for="password" class="col-form-label">Inserisci la tua password</label>
-				<div>
-					<input type="password" class="form-control" id="password">
-				</div>
-			</div>
-			<div>
-				<button id="myButton" sec:authorize="hasAuthority('ADMIN')" type="submit"
-					class="btn btn-primary">Accedi</button>
-				<!-- <a href="/admin" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a> -->
-			</div>
-		</form>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<h1>Index</h1>
+	<a href="/gestionale" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a>
+	<a href="/user" sec:authorize="hasAuthority('USER')">Go to user area</a>
+	<!--  utenti anonimi -->
+	<div sec:authorize="isAnonymous()">
+		<p>Benvenuto</p>
+		<a href="/login">Fai Login</a>
 	</div>
-	<!--
+	<!-- utenti autenticati -->
 	<div sec:authorize="isAuthenticated()">
-		<p>Logged user: <span sec:authentication="nome"></span></p>
+		<p>Logged user: <span sec:authentication="name"></span></p>
 		<p>Roles: <span sec:authentication="principal.authorities"></span></p>
 		<a href="/logout">Fai Logout</a>
-	</div> -->
-	<script type="text/javascript">
-		document.getElementById("myButton").onclick = function () {
-			location.href = "/gestionale";
-		};
-	</script>
-</body>
-
+	</div>
 </html>

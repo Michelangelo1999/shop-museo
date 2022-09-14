@@ -9,41 +9,41 @@
 </head>
 
 <body>
-	<div class="text-center w-25 mx-auto">
-		<h2>Sei un amministratore?</h2>
-		<h1>Accedi qui</h1>
-		<hr>
-		<form>
-			<div class="mb-3 ">
-				<label for="email" class="col-form-label">Inserisci la tua e-mail</label>
-				<div>
-					<input type="text" class="form-control" id="email">
-				</div>
-			</div>
-			<div class="mb-3 ">
-				<label for="password" class="col-form-label">Inserisci la tua password</label>
-				<div>
-					<input type="password" class="form-control" id="password">
-				</div>
-			</div>
-			<div>
-				<button id="myButton" sec:authorize="hasAuthority('ADMIN')" type="submit"
-					class="btn btn-primary">Accedi</button>
-				<!-- <a href="/admin" sec:authorize="hasAuthority('ADMIN')">Go to admin area</a> -->
-			</div>
-		</form>
-	</div>
-	<!--
-	<div sec:authorize="isAuthenticated()">
-		<p>Logged user: <span sec:authentication="nome"></span></p>
-		<p>Roles: <span sec:authentication="principal.authorities"></span></p>
-		<a href="/logout">Fai Logout</a>
-	</div> -->
-	<script type="text/javascript">
-		document.getElementById("myButton").onclick = function () {
-			location.href = "/gestionale";
-		};
-	</script>
+	<h1>Login</h1>
+   <form name='f' action="login" method='POST'>
+      <table>
+         <tr>
+            <td>User:</td>
+            <td><input type='text' name='username' value=''></td>
+         </tr>
+         <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password' /></td>
+         </tr>
+         <tr>
+            <td><button type="submit" class="btn btn-primary" th:href:"@{/gestionale}">Submit</button></td>
+         </tr>
+      </table>
+  </form>
+  <script type="text/javascript">
+function validate() {
+    if (document.f.username.value == "" && document.f.password.value == "") {
+        alert("Username and password are required");
+        document.f.username.focus();
+        return false;
+    }
+    if (document.f.username.value == "") {
+        alert("Username is required");
+        document.f.username.focus();
+        return false;
+    }
+    if (document.f.password.value == "") {
+	alert("Password is required");
+	document.f.password.focus();
+        return false;
+    }
+}
+</script>
 </body>
 
 </html>

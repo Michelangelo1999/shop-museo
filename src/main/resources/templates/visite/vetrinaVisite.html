@@ -19,7 +19,7 @@
                         <p class="heart">&hearts;</p>
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item"  th:each="i,k : ${img}" th:if="${i.visita == v}" th:classappend="${k.index}==0 ? 'active'">
+    <div class="carousel-item"  th:each="i,k : ${img}" th:if="${i.visita == v}" th:classappend="${k.index == i.id-1} ? 'active'">
                        <img  th:src="@{|/visite/${i.id}/content|}" alt="">
                        </div>
   <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

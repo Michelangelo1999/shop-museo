@@ -34,10 +34,12 @@
          <!-- INIZIO CONTENUTO PAGINA -->
             
     <!-- CONTENUTO -->
-    <div class="container-fluid px-4">
+    <h1> Le Guide Turistiche </h1>
+    <hr class="border border-dark">
+    <div class="container-fluid p-4">
 	<!-- Insieme delle guide turistiche-->
 		 <div class="row">
-        <div class="col-3 px-4" th:each ="sg : ${schedaGuida}">
+        <div class="col-3 p-4" th:each ="sg : ${schedaGuida}">
           <div class="card h-100">
             <img th:each="i : ${imageList}" th:if="${i.guida == sg}" th:src="@{|/guide/${i.id}/content|}" class="card-img-top" alt="...">
             <div class="card-body text-center">

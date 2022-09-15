@@ -43,8 +43,11 @@ public class FatturaController {
 			fattura.setAcquisto(acquistoDafatturare);
 			fattura.setDataEmissione(acquistoDaFatturare.get().getData());
 			model.addAttribute("fattura", fattura);
+
 			return "acquisto/fattura";
+
 		}
+
 		return "/acquisto/fattura";
 	}
 
@@ -58,8 +61,12 @@ public class FatturaController {
 					"La data deve corrispondere alla data dell'acquisto!!"));
 			hasErrors = true;
 		}
+		if (formFattura.getAcquisto().getId() != null) {
+			br.addError(new FieldError("formFattura", "id", "Fattura già emessa!"));
+			hasErrors = true;
+		}
 		if (hasErrors) {
-			// se ci sono errori non salvo l'assortimento su database ma ritorno alla form
+			// se ci sono errori non salvo la fattura su database ma ritorno alla form
 			// precaricata
 			model.addAttribute("acquistiList", repoAc.findAll());
 

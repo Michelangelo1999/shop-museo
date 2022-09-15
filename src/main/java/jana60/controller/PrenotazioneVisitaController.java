@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.PrenotazioneVisita;
 import jana60.model.Visita;
@@ -40,7 +41,8 @@ public class PrenotazioneVisitaController {
 
 	@PostMapping("/salva")
 	public String salvaPrenotazione(
-			@Valid @ModelAttribute("aggiungiPrenotazione") PrenotazioneVisita prenotazioneAggiunta, BindingResult br) {
+			@Valid @ModelAttribute("aggiungiPrenotazione") PrenotazioneVisita prenotazioneAggiunta, BindingResult br,
+			RedirectAttributes redAtt) {
 		boolean hasErrors = br.hasErrors();
 		if (prenotazioneAggiunta.getVisita().getNumeroPrenotati()
 				+ prenotazioneAggiunta.getNumeriBiglietti() >= prenotazioneAggiunta.getVisita().getCapienza()) {
@@ -52,7 +54,8 @@ public class PrenotazioneVisitaController {
 			return "prenotazionevisite/aggiungiprenotazionevisite";
 		} else {
 			repo.save(prenotazioneAggiunta);
-			return "redirect:/";
+			redAtt.addFlashAttribute("successSms", "La prenotazione è stata effettuata");
+			return "redirect:/visite/vetrinaVisite";
 		}
 	}
 

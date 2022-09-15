@@ -35,9 +35,10 @@
 			<div class="container flex-container">
 
 				<h1>Gli acquisti</h1>
+				<hr class="border border-dark">
 				<div class="container text-center w-75 mt-3">
 					<div>
-						<table class="table mb-5">
+						<table class="table table-striped mb-5">
 							<thead>
 								<tr>
 
@@ -50,14 +51,14 @@
 							<tbody>
 								<tr th:each="a : ${acquistoList}">
 									<td th:text="${a.data}"></td>
-									<td th:text="${a.getPrezzoTotaleCustom}"></td>
+									<td th:text="&euro; + ' '+${#numbers.formatDecimal(a.getPrezzoTotaleCustom,1,2)}"></td>
 									<td><span th:class="text-warning" th:if="${a.isEmpty == true}" th:text="INCOMPLETO"></span></td>
 									<td><a class="btn btn-primary" th:classappend="${a.isEmpty == true} ? text-warning : ''"
 										th:href="@{|/acquisto/edit/${a.id}|}" title="Edit">
 											<i class="fa-solid fa-pen-to-square"></i>
 									</a> <a class="btn btn-primary"
 										th:href="@{|/acquisto/detail/${a.id}|}" title="Detail">
-											<i class="fa-solid fa-file-invoice"></i>
+											<i class="fa-solid fa-circle-info"></i>
 									</a> <a class="btn btn-primary"
 										th:href="@{|/fattura/${a.id}|}" title="Detail"> <i
 											class="fa-solid fa-file-invoice-dollar"></i>

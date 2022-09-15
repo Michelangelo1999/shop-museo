@@ -28,8 +28,6 @@ public class Prodotto {
 	@Lob
 	private String descrizione;
 
-	@NotNull
-
 	private double prezzo;
 
 	@OneToMany(mappedBy = "prodotto", cascade = CascadeType.ALL)

@@ -56,10 +56,10 @@
       <div class="card-body">
         <h5 class="card-title" th:text="${imageForm.visita.titolo}"></h5>
         <p class="card-text" th:text="${imageForm.visita.descrizione}"></p>
-        <p class="card-text" th:text="${imageForm.visita.dataInizio}"></p>
-        <p class="card-text" th:text="${imageForm.visita.dataFine}"></p>
-        <h6 class="card-title" th:text="'€ ' + ${imageForm.visita.prezzo}"></h6>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p class="card-text" th:text="${imageForm.visita.orarioInizio}"></p>
+        <p class="card-text" th:text="${imageForm.visita.orarioFine}"></p>
+        <h6 class="card-title" th:text="'€ ' + ${#numbers.formatDecimal(imageForm.visita.prezzo,1,2)}"></h6>
+     
       </div>
     </div>
   </div>

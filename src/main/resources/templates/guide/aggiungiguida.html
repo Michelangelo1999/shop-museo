@@ -35,7 +35,10 @@
          <!-- INIZIO CONTENUTO PAGINA -->
             
     <!-- CONTENUTO -->
-   <div class="container-fluid px-4">
+    <h1 th:if="${aggiungiGuida.id == null}"> Aggiungi Guida Turistica </h1>
+    <h1 th:if="${aggiungiGuida.id != null}"> Modifica Guida Turistica </h1>
+    <hr class="border border-dark">
+   <div class="container-fluid p-4">
         <form 
 			    	id="guida-form"
 			    	th:object="${aggiungiGuida}"
@@ -80,7 +83,7 @@
 			</div>
 			<div class="col-4 p-3">
 
-				<h4>Visite Guidate</h4>
+				<!-- <h4>Visite Guidate</h4>
 					<div class="form-check" th:each="lvg : ${listaVisite}">
 					  <input class="form-check-input" th:field="*{visite}" type="checkbox" th:id="|category_${lvg.id}|" th:value="${lvg.id}">
 					  <label class="form-check-label" th:for="|category_${lvg.id}|" th:text="${lvg.titolo}"></label>
@@ -89,7 +92,7 @@
 						</div>
 						<div>
 							<button type="submit" class="btn btn-info">Salva</button>
-							<a class="btn btn-danger" th:href="@{/guide}">Cancella</a>
+							<a class="btn btn-dark text-white" th:href="@{/guide}">Cancella</a>
 						</div>
 					</div>
 				</form>

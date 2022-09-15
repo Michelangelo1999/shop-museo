@@ -1,5 +1,6 @@
 package jana60.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,6 +64,10 @@ public class AssortimentoController {
 			if (assBeforeUpdate.getNomeFornitore().equals(formAssortimento.getNomeFornitore())) {
 				validateNome = false;
 			}
+		}
+		if (formAssortimento.getData().isAfter(LocalDate.now())) {
+			br.addError(new FieldError("formAssortimento", "data", "La data non può essere futura!"));
+			hasErrors = true;
 		}
 
 		if (hasErrors) {

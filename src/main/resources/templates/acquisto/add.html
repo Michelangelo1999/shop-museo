@@ -37,7 +37,8 @@
             
   	<div class="container-fluid px-4">
 
-  		<h1>Nuovo Acquisto</h1>
+  		<h1 th:if="${acquisto.id == null}">Nuovo Acquisto</h1>
+  		<h1 th:if="${acquisto.id != null}">Modifica Acquisto</h1>
   		
   		<hr/>
   		<!-- form che gestisce l'attributo book -->
@@ -70,8 +71,8 @@
 	</table> 
 	
 	<div class="bottoni">
-	  				<button type="submit" class="btn btn-primary">Avanti</button>
-	  				<a class="btn btn-primary" href="/">Cancel</a>
+	  				<button type="submit" class="btn btn-info mt-3">Avanti</button>
+	  				<a class="btn btn-info mt-3" href="/">Cancel</a>
 	  			</div>
   		</form>
   	</div>

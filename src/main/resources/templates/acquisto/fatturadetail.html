@@ -111,18 +111,18 @@
 						<div class="invoice-price-left">
 							<div class="invoice-price-row">
 								<div class="sub-price">
-  							<small>SUBTOTAL</small> <span class="text-inverse" th:text="${'€' + fattura.acquisto.getPrezzoTotaleCustom}"></span>
+  							<small>SUBTOTAL</small> <span class="text-inverse" th:text="&euro; + ' '+${#numbers.formatDecimal(fattura.acquisto.getPrezzoTotaleCustom,1,2)}"></span>
 								</div>
 								<div class="sub-price">
 									<i class="fa fa-plus text-muted"></i>
 								</div>
 								<div class="sub-price">
-									<small>PAYPAL FEE (2%)</small> <span class="text-inverse" th:text="'€ ' + ${fattura.acquisto.getPrezzoTotaleCustom/100}"></span>
+									<small>PAYPAL FEE (2%)</small> <span class="text-inverse" th:text="&euro; + ' '+ ${#numbers.formatDecimal(fattura.acquisto.getPrezzoTotaleCustom/100,1,2)}"></span>
 								</div>
 							</div>
 						</div>
 						<div class="invoice-price-right">
-							<small>TOTAL</small> <span class="f-w-600" th:text="'€ ' + ${fattura.acquisto.getPrezzoTotaleCustom/3 + (fattura.acquisto.getPrezzoTotaleCustom/100)/2}"></span>
+							<small>TOTAL</small> <span class="f-w-600" th:text="&euro; + ' '+${#numbers.formatDecimal(fattura.acquisto.getPrezzoTotaleCustom/3 + (fattura.acquisto.getPrezzoTotaleCustom/100)/2,1,2)}"></span>
 						</div>
 					</div>
 					<!-- end invoice-price -->

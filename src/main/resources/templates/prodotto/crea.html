@@ -38,7 +38,8 @@
            
     <!-- CONTENUTO -->
 	<div class="container-fluid px-4">
-		<h1>Aggiungi nuovo prodotto</h1>
+		<h1 th:if="${prodotto.id == null}">Aggiungi nuovo prodotto</h1>
+		<h1 th:if="${prodotto.id != null}">Modifica prodotto</h1>
 		<hr class="border border-dark">
 		<div class="container-fluid w-75">
 		<form id="crea-prodotto" th:object="${prodotto}" th:action="@{/prodotto/crea}" method="POST">
@@ -67,7 +68,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="inputDescrizione" class="form-label">Descrizione</label>
-				<textarea type="text" class="form-control" th:field="*{descrizione}" id="inputDescrizione">Inserisci una
+				<textarea placeholder="Aggiungi una descrizione" type="text" class="form-control" th:field="*{descrizione}" id="inputDescrizione">Inserisci una
 					descrizione</textarea>
 					<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
 	  					<ul>

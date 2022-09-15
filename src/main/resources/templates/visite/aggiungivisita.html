@@ -39,7 +39,10 @@
             
     <!-- CONTENUTO -->
    <div class="container-fluid px-4">
-    <div class="container">
+   <h1 th:if="${aggiungiVisita.id == null}">Aggiungi Visita Guidata </h1>
+   <h1 th:if="${aggiungiVisita.id != null}">Modifica Visita Guidata </h1>
+   <hr class="border border-dark">
+    <div class="container mt-5">
     	<form
     			id="visita-form"
     			th:object="${aggiungiVisita}"

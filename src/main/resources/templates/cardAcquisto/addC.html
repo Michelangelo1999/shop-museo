@@ -46,7 +46,7 @@
 
 				<h1>Nuovo Acquisto</h1>
 
-				<hr />
+				<hr class="border border-dark" />
 
 
 		<h2 class="mt-4">Carrello</h2>
@@ -79,6 +79,12 @@
 
 		<form id="form-cardAcquisto" th:object="${cardAcquisto}"
 			th:action="@{/card/add}" method="POST" class="row mt-4">
+			<ul class="col-12">
+		      <li 
+		         th:each="err : ${#fields.allErrors()}" 
+		         th:text="${err}">
+		      </li>
+			</ul>
 			<div class="container">
 				<input type="hidden" th:field="*{id}"> <input type="hidden"
 					th:value="*{acquisto}" th:field="*{acquisto}">
@@ -91,10 +97,10 @@
 								<tr>
 									<th>Quantità</th>
 									<th>Prodotto</th>
-									<th></th>
+									
 								</tr>
 								<tr>
-									<td id="col2"><input min="1" type="number" name="quantita" th:field="*{quantita}"
+									<td class="ml-2" id="col2"><input class="border border-radius mr-2 w-75" min="1" type="number" name="quantita" th:field="*{quantita}"
 											value="" /></td>
 									<div th:if="${#fields.hasErrors('quantita')}" class="invalid-feedback">
 										<ul>
@@ -110,7 +116,7 @@
 										</select>
 									</td>
 									<td>
-										<button type="submit" class="btn btn-primary">Aggiungi</button>
+										<button type="submit" class="btn btn-info m-3">Aggiungi</button>
 									</td>
 								</tr>
 							</table>
@@ -118,8 +124,8 @@
 					</div>
 				</form>
 				<div class="bottoni">
-					<a th:href="@{/acquisto}"><button type="submit" class="btn btn-primary">Termina</button></a>
-					<a class="btn btn-primary"
+					<a th:href="@{/acquisto}"><button type="submit" class="btn btn-info my-2">Termina</button></a>
+					<a class="btn btn-info my-2"
 						th:href="@{|/acquisto/${cardAcquisto.acquisto.id}|}">Elimina</a>
 				</div>
 			</div>

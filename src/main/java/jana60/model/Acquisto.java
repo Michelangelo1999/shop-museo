@@ -28,7 +28,7 @@ public class Acquisto {
 	@OneToMany(mappedBy = "acquisto", cascade = CascadeType.ALL)
 	private List<CardAcquisto> cardAcquisto;
 
-	@OneToOne
+	@OneToOne(mappedBy = "acquisto", cascade = CascadeType.ALL)
 	private Fattura fattura;
 
 	// getters and setters

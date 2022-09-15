@@ -35,13 +35,16 @@
          <!-- INIZIO CONTENUTO PAGINA -->
           
     <!-- CONTENUTO -->
+     <div class="container px-4">
     <h1>Le visite guidate</h1>
+    <hr class="border border-dark">
     <!--table-->
-      <table class="table table-striped">
+    <div class="container">
+      <table class=" table table-striped">
         <thead>
           <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrizione</th>
+            <th >Nome</th>
+            
             <th scope="col">Data di inizio</th>
            
             <th scope="col">Prezzo</th>
@@ -54,7 +57,6 @@
         <tbody>
           <tr th:each ="sv : ${schedaVisita}">
             <td class="mx-1" th:text="${sv.titolo}"></td>
-            <td th:text="${sv.descrizione}"></td>
             <td th:text="${sv.orarioInizio}"></td>
             
              <td th:text="&euro; + ' ' + ${#numbers.formatDecimal(sv.prezzo, 1, 2)}"></td>
@@ -62,17 +64,19 @@
             <td th:text="${sv.numeroPrenotati}"></td>
             <td> <span th:each="g : ${sv.guida}" th:text="${g.cognome}"></span> </td>
             <td>
-            	<a class="btn btn-white-50" th:href="@{|visite/modifica/${sv.id}|}" title="Modifica" role="button">
+            	<a class="btn btn-white " th:href="@{|visite/modifica/${sv.id}|}" title="Modifica" role="button">
             		<i class="fa-solid fa-gear"></i>
             	</a>
-            	<a class="btn btn-primary" th:href="@{|/visite/${sv.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
-            	<a class="btn btn-danger" th:href="@{|visite/elimina/${sv.id}|}" title="Elimina" role="button">
+            	<a class="btn btn-info " th:href="@{|/visite/${sv.id}|}" title="Detail"><i class="fa-solid fa-circle-info"></i></a>
+            	<a class="btn btn-danger " th:href="@{|visite/elimina/${sv.id}|}" title="Elimina" role="button">
             		<i class="fa-solid fa-trash-can"></i>
             	</a>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+     </div>
     <!--table-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
 				integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"

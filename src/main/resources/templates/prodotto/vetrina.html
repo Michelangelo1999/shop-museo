@@ -15,7 +15,7 @@
             <div class="flex-container">
                 <div class="col-4" th:each="p : ${prodotto}" >
                     <div class="product">
-                        <p class="heart">&hearts;</p>
+                        
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item" th:each="i,k : ${img}" th:if="${i.prodotto == p}"   th:classappend="${k.index == i.id-1 } ? 'active'">

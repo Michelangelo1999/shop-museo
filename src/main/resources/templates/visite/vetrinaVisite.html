@@ -12,24 +12,18 @@
 <nav th:replace="fragments/navbar :: navbar('visite')"></nav>
 	<h1>Visite Guidate</h1>
 
-<div class="container mt-5">
-            <div class="flex-container">
-                <div class="col-4" th:each="v : ${visita}" >
+<div class="container pt-5">
+            <div class="flex-container" >
+                <div class="col-lg-4 col-8 mb-3"  th:each="v : ${visita}" >
                     <div class="product">
-                        <p class="heart">&hearts;</p>
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item"  th:each="i,k : ${img}" th:if="${i.visita == v}" th:classappend="${k.index == i.id-1} ? 'active'">
-                       <img  th:src="@{|/visite/${i.id}/content|}" alt="">
+                      <img class="img-thumbnail" width="400" height="400" id="image-card" th:src="@{|/visite/${i.id}/content|}" alt="">
+                      <!-- <div id="image-card" style="background-image: url{[[@{/visite/${i.id}/content}]]}"> -->
+                      
+                      </div>
                        </div>
-  <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button> -->
 </div>
 
                        <h3 th:text ="${v.titolo}"></h3>

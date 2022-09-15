@@ -84,50 +84,20 @@ div.bottoni {
 
 /*card*/
 .container{
-    max-width: 1300px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 10px ;
+    
+  
 }
 .flex-container{
     display: flex;
     flex-wrap: wrap;
+   
 }
-.col{
-    width: calc(100%/3);
-    padding: 10px;
-}
-.product{
-    padding-bottom: 10px;
-    position: relative;
-}
-.product img{
-    width: 100%;
-    padding: 8px 0;
 
-}
-/* prezzi */
-.prezzo-rosso{
-    color: red;
-    font-weight: bold;
-}
-.prezzo-barrato{
-    text-decoration: line-through;
-}
-.heart{
-    position: absolute;
-    text-align: right;
-    background-color: white;
-    width: 30px;
-    top: 30px;
-    right: 0;
-    padding: 8px;
-    z-index: 1;
-}
-.product:hover .heart{
-    display: block;
-    color: red;
-    cursor: pointer;
-}
+
+
 .scritta-foto{
     color: white;
     font-size: small;
@@ -138,33 +108,11 @@ div.bottoni {
     padding: 3px;
     border-radius: 2px;
 }
-.sconto{
-    background-color:#eb0037;
-    
-}
-.sostenibilità{
-    background-color: #00875a;
-    
-}
-.sconto1{
-    color: white;
-    font-size: small;
-    font-weight: bold;
-    background-color: #eb0037;
-    position: absolute;
-    bottom: 100px;
-    left: 0;
-    padding: 3px;
-    border-radius: 2px;
-}
-.sostenibilità1{
-    color: white;
-    font-size: small;
-    font-weight: bold;
-    background-color: #00875a;
-    position: absolute;
-    bottom: 100px;
-    left: 40px;
-    padding: 3px;
-    border-radius: 2px;
-}
+
+
+/*#image-card{
+	max-width: 100%;
+	height: auto;
+}*/
+
+

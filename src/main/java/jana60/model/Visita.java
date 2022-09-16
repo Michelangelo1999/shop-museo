@@ -123,13 +123,13 @@ public class Visita {
 	// metodi custom
 	// formatter
 	public String orarioInizio() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy HH:mm");
 		String formatDateTime = dataInizio.format(formatter);
 		return formatDateTime;
 	}
 
 	public String orarioFine() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		String formatDateTime = dataFine.format(formatter);
 		return formatDateTime;
 	}

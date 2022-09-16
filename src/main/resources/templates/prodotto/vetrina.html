@@ -18,12 +18,12 @@
                 <div class="col-4 py-2" th:each="p : ${prodotto}" >
                     <div class="product">
                         
-                        <div id="carouselExampleControls" class="carousel slide border border-radius" data-bs-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel slide border border-radius" data-bs-ride="false">
   <div class="carousel-inner">
-    <div class="carousel-item" th:each="i,k : ${img}" th:if="${i.prodotto == p}"   th:classappend="${k.index == i.id-1 } ? 'active'">
+    <div class="carousel-item" th:each="i,k : ${img}" th:if="${i.prodotto == p}" th:classappend="${k.index == i.id-1 } ? 'active'">
                        <img class="img img-fluid mh-50"  th:src="@{|/image/${i.id}/content|}" alt="">
                        
-  <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
@@ -33,10 +33,10 @@
   </button> -->
   </div>
 </div>
-<h3 class="mt-2" th:text="${p.nome}"></h3>
-                       <p th:text="${p.descrizione}"></p>
+<h3 class="mt-2 ml-2" th:text="${p.nome}"></h3>
+                       <p class="ml-2" th:text="${p.descrizione}"></p>
                        
-                       <p><span class="prezzo-rosso" th:text="${#numbers.formatDecimal(p.prezzo,1,2)}+' '+ &euro;"></span></p>
+                       <p class="ml-2"><span class="prezzo-rosso" th:text="${#numbers.formatDecimal(p.prezzo,1,2)}+' '+ &euro;"></span></p>
                     </div>
                 </div>
         </div>

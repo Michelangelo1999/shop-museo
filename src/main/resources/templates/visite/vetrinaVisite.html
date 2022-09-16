@@ -31,11 +31,11 @@
                        </div>
 </div>
 
-                       <h3 th:text ="${v.titolo}"></h3>
-                       <p th:text="${v.descrizione}"></p>
-                       <p th:text="${v.orarioInizio + ' ' + v.orarioFine}"></p>
+                       <h3 class="ml-2" th:text ="${v.titolo}"></h3>
+                       <p class="ml-2" th:text="${v.descrizione}"></p>
+                       <p class="ml-2" th:text="${v.orarioInizio + ' / ' + v.orarioFine}"></p>
                        
-                       <p><span class="prezzo-rosso" th:text="${#numbers.formatDecimal(v.prezzo,1,2)}+' '+ &euro;"></span></p>
+                       <p class="ml-2"><span class="prezzo-rosso" th:text="${#numbers.formatDecimal(v.prezzo,1,2)}+' '+ &euro;"></span></p>
                        <div class="card-footer bg-info mb-2">
 			<a class="text-white" th:href="@{|/prenotazionevisita/nuova/${v.id}|}">Prenota adesso</a>
 		</div>
